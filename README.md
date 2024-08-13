@@ -1,8 +1,8 @@
 ## Basics:
-- Clone this repo into '.../Godot/Projects' directory
-- In the godot project menu use the "Import" button at the top left and navigate to the project.godot file
-- Edit the project and try running it with the play button at the top right
-- When you want to start editing/messing around **make your own directory for all of your scenes and resources**
+1. Clone this repo into '.../Godot/Projects' directory
+2. In the godot project menu use the "Import" button at the top left and navigate to the project.godot file
+3. Edit the project and try running it with the play button at the top right
+4. When you want to start editing/messing around **make your own directory for all of your scenes and resources**
     - *Make your own branch too if you know what you're doing*
 
 
