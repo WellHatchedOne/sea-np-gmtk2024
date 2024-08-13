@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://c8punkfibodea"]
+
+[ext_resource type="PackedScene" uid="uid://cffbki6irx1rr" path="res://Max/test_objects/test_floor.tscn" id="1_l5chu"]
+[ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://Max/test_objects/test_movable_guy.tscn" id="2_bjtiw"]
+
+[node name="MaxsMain" type="Node2D"]
+
+[node name="TestFloor" parent="." instance=ExtResource("1_l5chu")]
+position = Vector2(918, 512)
+rotation = -2.16908
+scale = Vector2(19.8737, 2.23947)
+
+[node name="TestFloor2" parent="." instance=ExtResource("1_l5chu")]
+position = Vector2(176, 258)
+rotation = 0.672128
+scale = Vector2(4.84, 10)
+
+[node name="TestFloor3" parent="." instance=ExtResource("1_l5chu")]
+position = Vector2(574, 627)
+scale = Vector2(55.72, 1)
+
+[node name="TestMovableGuy" parent="." instance=ExtResource("2_bjtiw")]
+position = Vector2(576, 247)
