@@ -5,7 +5,10 @@
 
 [node name="MaxsMain" type="Node2D"]
 
-[node name="TestFloor" parent="." instance=ExtResource("1_l5chu")]
+[node name="TestMovableGuy" parent="." instance=ExtResource("2_bjtiw")]
+position = Vector2(576, 247)
+
+[node name="TestFloor1" parent="." instance=ExtResource("1_l5chu")]
 position = Vector2(918, 512)
 rotation = -2.16908
 scale = Vector2(19.8737, 2.23947)
@@ -18,6 +21,3 @@ scale = Vector2(4.84, 10)
 [node name="TestFloor3" parent="." instance=ExtResource("1_l5chu")]
 position = Vector2(574, 627)
 scale = Vector2(55.72, 1)
-
-[node name="TestMovableGuy" parent="." instance=ExtResource("2_bjtiw")]
-position = Vector2(576, 247)
