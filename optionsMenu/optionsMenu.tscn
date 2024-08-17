@@ -1,3 +1,8 @@
 [gd_scene format=3 uid="uid://b5rdfsrppy4ya"]
 
 [node name="OptionsMenu" type="Node2D"]
+
+[node name="Button" type="Button" parent="."]
+offset_right = 8.0
+offset_bottom = 8.0
+text = "there was no space in the budget for options"
