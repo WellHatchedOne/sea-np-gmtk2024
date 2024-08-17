@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var bulletSpeed: float = 50
 @export var health: int = 1
 
+
 var bullet_scene = preload("res://Davis/Entities/Bullets/bullet.tscn")
 
 class Bullet:
@@ -14,8 +15,9 @@ class Bullet:
 func _shoot():
 	# create projectile in front
 	# give projectile velocity forwards
-	var new_bullet = bullet_scene.instance()
-	new_bullet.
+	var new_bullet = bullet_scene.instantiate()
+	
+	#new_bullet.
 	add_child(new_bullet)
 
 

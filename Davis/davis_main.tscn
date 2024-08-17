@@ -24,6 +24,3 @@ scale = Vector2(55.72, 1)
 position = Vector2(541, 432)
 
 [node name="MeleeAttacker" parent="." instance=ExtResource("3_0qp6j")]
-speed = null
-bulletSpeed = null
-health = null
