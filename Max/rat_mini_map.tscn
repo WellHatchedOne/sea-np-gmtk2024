@@ -55,4 +55,5 @@ size = Vector2i(300, 300)
 render_target_update_mode = 4
 
 [node name="MMCamera" type="Camera2D" parent="Control/ColorRect/MarginContainer/SubViewportContainer/SubViewport"]
+zoom = Vector2(4, 4)
 script = ExtResource("2_giodg")
