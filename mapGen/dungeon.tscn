@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2f8rg337sig6"]
+[gd_scene load_steps=10 format=3 uid="uid://d2f8rg337sig6"]
 
 [ext_resource type="Script" path="res://mapGen/dungeon.gd" id="1_g1b25"]
 [ext_resource type="Script" path="res://mapGen/Branch.gd" id="2_c8m0v"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://tempMains/Max/test_objects/test_movable_guy.tscn" id="4_3v22h"]
 [ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="4_7uqcr"]
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
+[ext_resource type="PackedScene" uid="uid://uvgdynm14wdy" path="res://ui/huds/hud/hud.tscn" id="7_33jec"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ox18j"]
 texture = ExtResource("3_n38rq")
@@ -300,6 +301,8 @@ scale = Vector2(0.1, 0.1)
 
 [node name="rat" parent="TestMovableGuy" instance=ExtResource("4_7uqcr")]
 position = Vector2(6000, -8150)
+
+[node name="Hud" parent="." instance=ExtResource("7_33jec")]
 
 [node name="RatMiniMap" parent="." node_paths=PackedStringArray("test_movable_guy") instance=ExtResource("6_k1yuq")]
 test_movable_guy = NodePath("../TestMovableGuy")
