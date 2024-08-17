@@ -32,4 +32,4 @@ func get_input() -> void:
 
 
 func change_color() -> void:
-	$ColorRect.  color = Color(randf(), randf(), randf())
+	$ColorRect.color = Color(randf(), randf(), randf())
