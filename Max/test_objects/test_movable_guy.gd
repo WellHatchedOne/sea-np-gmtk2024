@@ -25,7 +25,11 @@ func get_input() -> void:
 		$AnimatedSprite2D.flip_v = false
 		$AnimatedSprite2D.flip_h = velocity.x < 0
 	elif velocity.y != 0:
-		$AnimatedSprite2D.flip_v = velocity.y > 0
+		if velocity.y > 0:
+			$AnimatedSprite2D.animation = "down"
+		else:
+			$AnimatedSprite2D.animation = "up"
+
 
 func change_color() -> void:
 	$ColorRect.color = Color(randf(), randf(), randf())
