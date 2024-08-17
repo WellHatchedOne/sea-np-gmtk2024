@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="1_3brr1"]
 [ext_resource type="PackedScene" uid="uid://cffbki6irx1rr" path="res://Max/test_objects/test_floor.tscn" id="1_okr4v"]
 [ext_resource type="Script" path="res://Max/test_objects/test_movable_guy.gd" id="2_1ui3v"]
-
 [node name="Main" type="Node2D"]
 
 [node name="rat" parent="." instance=ExtResource("1_3brr1")]
@@ -23,3 +22,10 @@ scale = Vector2(4.84, 10)
 [node name="TestFloor3" parent="." instance=ExtResource("1_okr4v")]
 position = Vector2(574, 627)
 scale = Vector2(55.72, 1)
+
+[node name="TestMovableGuy" parent="." instance=ExtResource("2_n6nq3")]
+position = Vector2(484, 556)
+speed = 400.0
+
+[node name="TestDamagableGuy" parent="." instance=ExtResource("3_fuxct")]
+script = ExtResource("3_nt20b")
