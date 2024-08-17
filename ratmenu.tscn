@@ -1,0 +1,56 @@
+[gd_scene load_steps=2 format=3 uid="uid://ur82e76610s1"]
+
+[ext_resource type="Script" path="res://ratmenu.gd" id="1_r57hw"]
+
+[node name="Rat_Menu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r57hw")
+
+[node name="Margin Container" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_right = 12.0
+offset_bottom = 654.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin Container"]
+layout_mode = 2
+theme_override_constants/separation = 50
+
+[node name="Control" type="Control" parent="Margin Container/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Margin Container/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Rat Menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+uppercase = true
+
+[node name="Button" type="Button" parent="Margin Container/VBoxContainer"]
+custom_minimum_size = Vector2(120, 60)
+layout_mode = 2
+size_flags_vertical = 10
+text = "Exit"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="Margin Container"]
+visible = false
+layout_mode = 2
+alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Margin Container/HBoxContainer"]
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
