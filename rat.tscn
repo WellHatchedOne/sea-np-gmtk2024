@@ -1,11 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://b32e7nkyfmr3k"]
+[gd_scene load_steps=9 format=3 uid="uid://b32e7nkyfmr3k"]
 
+[ext_resource type="Texture2D" uid="uid://ccrt4f08p1kd0" path="res://assets/base_rat_down1.png" id="1_1krn0"]
 [ext_resource type="Texture2D" uid="uid://x5jm4j22h8qy" path="res://assets/base_rat_up1.png" id="1_3myic"]
+[ext_resource type="Texture2D" uid="uid://b3iox0ib7wyn4" path="res://assets/base_rat_down2.png" id="2_bha8w"]
 [ext_resource type="Texture2D" uid="uid://qdwxwhxiljen" path="res://assets/base_rat_up2.png" id="2_ret74"]
+[ext_resource type="Texture2D" uid="uid://bvhk286l42ag7" path="res://assets/base_rat_down3.png" id="3_rmmfr"]
 [ext_resource type="Texture2D" uid="uid://ckgjakvxygkso" path="res://assets/base_rat_up3.png" id="3_se12w"]
+[ext_resource type="Texture2D" uid="uid://spd8b0gmjj0p" path="res://assets/base_rat_down4.png" id="4_ps7wa"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_rmmfr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_1krn0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bha8w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ps7wa")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
 "frames": [{
 "duration": 1.0,
 "texture": ExtResource("1_3myic")
@@ -24,9 +45,8 @@ animations = [{
 [node name="rat" type="CharacterBody2D"]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(14, 21)
+position = Vector2(-2, 21)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
 animation = &"up"
-frame = 2
-frame_progress = 0.770516
+frame_progress = 0.237928
