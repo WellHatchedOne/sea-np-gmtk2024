@@ -4,7 +4,6 @@
 [ext_resource type="Script" path="res://Max/test_objects/test_movable_guy.gd" id="2_1ui3v"]
 
 [node name="Node2D" type="Node2D"]
-
 [node name="rat" parent="." instance=ExtResource("1_3brr1")]
 position = Vector2(593, 464)
 script = ExtResource("2_1ui3v")
