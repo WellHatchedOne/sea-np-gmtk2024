@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dseqfttisliv6"]
+
+[ext_resource type="Script" path="res://Grace/cheese.gd" id="1_5c1x1"]
+[ext_resource type="Texture2D" uid="uid://dw8jt8uq7gie4" path="res://assets/cheese.png" id="1_s8b4u"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s1kn8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_s8b4u")
+}],
+"loop": true,
+"name": &"rest",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dd8k1"]
+size = Vector2(547, 526)
+
+[node name="Cheese" type="RigidBody2D"]
+script = ExtResource("1_5c1x1")
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_s1kn8")
+animation = &"rest"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(153.5, -172)
+shape = SubResource("RectangleShape2D_dd8k1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
