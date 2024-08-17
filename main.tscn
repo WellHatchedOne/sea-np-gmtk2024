@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://b83gut5er6mu8"]
+[gd_scene load_steps=5 format=3 uid="uid://b83gut5er6mu8"]
 
 [ext_resource type="PackedScene" uid="uid://cffbki6irx1rr" path="res://Max/test_objects/test_floor.tscn" id="1_okr4v"]
 [ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://Max/test_objects/test_movable_guy.tscn" id="2_n6nq3"]
+[ext_resource type="PackedScene" uid="uid://dt4shxytxampe" path="res://Davis/Entities/Characters/test_damagable_guy.tscn" id="3_fuxct"]
+[ext_resource type="Script" path="res://Davis/Entities/Characters/test_damagable_guy.gd" id="3_nt20b"]
 
 [node name="Main" type="Node2D"]
 
@@ -20,4 +22,8 @@ position = Vector2(574, 627)
 scale = Vector2(55.72, 1)
 
 [node name="TestMovableGuy" parent="." instance=ExtResource("2_n6nq3")]
-position = Vector2(576, 554)
+position = Vector2(484, 556)
+speed = 400.0
+
+[node name="TestDamagableGuy" parent="." instance=ExtResource("3_fuxct")]
+script = ExtResource("3_nt20b")
