@@ -1,11 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://b83gut5er6mu8"]
+[gd_scene load_steps=4 format=3 uid="uid://b83gut5er6mu8"]
 
+[ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="1_3brr1"]
 [ext_resource type="PackedScene" uid="uid://cffbki6irx1rr" path="res://Max/test_objects/test_floor.tscn" id="1_okr4v"]
-[ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://Max/test_objects/test_movable_guy.tscn" id="2_n6nq3"]
-[ext_resource type="PackedScene" uid="uid://dt4shxytxampe" path="res://Davis/Entities/Characters/test_damagable_guy.tscn" id="3_fuxct"]
-[ext_resource type="Script" path="res://Davis/Entities/Characters/test_damagable_guy.gd" id="3_nt20b"]
-
+[ext_resource type="Script" path="res://Max/test_objects/test_movable_guy.gd" id="2_1ui3v"]
 [node name="Main" type="Node2D"]
+
+[node name="rat" parent="." instance=ExtResource("1_3brr1")]
+position = Vector2(594, 417)
+script = ExtResource("2_1ui3v")
 
 [node name="TestFloor" parent="." instance=ExtResource("1_okr4v")]
 position = Vector2(918, 512)
