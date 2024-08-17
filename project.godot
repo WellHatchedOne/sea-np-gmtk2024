@@ -11,9 +11,14 @@ config_version=5
 [application]
 
 config/name="sea-np-gmtk2024"
-run/main_scene="res://ui/menus/mainMenu/mainmenu.tscn"
+run/main_scene="res://dungeon.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/always_on_top=true
+window/stretch/scale=3.03
 
 [input]
 
