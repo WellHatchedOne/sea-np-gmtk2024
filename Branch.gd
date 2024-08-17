@@ -49,7 +49,7 @@ func split(remaining: int, paths: Array):
 		left_child.split(remaining - 1, paths)
 		right_child.split(remaining - 1, paths)
 		
-func self_inside_padding(x: int, y: int, padding: Vector4i):
+func isNotFloorTile(x: int, y: int, padding: Vector4i):
 	return x <= padding.x or y <= padding.y or x >= size.x - padding.z or y >= size.y - padding.w
 
 func get_center() -> Vector2i:

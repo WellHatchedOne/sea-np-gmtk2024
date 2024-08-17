@@ -1,10 +1,24 @@
 extends Node2D
 
-var root_node: Branch
+# big green squares = space
+# gray = out of bounds
+# red = floor
+# orange = walls
+
+# CONSTANTS
+
+var DEBUG = false
+
 var tile_size: int =  16
 
-var tilemap: TileMap
+var tileMapFloorVector: Vector2i = Vector2i(0, 8)
+var tileMapWallVector: Vector2i = Vector2i(0, 0)
+var tileMapCornerVector: Vector2i = Vector2i(5, 0)
 
+# END CONSTANTS
+
+var root_node: Branch
+var tilemap: TileMap
 var paths: Array = []
 
 # Called when the node enters the scene tree for the first time.
@@ -18,7 +32,8 @@ func _draw():
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	
 	for leaf in root_node.get_leaves():
-		draw_rect(
+		if (DEBUG):
+			draw_rect(
 			Rect2(
 				leaf.position.x * tile_size, # x
 				leaf.position.y * tile_size, # y
@@ -40,48 +55,34 @@ func _draw():
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				# Only render tiles in actual rooms
-				if not leaf.self_inside_padding(x, y, padding):
+				if not leaf.isNotFloorTile(x, y, padding):
 					# 1 is the atlas ID
 					# 0,8 is the tile location in the atlas
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(0, 8))
-		
-		# Render top wall
-		for x in range(leaf.size.x):
-			for y in range(leaf.size.y):
-				if leaf.self_inside_padding(x, y, padding) and not leaf.self_inside_padding(x, y + 1, padding):
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(0, 0))
-		
-		## Render bottom wall
-		#for x in range(leaf.size.x):
-			#for y in range(leaf.size.y):
-				#if leaf.self_inside_padding(x, y, padding) and not leaf.self_inside_padding(x, y - 1, padding):
-					#tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(4, 2), 1)
-		
-		# Render left wall
-		for x in range(leaf.size.x):
-			for y in range(leaf.size.y):
-				if leaf.self_inside_padding(x, y, padding) and not leaf.self_inside_padding(x + 1, y, padding):
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(1, 0))
-					tilemap.set_cell(1, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(5, 8))
-		
-		# Render right wall
-		for x in range(leaf.size.x):
-			for y in range(leaf.size.y):
-				if leaf.self_inside_padding(x, y, padding) and not leaf.self_inside_padding(x - 1, y, padding):
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(1, 0))
-					tilemap.set_cell(1, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(3, 8))
-		
-		# Render top left wall
-		for x in range(leaf.size.x):
-			for y in range(leaf.size.y):
-				if leaf.self_inside_padding(x, y, padding) and leaf.self_inside_padding(x + 1, y, padding) and leaf.self_inside_padding(x - 1, y, padding) and leaf.self_inside_padding(x, y + 1, padding) and leaf.self_inside_padding(x, y - 1, padding) and not leaf.self_inside_padding(x + 1, y + 1, padding):
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(3, 0))
-		
-		# Render top right wall
-		for x in range(leaf.size.x):
-			for y in range(leaf.size.y):
-				if leaf.self_inside_padding(x, y, padding) and leaf.self_inside_padding(x + 1, y, padding) and leaf.self_inside_padding(x - 1, y, padding) and leaf.self_inside_padding(x, y + 1, padding) and leaf.self_inside_padding(x, y - 1, padding) and not leaf.self_inside_padding(x - 1, y + 1, padding):
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, Vector2i(5, 0))
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapFloorVector)
+				elif not leaf.isNotFloorTile(x, y + 1, padding):
+					# Render top wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapWallVector)
+				elif not leaf.isNotFloorTile(x, y - 1, padding):
+					# Render bottom wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapWallVector, 5)
+				elif not leaf.isNotFloorTile(x + 1, y, padding):
+					# Render left wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapWallVector, 6)
+				elif leaf.isNotFloorTile(x, y, padding) and not leaf.isNotFloorTile(x - 1, y, padding):
+					# Render right wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapWallVector, 7)
+				elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x + 1, y + 1, padding):
+					# Render top left wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapCornerVector, 1)
+				elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x - 1, y + 1, padding):
+					# Render top right wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapCornerVector)
+				elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x + 1, y - 1, padding):
+					# Render bottom left wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapCornerVector, 3)
+				elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x - 1, y - 1, padding):
+					# Render bottom right wall
+					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), 1, tileMapCornerVector, 2)
 					
 					
 	# Render room connections
@@ -96,3 +97,4 @@ func _draw():
 			for i in range(path['right'].y - path['left'].y):
 				tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), 1, Vector2i(0, 11))
 				tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), 1, Vector2i(0, 12))
+

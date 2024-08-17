@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://b5vts7r8uiyye"]
+[gd_scene load_steps=6 format=3 uid="uid://d2f8rg337sig6"]
 
 [ext_resource type="Script" path="res://dungeon.gd" id="1_7oxh7"]
 [ext_resource type="Script" path="res://Branch.gd" id="2_c8m0v"]
@@ -6,12 +6,27 @@
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ox18j"]
 texture = ExtResource("3_n38rq")
-0:0/next_alternative_id = 4
+0:0/next_alternative_id = 8
 0:0/0 = 0
+0:0/5 = 5
+0:0/5/flip_v = true
+0:0/6 = 6
+0:0/6/transpose = true
+0:0/7 = 7
+0:0/7/flip_h = true
+0:0/7/transpose = true
 1:0/0 = 0
 3:0/0 = 0
 4:0/0 = 0
+5:0/next_alternative_id = 4
 5:0/0 = 0
+5:0/1 = 1
+5:0/1/flip_h = true
+5:0/2 = 2
+5:0/2/flip_h = true
+5:0/2/transpose = true
+5:0/3 = 3
+5:0/3/transpose = true
 6:0/0 = 0
 7:0/0 = 0
 0:1/0 = 0
@@ -33,6 +48,7 @@ texture = ExtResource("3_n38rq")
 8:2/0 = 0
 0:3/0 = 0
 3:3/0 = 0
+4:3/next_alternative_id = 5
 4:3/0 = 0
 5:3/0 = 0
 6:3/0 = 0
