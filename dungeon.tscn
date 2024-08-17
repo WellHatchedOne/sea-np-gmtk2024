@@ -1,11 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2f8rg337sig6"]
+[gd_scene load_steps=8 format=3 uid="uid://d2f8rg337sig6"]
 
-[ext_resource type="Script" path="res://dungeon.gd" id="1_g1b25"]
-[ext_resource type="Script" path="res://Branch.gd" id="2_c8m0v"]
-[ext_resource type="Texture2D" uid="uid://cbaufc17s4l2r" path="res://tileset.png" id="3_n38rq"]
-[ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://Max/test_objects/test_movable_guy.tscn" id="4_3v22h"]
-[ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="4_7uqcr"]
-[ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://Max/rat_mini_map.tscn" id="6_k1yuq"]
+[ext_resource type="Script" path="res://mapGen/dungeon.gd" id="1_g1b25"]
+[ext_resource type="Script" path="res://mapGen/Branch.gd" id="2_c8m0v"]
+[ext_resource type="Texture2D" uid="uid://cbaufc17s4l2r" path="res://mapGen/tileset.png" id="3_n38rq"]
+[ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
+[ext_resource type="PackedScene" uid="uid://dknubmiky3ydk" path="res://Max/pack_of_rats/pack_of_rats.tscn" id="7_paog1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ox18j"]
 texture = ExtResource("3_n38rq")
@@ -119,11 +118,8 @@ tile_set = SubResource("TileSet_4ha60")
 format = 2
 layer_1/tile_data = PackedInt32Array()
 
-[node name="TestMovableGuy" parent="." instance=ExtResource("4_3v22h")]
-scale = Vector2(0.1, 0.1)
+[node name="RatMiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_k1yuq")]
+player = NodePath("../PackOfRats")
 
-[node name="rat" parent="TestMovableGuy" instance=ExtResource("4_7uqcr")]
-position = Vector2(6000, -8150)
-
-[node name="RatMiniMap" parent="." node_paths=PackedStringArray("test_movable_guy") instance=ExtResource("6_k1yuq")]
-test_movable_guy = NodePath("../TestMovableGuy")
+[node name="PackOfRats" parent="." instance=ExtResource("7_paog1")]
+speed = 400.0
