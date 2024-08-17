@@ -1,6 +1,6 @@
 [gd_scene load_steps=11 format=3 uid="uid://dhvqt2giyunf4"]
 
-[ext_resource type="Script" path="res://Max/test_objects/test_movable_guy.gd" id="1_tlt03"]
+[ext_resource type="Script" path="res://tempMains/Max/test_objects/test_movable_guy.gd" id="1_tlt03"]
 [ext_resource type="Texture2D" uid="uid://bvhk286l42ag7" path="res://assets/base_rat_down3.png" id="2_qokrt"]
 [ext_resource type="Texture2D" uid="uid://ccrt4f08p1kd0" path="res://assets/base_rat_down1.png" id="3_1i2dv"]
 [ext_resource type="Texture2D" uid="uid://b3iox0ib7wyn4" path="res://assets/base_rat_down2.png" id="4_2ld7m"]

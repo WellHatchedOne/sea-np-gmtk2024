@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c8punkfibodea"]
 
-[ext_resource type="PackedScene" uid="uid://cffbki6irx1rr" path="res://Max/test_objects/test_floor.tscn" id="1_l5chu"]
-[ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://Max/test_objects/test_movable_guy.tscn" id="2_bjtiw"]
+[ext_resource type="PackedScene" uid="uid://cffbki6irx1rr" path="res://tempMains/Max/test_objects/test_floor.tscn" id="1_l5chu"]
+[ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://tempMains/Max/test_objects/test_movable_guy.tscn" id="2_bjtiw"]
 
 [node name="MaxsMain" type="Node2D"]
 
