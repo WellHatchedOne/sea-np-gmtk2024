@@ -1,8 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://d2f8rg337sig6"]
 
-[ext_resource type="Script" path="res://dungeon.gd" id="1_g1b25"]
-[ext_resource type="Script" path="res://Branch.gd" id="2_c8m0v"]
-[ext_resource type="Texture2D" uid="uid://cbaufc17s4l2r" path="res://tileset.png" id="3_n38rq"]
+[ext_resource type="Script" path="res://mapGen/dungeon.gd" id="1_g1b25"]
+[ext_resource type="Script" path="res://mapGen/Branch.gd" id="2_c8m0v"]
+[ext_resource type="Texture2D" uid="uid://cbaufc17s4l2r" path="res://mapGen/tileset.png" id="3_n38rq"]
 [ext_resource type="PackedScene" uid="uid://dhvqt2giyunf4" path="res://Max/test_objects/test_movable_guy.tscn" id="4_3v22h"]
 [ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="4_7uqcr"]
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://Max/rat_mini_map.tscn" id="6_k1yuq"]

@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dvixrwtpnd815"]
 
-[ext_resource type="Script" path="res://Davis/Entities/Characters/meleeAttacker.gd" id="1_npqy6"]
+[ext_resource type="Script" path="res://tempMains/Davis/Entities/Characters/meleeAttacker.gd" id="1_npqy6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_8nfuk"]
 
