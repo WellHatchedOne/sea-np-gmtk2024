@@ -115,31 +115,31 @@ func _draw():
 					# Now check if the tile to above or below is also dead space
 					if cellDataUp == null:
 						# Render top wall
-						tilemap.set_cell(0, upPos, 1, tileMapWallVector)
+						tilemap.set_cell(0, upPos, source_id, tileMapWallVector)
 					if cellDataDown == null:
 						# Render bottom wall
-						tilemap.set_cell(0, downPos, 1, tileMapWallVector, 5)
+						tilemap.set_cell(0, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
 				else:
 					 # This means we could be breaking down a wall, or just overwriting an existing floor tile
 					 # If we're breaking down a wall, also render another wall piece on another layer above or below
-					if (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == 7):
-						if tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == 7:
+					if (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapRightAlt):
+						if tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == tileMapRightAlt:
 							# Render top wall
-							tilemap.set_cell(1, upPos, 1, tileMapWallVector)
-						if tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == 7:
+							tilemap.set_cell(1, upPos, source_id, tileMapWallVector)
+						if tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == tileMapRightAlt:
 							# Render bottom wall
-							tilemap.set_cell(1, downPos, 1, tileMapWallVector, 5)
-					elif (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == 6):
-						if tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == 6:
+							tilemap.set_cell(1, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
+					elif (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapLeftAlt):
+						if tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == tileMapLeftAlt:
 							# Render top wall
-							tilemap.set_cell(1, upPos, 1, tileMapWallVector)
-						if tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == 6:
+							tilemap.set_cell(1, upPos, source_id, tileMapWallVector)
+						if tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == tileMapLeftAlt:
 							# Render bottom wall
-							tilemap.set_cell(1, downPos, 1, tileMapWallVector, 5)
+							tilemap.set_cell(1, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
 				
 				# Now draw the path connection tiles
-				tilemap.set_cell(0, Vector2i(path['left'].x+i,path['left'].y), 1, Vector2i(0, 9))
-				tilemap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), 1, Vector2i(0, 15))
+				tilemap.set_cell(0, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 9))
+				tilemap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 15))
 		else:
 			# vertical
 			for i in range(path['right'].y - path['left'].y):
@@ -156,29 +156,29 @@ func _draw():
 					# Now check if the tile to our left or right is also dead space
 					if cellDataLeft == null:
 						# Render left wall
-						tilemap.set_cell(0, leftPos, 1, tileMapWallVector, 6)
+						tilemap.set_cell(0, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
 					if cellDataRight == null:
 						# Render right wall
-						tilemap.set_cell(0, rightPos, 1, tileMapWallVector, 7)
+						tilemap.set_cell(0, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
 				else:
 					# This means we could be breaking down a wall, or just overwriting an existing floor tile
 					# If we're breaking down a wall, also render another wall piece on another layer one to the left or right
-					if (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == 5):
-						if tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == 5:
+					if (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapTopAlt):
+						if tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == tileMapTopAlt:
 							# Render left wall
-							tilemap.set_cell(1, leftPos, 1, tileMapWallVector, 6)
-						if tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == 5:
+							tilemap.set_cell(1, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
+						if tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == tileMapTopAlt:
 							# Render right wall
-							tilemap.set_cell(1, rightPos, 1, tileMapWallVector, 7)
-					elif (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == 0):
-						if tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == 0:
+							tilemap.set_cell(1, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
+					elif (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapBottomAlt):
+						if tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == tileMapBottomAlt:
 							# Render left wall
-							tilemap.set_cell(1, leftPos, 1, tileMapWallVector, 6)
-						if tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == 0:
+							tilemap.set_cell(1, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
+						if tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == tileMapBottomAlt:
 							# Render right wall
-							tilemap.set_cell(1, rightPos, 1, tileMapWallVector, 7)
+							tilemap.set_cell(1, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
 
 				# Now draw the path connection tiles
-				tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), 1, Vector2i(0, 11))
-				tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), 1, Vector2i(0, 12))
+				tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 11))
+				tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 12))
 
