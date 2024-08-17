@@ -18,5 +18,6 @@ color = Color(0, 0.760141, 0.196468, 1)
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_xbmso")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-texture = ExtResource("2_vncyw")
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+position_smoothing_speed = 10.0

@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Test_Movable_Guy
 
 @export var speed: float = 400
+@export var img1: Texture2D = null
 
 func _input(event):
 	if event.is_action_pressed("change_color"):
