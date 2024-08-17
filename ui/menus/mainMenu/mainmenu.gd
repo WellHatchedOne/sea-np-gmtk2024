@@ -1,7 +1,7 @@
 extends Control
 
 func _on_play_pressed():
-	get_tree().change_scene_to_file("res://tempMains/shawnMain.tscn")
+	get_tree().change_scene_to_file("res://mapGen/dungeon.tscn")
 
 func _on_options_pressed():
 	get_tree().change_scene_to_file("res://ui/menus/optionsMenu/optionsMenu.tscn")

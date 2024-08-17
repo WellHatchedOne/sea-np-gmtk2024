@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://b48ecluvmk63a"]
 
-[ext_resource type="Script" path="res://Max/rat_mini_map.gd" id="1_difs2"]
-[ext_resource type="Script" path="res://Max/MMCamera.gd" id="2_giodg"]
+[ext_resource type="Script" path="res://ui/huds/minimap/rat_mini_map.gd" id="1_difs2"]
+[ext_resource type="Script" path="res://ui/huds/minimap/MMCamera.gd" id="2_giodg"]
 
 [node name="RatMiniMap" type="CanvasLayer"]
 script = ExtResource("1_difs2")

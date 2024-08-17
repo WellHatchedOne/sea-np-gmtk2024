@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dt4shxytxampe"]
 
-[ext_resource type="Script" path="res://Davis/Entities/Characters/test_damagable_guy.gd" id="1_s1xon"]
-[ext_resource type="Script" path="res://Davis/na/Damagable.gd" id="2_630hl"]
+[ext_resource type="Script" path="res://tempMains/Davis/Entities/Characters/test_damagable_guy.gd" id="1_s1xon"]
+[ext_resource type="Script" path="res://tempMains/Davis/na/Damagable.gd" id="2_630hl"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jl1nl"]
 

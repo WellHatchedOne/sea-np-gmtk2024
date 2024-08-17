@@ -1,5 +1,5 @@
 extends CharacterBody2D
-class_name Test_Movable_Guy
+class_name rat
 
 @export var speed: float = 400
 @export var img1: Texture2D = null
