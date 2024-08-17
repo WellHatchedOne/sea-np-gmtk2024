@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dhvqt2giyunf4"]
+[gd_scene load_steps=15 format=3 uid="uid://dhvqt2giyunf4"]
 
 [ext_resource type="Script" path="res://tempMains/Max/test_objects/test_movable_guy.gd" id="1_tlt03"]
 [ext_resource type="Texture2D" uid="uid://bvhk286l42ag7" path="res://assets/base_rat_down3.png" id="2_qokrt"]
@@ -6,8 +6,12 @@
 [ext_resource type="Texture2D" uid="uid://b3iox0ib7wyn4" path="res://assets/base_rat_down2.png" id="4_2ld7m"]
 [ext_resource type="Texture2D" uid="uid://spd8b0gmjj0p" path="res://assets/base_rat_down4.png" id="5_g74ok"]
 [ext_resource type="Texture2D" uid="uid://x5jm4j22h8qy" path="res://assets/base_rat_up1.png" id="6_0dswo"]
+[ext_resource type="Texture2D" uid="uid://d2aagfsmpsgke" path="res://assets/base_rat_side1.png" id="6_wk38w"]
+[ext_resource type="Texture2D" uid="uid://c2fxtdhjswvu3" path="res://assets/base_rat_side2.png" id="7_1uplf"]
 [ext_resource type="Texture2D" uid="uid://qdwxwhxiljen" path="res://assets/base_rat_up2.png" id="7_to44v"]
+[ext_resource type="Texture2D" uid="uid://dxk5dxrwxa7ls" path="res://assets/base_rat_side3.png" id="8_740t3"]
 [ext_resource type="Texture2D" uid="uid://ckgjakvxygkso" path="res://assets/base_rat_up3.png" id="8_d6qqe"]
+[ext_resource type="Texture2D" uid="uid://ck0g5cdfj0gm3" path="res://assets/base_rat_side4.png" id="9_xhdvx"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbmso"]
 
@@ -28,6 +32,23 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_wk38w")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_1uplf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_740t3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_xhdvx")
+}],
+"loop": true,
+"name": &"side",
 "speed": 5.0
 }, {
 "frames": [{
@@ -59,4 +80,4 @@ position_smoothing_speed = 10.0
 position = Vector2(15, 14)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_wgdlt")
-animation = &"up"
+animation = &"side"
