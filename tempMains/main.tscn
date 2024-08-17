@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cj2xnxpyyiuwr"]
+
+[ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="1_3brr1"]
+[ext_resource type="Script" path="res://Max/test_objects/test_movable_guy.gd" id="2_1ui3v"]
+
+[node name="Node2D" type="Node2D"]
+[node name="rat" parent="." instance=ExtResource("1_3brr1")]
+position = Vector2(593, 464)
+script = ExtResource("2_1ui3v")

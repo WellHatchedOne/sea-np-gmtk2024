@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://dhvqt2giyunf4"]
+[gd_scene load_steps=4 format=3 uid="uid://dhvqt2giyunf4"]
 
 [ext_resource type="Script" path="res://Max/test_objects/test_movable_guy.gd" id="1_g87px"]
+[ext_resource type="Texture2D" uid="uid://x5jm4j22h8qy" path="res://assets/base_rat_up1.png" id="2_vncyw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xbmso"]
 
