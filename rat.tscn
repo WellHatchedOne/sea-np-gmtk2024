@@ -1,5 +1,6 @@
-[gd_scene load_steps=9 format=3 uid="uid://b32e7nkyfmr3k"]
+[gd_scene load_steps=11 format=3 uid="uid://b32e7nkyfmr3k"]
 
+[ext_resource type="Script" path="res://rat.gd" id="1_00nxb"]
 [ext_resource type="Texture2D" uid="uid://ccrt4f08p1kd0" path="res://assets/base_rat_down1.png" id="1_1krn0"]
 [ext_resource type="Texture2D" uid="uid://x5jm4j22h8qy" path="res://assets/base_rat_up1.png" id="1_3myic"]
 [ext_resource type="Texture2D" uid="uid://b3iox0ib7wyn4" path="res://assets/base_rat_down2.png" id="2_bha8w"]
@@ -42,11 +43,19 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="rat" type="CharacterBody2D"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_b8oo0"]
+radius = 34.0
+
+[node name="rat" type="Node2D"]
+script = ExtResource("1_00nxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2, 21)
+position = Vector2(16, 12)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
 animation = &"up"
 frame_progress = 0.237928
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b8oo0")
+disabled = true

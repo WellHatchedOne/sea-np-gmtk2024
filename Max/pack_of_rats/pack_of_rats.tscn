@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://dknubmiky3ydk"]
+
+[ext_resource type="Script" path="res://Max/pack_of_rats/pack_of_rats.gd" id="1_03lfw"]
+[ext_resource type="Shape2D" uid="uid://5lu1txqclm5m" path="res://Max/pack_of_rats/pack_of_rat_circle.tres" id="2_f6m7k"]
+
+[node name="PackOfRats" type="CharacterBody2D"]
+scale = Vector2(0.2, 0.2)
+script = ExtResource("1_03lfw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = ExtResource("2_f6m7k")
+
+[node name="Camera2D" type="Camera2D" parent="."]
