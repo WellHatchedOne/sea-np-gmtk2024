@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://2vbod8x0vbdv"]
+[gd_scene load_steps=3 format=3 uid="uid://2vbod8x0vbdv"]
 
 [ext_resource type="Script" path="res://ui/menus/mainMenu/mainmenu.gd" id="1_0chwt"]
+[ext_resource type="PackedScene" uid="uid://8pakirupa35h" path="res://Mainmenumusic.tscn" id="2_rlxbs"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -30,6 +31,8 @@ text = "Options for 50 Rats"
 [node name="Exit" type="Button" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "Exit (No More Rats)"
+
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("2_rlxbs")]
 
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MarginContainer/VBoxContainer/Options" to="." method="_on_options_pressed"]
