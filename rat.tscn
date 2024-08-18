@@ -69,6 +69,8 @@ animations = [{
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jy6cj"]
 
 [node name="rat" type="CharacterBody2D" groups=["BITER", "FRIENDLY"]]
+disable_mode = 1
+collision_layer = 2
 script = ExtResource("1_00nxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
