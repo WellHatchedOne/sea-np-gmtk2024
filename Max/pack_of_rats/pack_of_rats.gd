@@ -16,8 +16,7 @@ func _input(event):
 func get_input() -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	self.velocity = input_direction * speed;
-	#if Input.is_action_pressed("move_left"):
-		#$Ratstepssfx.play()
+
 	
 			
 func _physics_process(delta) -> void:
@@ -55,6 +54,7 @@ func spawn_rat(x: float, y: float):
 	rat_children.append(new_rat)
 	emit_signal("ratsignal")
 	get_parent().classify_entity(new_rat)
+	emit_signal("ratsignal")
 	
 	if (x==0 && y==0):
 		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D
