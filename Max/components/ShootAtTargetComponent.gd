@@ -6,7 +6,6 @@ const BULLET = preload("res://Max/enemy/Bullet.tscn")
 @export var vision_radius: float = 200
 @export var bullet_speed: float = 6
 
-
 const default_tune = preload("res://assets/Music/spit-36265.mp3")
 
 @export var fire_audio: AudioStream = default_tune
@@ -28,6 +27,14 @@ func _ready():
 
 	vision_circle_shape.shape.radius = vision_radius
 
+func play_music():
+	var music = AudioStreamPlayer.new()
+	add_child(music)
+	
+	music.stream = fire_audio
+	music.play()
+	
+
 func shoot_at_target():
 	var new_bullet: Bullet = BULLET.instantiate()
 	# Added call_deferred to queue the action since there are also collision checks
@@ -37,13 +44,8 @@ func shoot_at_target():
 	new_bullet.direction = get_parent().position.direction_to(target.position)
 	new_bullet.start_traveling = true
 	
-	var music = AudioStreamPlayer.new()
-	add_child(music)
-	
-
-	music.stream = fire_audio
-	music.play()
-	#bullet_sfx.play()
+	print(target.position)
+	play_music()
 	
 
 func _fire_rate_event():
@@ -52,9 +54,12 @@ func _fire_rate_event():
 	fire_rate_timer.wait_time = fire_rate + randf_range(-fire_rate_variance, fire_rate_variance)
 
 func _on_body_entered(body):
-	target = body
-	shoot_at_target()
-	fire_rate_timer.start()
+	if body is PackOfRats:
+		target = body
+		shoot_at_target()
+		fire_rate_timer.start()
+		
 func _on_body_exited(body):
-	target = null
-	fire_rate_timer.stop()
+	if body is PackOfRats:
+		target = null
+		fire_rate_timer.stop()
