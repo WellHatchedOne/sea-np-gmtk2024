@@ -26,6 +26,8 @@ sprite_frames = SubResource("SpriteFrames_s1kn8")
 animation = &"rest"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+light_mask = 8
+visibility_layer = 8
 position = Vector2(153.5, -172)
 shape = SubResource("RectangleShape2D_dd8k1")
 
