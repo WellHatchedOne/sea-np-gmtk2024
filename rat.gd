@@ -4,10 +4,11 @@ class_name Rat
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 var delay:float = 1
-var currentDeltaOffset:float = 0
+var currentTimeOffset:float = 0
+# How is our position differnt from what it "should be" (outside of the queue)
 var currentPositionOffset:Vector2 = Vector2.ZERO
 var deltaQueue:Array[float] = []
-var positionQueue:Array[Vector2] = []
+var positionOffSetQueue:Array[Vector2] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -38,25 +39,21 @@ func getRatVelocity(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 	# Start with a rat velocity opposite of the swarm. This will keep the rat still
 	var ratVelocity:Vector2 = swarmVelocity * -1
 	
-	# Push this frame's velocity onto our stack
+	# Push this frame's velocity onto our queue of deltas and position offsets
 	deltaQueue.push_back(delta)
-	if positionQueue.size() == 0:
-		positionQueue.push_back(swarmVelocity)
-	else:
-		#positionQueue.push_back('''positionQueue[-1] + '''swarmVelocity)
-		positionQueue.push_back(swarmVelocity)
+	positionOffSetQueue.push_back(swarmVelocity)
 	
-	currentDeltaOffset += delta
+	currentTimeOffset += delta
 	# Get desired position
 	var desiredPosition:Vector2 = Vector2.ZERO
-	while (deltaQueue.size() > 0 && positionQueue.size() > 0 && currentDeltaOffset > delay):
-		currentDeltaOffset -= deltaQueue.pop_front()
-		desiredPosition += positionQueue.pop_front()
+	while (deltaQueue.size() > 0 && positionOffSetQueue.size() > 0 && currentTimeOffset > delay):
+		currentTimeOffset -= deltaQueue.pop_front()
+		desiredPosition += positionOffSetQueue.pop_front()
 	
 	var desiredGlobalVelocity:Vector2 = (desiredPosition).normalized() * speed
 	ratVelocity += desiredGlobalVelocity
 	
-	print("swarmVelocity = " + str(swarmVelocity) + ", currentDeltaOffSet = " + str(currentDeltaOffset) + ", desiredGlobalVelocity = " + str(desiredGlobalVelocity) + ", ratVelocity = " + str(ratVelocity) + ", desiredPosition = " + str(desiredPosition) + ", currentPositionOffset = " + str(currentPositionOffset) +", positionQueue = " + str(positionQueue) + ", deltaQueue = " + str(deltaQueue))
+	#print("swarmVelocity = " + str(swarmVelocity) + ", currentTimeOffset = " + str(currentTimeOffset) + ", desiredGlobalVelocity = " + str(desiredGlobalVelocity) + ", ratVelocity = " + str(ratVelocity) + ", desiredPosition = " + str(desiredPosition) + ", currentPositionOffset = " + str(currentPositionOffset) +", positionOffSetQueue = " + str(positionOffSetQueue) + ", deltaQueue = " + str(deltaQueue))
 	
 	return ratVelocity
 
