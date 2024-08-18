@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://b32e7nkyfmr3k"]
+[gd_scene load_steps=18 format=3 uid="uid://b32e7nkyfmr3k"]
 
 [ext_resource type="Script" path="res://rat.gd" id="1_00nxb"]
 [ext_resource type="Texture2D" uid="uid://3rlb5dps5bck" path="res://assets/Rat/base_rat/base_rat_down1.png" id="2_sn3oa"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://dvhvt4iv1h3ii" path="res://modifiers/biteAttacker.tscn" id="10_5utx7"]
 [ext_resource type="Texture2D" uid="uid://hmimbs3ynw0d" path="res://assets/Rat/base_rat/base_rat_up2.png" id="11_e7mo4"]
 [ext_resource type="Texture2D" uid="uid://cgxrh7evopryo" path="res://assets/Rat/base_rat/base_rat_up3.png" id="12_ylbfe"]
+[ext_resource type="PackedScene" uid="uid://g7rt55sa0ie5" path="res://Max/components/BulletHitboxComponent.tscn" id="15_flnnw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -90,3 +91,5 @@ script = ExtResource("9_2svmp")
 [node name="BiteAttacker" parent="." instance=ExtResource("10_5utx7")]
 position = Vector2(1, -55)
 disable_mode = 1
+
+[node name="BulletHitboxComponent" parent="." instance=ExtResource("15_flnnw")]
