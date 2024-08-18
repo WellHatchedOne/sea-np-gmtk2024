@@ -48,6 +48,7 @@ func spawn_rat(x: float, y: float):
 	
 	self.add_child(new_rat)
 	rat_children.append(new_rat)
+	get_parent().classify_entity(new_rat)
 	
 	if (x==0 && y==0):
 		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D
