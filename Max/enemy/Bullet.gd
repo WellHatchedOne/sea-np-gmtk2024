@@ -11,3 +11,7 @@ func start(pos):
 func _physics_process(delta):
 	if start_traveling:
 		position += direction*speed
+		
+func _on_body_entered(body):
+	if body is TileMap:
+		queue_free()
