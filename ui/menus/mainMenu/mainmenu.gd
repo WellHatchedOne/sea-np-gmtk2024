@@ -11,24 +11,22 @@ func _on_exit_pressed():
 
 
 func _on_exit_mouse_entered():
-	pass
+	$HoverIconExit.visible = true
 
 func _on_exit_mouse_exited():
-	pass
+	$HoverIconExit.visible = false
 
 
 func _on_play_mouse_entered():
-	
-	pass # Replace with function body.
+	$HoverIconPlay.visible = true	
 
 
 func _on_play_mouse_exited():
-	pass # Replace with function body.
+	$HoverIconPlay.visible = false
 
 
 func _on_options_mouse_entered():
-	pass # Replace with function body.
-
+	$HoverIconOptions.visible = true
 
 func _on_options_mouse_exited():
-	pass # Replace with function body.
+	$HoverIconOptions.visible = false
