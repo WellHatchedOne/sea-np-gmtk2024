@@ -25,6 +25,7 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HoverIconPlay" type="TextureRect" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 2
 offset_left = 520.0
