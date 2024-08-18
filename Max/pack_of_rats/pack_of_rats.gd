@@ -8,7 +8,7 @@ const RAT = preload("res://rat.tscn")
 @onready var pack_collision_circle = $CollisionShape2D
 signal ratsignal
 var current_radius = 0
-var rat_children: Array = []
+var rat_children:Array[Rat] = []
 var ratnumber = 0
 
 func _input(event):
@@ -19,29 +19,15 @@ func get_input() -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	self.velocity = input_direction * speed;
 
-	
-			
 func _physics_process(delta) -> void:
 	get_input()
 	move_and_slide()
-	play_movement_animations()
+	move_rats(delta)
 	
-func play_movement_animations():
+func move_rats(delta):
 	for rat in rat_children:
-		if velocity.length() > 0:
-			rat.animated_sprite_2d.play()
-		else:
-			rat.animated_sprite_2d.stop()
-
-		if velocity.x != 0:
-			rat.animated_sprite_2d.animation = "side"
-			rat.animated_sprite_2d.flip_v = false
-			rat.animated_sprite_2d.flip_h = velocity.x < 0
-		elif velocity.y != 0:
-			if velocity.y > 0:
-				rat.animated_sprite_2d.animation = "down"
-			else:
-				rat.animated_sprite_2d.animation = "up"
+		rat.enable_collision()
+		rat.ratMove(velocity, speed, delta)
 
 func _ready():
 	spawn_spiral_rat()

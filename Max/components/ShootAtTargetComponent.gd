@@ -6,6 +6,11 @@ const BULLET = preload("res://Max/enemy/Bullet.tscn")
 @export var vision_radius: float = 200
 @export var bullet_speed: float = 6
 
+
+const default_tune = preload("res://assets/Music/spit-36265.mp3")
+
+@export var fire_audio: AudioStream = default_tune
+
 @export_range(0, 3, 0.05) var fire_rate: float = 0.5
 @export_range(0, 3, 0.05) var fire_rate_variance: float = 0.5
 
@@ -31,6 +36,15 @@ func shoot_at_target():
 	new_bullet.speed = bullet_speed
 	new_bullet.direction = get_parent().position.direction_to(target.position)
 	new_bullet.start_traveling = true
+	
+	var music = AudioStreamPlayer.new()
+	add_child(music)
+	
+
+	music.stream = fire_audio
+	music.play()
+	#bullet_sfx.play()
+	
 
 func _fire_rate_event():
 	shoot_at_target()

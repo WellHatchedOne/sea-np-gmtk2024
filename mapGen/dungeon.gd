@@ -7,6 +7,8 @@ extends Node2D
 
 # CONSTANTS
 
+@export var fire_audio: AudioStream = null
+
 var DEBUG = true
 
 var tile_size := 64
@@ -51,6 +53,16 @@ func _ready():
 	root_node.split(2, paths)
 	setup_timers()
 	queue_redraw()
+	
+	music()
+
+func music():
+	var music = AudioStreamPlayer.new()
+	add_child(music)
+	const default_music = preload("res://assets/Music/tune0.wav")
+
+	music.stream = default_music
+	music.play()
 
 func setup_timers():
 	var biteTimer = BITE_ATTACK_TIMER.instantiate()
