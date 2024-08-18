@@ -70,7 +70,7 @@ animations = [{
 
 [node name="rat" type="CharacterBody2D" groups=["BITER", "FRIENDLY"]]
 disable_mode = 1
-collision_layer = 2
+collision_layer = 4
 script = ExtResource("1_00nxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
