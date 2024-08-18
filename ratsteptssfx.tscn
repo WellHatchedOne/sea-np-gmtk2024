@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://cn6pppim32w3"]
+
+[ext_resource type="AudioStream" uid="uid://2qmkt4r2nogq" path="res://Music/RATSTEPS.wav" id="1_gipr4"]
+
+[node name="Ratsteptssfx" type="AudioStreamPlayer"]
+stream = ExtResource("1_gipr4")
