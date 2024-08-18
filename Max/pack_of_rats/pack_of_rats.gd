@@ -29,6 +29,7 @@ func play_movement_animations():
 			rat.animated_sprite_2d.stop()
 
 		if velocity.x != 0:
+			rat.animated_sprite_2d.animation = "side"
 			rat.animated_sprite_2d.flip_v = false
 			rat.animated_sprite_2d.flip_h = velocity.x < 0
 		elif velocity.y != 0:
