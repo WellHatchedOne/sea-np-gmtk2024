@@ -39,8 +39,9 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var biters: Array = []
 
-const ENEMY = preload("res://Entities/Enemies/dummyEnemy.tscn")
+const ENEMY = preload("res://entities/enemies/dummyEnemy.tscn")
 const BITE_ATTACK_TIMER = preload("res://Events/Timers/biteAttackTimer.tscn")
+const FOOD = preload("res://Grace/food.tscn")
 #const LIGHTNING_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
 #const BULLET_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
 
@@ -91,7 +92,8 @@ func _draw():
 					# 1 is the atlas ID
 					# 0,8 is the tile location in the atlas
 					tilemap.set_cell(0, position, source_id, tileMapFloorVector)
-					spawn_enemy(Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
+					spawn_entity(ENEMY, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
+					spawn_entity(FOOD, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
 				elif not leaf.isNotFloorTile(x, y + 1, padding):
 					# Render top wall
 					tilemap.set_cell(0, position, source_id, tileMapWallVector, tileMapTopAlt)
@@ -227,13 +229,14 @@ func _draw():
 				tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 11))
 				tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 12))
 
-func spawn_enemy(spawn_position: Vector2i, spawn_percent: float = 1):
+func spawn_entity(entity_file_path, spawn_position: Vector2i, spawn_percent: float = 1):
 	if !(rng.randf_range(0,1) <= spawn_percent):
 		return
-	var new_enemy = ENEMY.instantiate()
-	new_enemy.position = spawn_position
-	self.add_child(new_enemy)
-	classify_entity(new_enemy)
+	var new_entity = entity_file_path.instantiate()
+	new_entity.position = spawn_position
+	self.add_child(new_entity)
+	classify_entity(new_entity)
+
 
 func _on_biteTimer_timeout():
 	for biter in biters:
