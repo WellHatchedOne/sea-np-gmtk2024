@@ -19,7 +19,7 @@ func _process(delta):
 
 # Code should eventually cause a rat to be deleted
 func _on_hit_by_bullet():
-  pass
+	pass
 
 func enable_collision():
 	collision_shape_2d.disabled = false
