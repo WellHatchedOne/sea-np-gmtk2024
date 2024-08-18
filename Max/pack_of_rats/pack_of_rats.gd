@@ -4,9 +4,10 @@ class_name PackOfRats
 @export var speed: float = 400
 const RAT = preload("res://rat.tscn")
 @onready var pack_collision_circle = $CollisionShape2D
-
+signal ratsignal
 var current_radius = 0
 var rat_children: Array = []
+var ratnumber = 0
 
 func _input(event):
 	if event.is_action_pressed("change_color"):
@@ -15,7 +16,10 @@ func _input(event):
 func get_input() -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	self.velocity = input_direction * speed;
-
+	#if Input.is_action_pressed("move_left"):
+		#$Ratstepssfx.play()
+	
+			
 func _physics_process(delta) -> void:
 	get_input()
 	move_and_slide()
@@ -47,8 +51,11 @@ func spawn_rat(x: float, y: float):
 	var radius_from_parent_origin = Vector2(0,0).distance_to(new_position)
 	new_rat.position = new_position
 	
+	ratnumber += 1
 	self.add_child(new_rat)
 	rat_children.append(new_rat)
+	emit_signal("ratsignal")
+	get_parent().classify_entity(new_rat)
 	
 	if (x==0 && y==0):
 		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D
