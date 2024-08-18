@@ -131,30 +131,42 @@ func _draw():
 				var cellDataUp = tilemap.get_cell_tile_data(0, upPos)
 				var cellDataDown = tilemap.get_cell_tile_data(0, downPos)
 				
+				# Now check if the tile to above or below is also dead space
+				if cellDataUp == null:
+					# Render top wall
+					tilemap.set_cell(0, upPos, source_id, tileMapWallVector)
+				if cellDataDown == null:
+					# Render bottom wall
+					tilemap.set_cell(0, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
+				
+				if cellDataDown != null:
+					if tilemap.get_cell_atlas_coords(0, downPos) == tileMapWallVector || tilemap.get_cell_atlas_coords(0, downPos) == tileMapCornerVector:
+						# Render bottom wall
+						tilemap.set_cell(1, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
+				if cellDataUp != null:
+					if tilemap.get_cell_atlas_coords(0, upPos) == tileMapWallVector || tilemap.get_cell_atlas_coords(0, upPos) == tileMapCornerVector:
+						# Render top wall
+						tilemap.set_cell(1, upPos, source_id, tileMapWallVector)
+				
 				# This means the connecting path we are about to render is in dead space
 				if cellDataBeforePath == null:
-					# Now check if the tile to above or below is also dead space
-					if cellDataUp == null:
-						# Render top wall
-						tilemap.set_cell(0, upPos, source_id, tileMapWallVector)
-					if cellDataDown == null:
-						# Render bottom wall
-						tilemap.set_cell(0, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
+					pass
+
 				else:
 					 # This means we could be breaking down a wall, or just overwriting an existing floor tile
 					 # If we're breaking down a wall, also render another wall piece on another layer above or below
 					if (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapRightAlt):
-						if tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == tileMapRightAlt:
+						if (tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == tileMapRightAlt) || (tilemap.get_cell_atlas_coords(0, upPos) == tileMapCornerVector):
 							# Render top wall
 							tilemap.set_cell(1, upPos, source_id, tileMapWallVector)
-						if tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == tileMapRightAlt:
+						if (tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == tileMapRightAlt) || (tilemap.get_cell_atlas_coords(0, downPos) == tileMapCornerVector):
 							# Render bottom wall
 							tilemap.set_cell(1, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
 					elif (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapLeftAlt):
-						if tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == tileMapLeftAlt:
+						if (tilemap.get_cell_atlas_coords(0, upPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, upPos) == tileMapLeftAlt) || (tilemap.get_cell_atlas_coords(0, upPos) == tileMapCornerVector):
 							# Render top wall
 							tilemap.set_cell(1, upPos, source_id, tileMapWallVector)
-						if tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == tileMapLeftAlt:
+						if (tilemap.get_cell_atlas_coords(0, downPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, downPos) == tileMapLeftAlt) || tilemap.get_cell_atlas_coords(0, downPos) == tileMapCornerVector:
 							# Render bottom wall
 							tilemap.set_cell(1, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
 				
@@ -163,6 +175,7 @@ func _draw():
 				tilemap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 15))
 		else:
 			# vertical
+			pass
 			for i in range(path['right'].y - path['left'].y):
 				var pathPos = Vector2i(path['left'].x,path['left'].y+i)
 				var leftPos = Vector2i(path['left'].x - 1,path['left'].y+i)
@@ -172,30 +185,41 @@ func _draw():
 				var cellDataLeft = tilemap.get_cell_tile_data(0, leftPos)
 				var cellDataRight = tilemap.get_cell_tile_data(0, rightPos)
 				
+				# Now check if the tile to our left or right is also dead space
+				if cellDataLeft == null:
+					# Render left wall
+					tilemap.set_cell(0, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
+				if cellDataRight == null:
+					# Render right wall
+					tilemap.set_cell(0, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
+				
+				if cellDataLeft != null:
+					if tilemap.get_cell_atlas_coords(0, leftPos) == tileMapWallVector || tilemap.get_cell_atlas_coords(0, leftPos) == tileMapCornerVector:
+						# Render left wall
+						tilemap.set_cell(1, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
+				if cellDataRight != null:
+					if tilemap.get_cell_atlas_coords(0, rightPos) == tileMapWallVector || tilemap.get_cell_atlas_coords(0, rightPos) == tileMapCornerVector:
+						# Render right wall
+						tilemap.set_cell(1, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
+				
 				# This means the connecting path we are about to render is in dead space
 				if cellDataBeforePath == null:
-					# Now check if the tile to our left or right is also dead space
-					if cellDataLeft == null:
-						# Render left wall
-						tilemap.set_cell(0, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
-					if cellDataRight == null:
-						# Render right wall
-						tilemap.set_cell(0, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
+					pass
 				else:
 					# This means we could be breaking down a wall, or just overwriting an existing floor tile
 					# If we're breaking down a wall, also render another wall piece on another layer one to the left or right
 					if (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapTopAlt):
-						if tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == tileMapTopAlt:
+						if (tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == tileMapTopAlt) || (tilemap.get_cell_atlas_coords(0, leftPos) == tileMapCornerVector):
 							# Render left wall
 							tilemap.set_cell(1, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
-						if tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == tileMapTopAlt:
+						if (tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == tileMapTopAlt) || (tilemap.get_cell_atlas_coords(0, rightPos) == tileMapCornerVector):
 							# Render right wall
 							tilemap.set_cell(1, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
 					elif (tilemap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, pathPos) == tileMapBottomAlt):
-						if tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == tileMapBottomAlt:
+						if (tilemap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, leftPos) == tileMapBottomAlt) || (tilemap.get_cell_atlas_coords(0, leftPos) == tileMapCornerVector):
 							# Render left wall
 							tilemap.set_cell(1, leftPos, source_id, tileMapWallVector, tileMapLeftAlt)
-						if tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == tileMapBottomAlt:
+						if (tilemap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && tilemap.get_cell_alternative_tile(0, rightPos) == tileMapBottomAlt) || (tilemap.get_cell_atlas_coords(0, rightPos) == tileMapCornerVector):
 							# Render right wall
 							tilemap.set_cell(1, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
 
