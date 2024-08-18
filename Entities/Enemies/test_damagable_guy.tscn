@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://dt4shxytxampe"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/test_damagable_guy.gd" id="1_s1xon"]
+[ext_resource type="Script" path="res://modifiers/Damageable.gd" id="2_630hl"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jl1nl"]
+
+[node name="TestDamagableGuy" type="CharacterBody2D"]
+script = ExtResource("1_s1xon")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -10.0
+offset_top = -15.0
+offset_right = 10.0
+offset_bottom = 15.0
+color = Color(0, 0.760141, 0.196468, 1)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_jl1nl")
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_630hl")

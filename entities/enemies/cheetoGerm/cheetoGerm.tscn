@@ -1,0 +1,113 @@
+[gd_scene load_steps=21 format=3 uid="uid://bqo31kjnrxh0i"]
+
+[ext_resource type="Texture2D" uid="uid://hi226asbrch6" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-1.png" id="1_psnoa"]
+[ext_resource type="Texture2D" uid="uid://dvln3p4wt33s1" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-2.png" id="2_k8eix"]
+[ext_resource type="Texture2D" uid="uid://bwbti3hxokuw4" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-3.png" id="3_lqmlp"]
+[ext_resource type="Texture2D" uid="uid://cipqhlb3mx7b5" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-4.png" id="4_qudoc"]
+[ext_resource type="Texture2D" uid="uid://dflshlu85x0n" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-5.png" id="5_ff8li"]
+[ext_resource type="Texture2D" uid="uid://xvqw7hexrn62" path="res://assets/enemies/cheetoGerm/cheetoGerm-death-1.png" id="6_8bkqj"]
+[ext_resource type="Texture2D" uid="uid://drombtcj4i2t2" path="res://assets/enemies/cheetoGerm/cheetoGerm-death-2.png" id="7_0qqnf"]
+[ext_resource type="Texture2D" uid="uid://07kn86rchm2w" path="res://assets/enemies/cheetoGerm/cheetoGerm-death-3.png" id="8_20500"]
+[ext_resource type="Texture2D" uid="uid://l1x5lcv4uena" path="res://assets/enemies/cheetoGerm/cheetoGerm-death-4.png" id="9_hen33"]
+[ext_resource type="Texture2D" uid="uid://npoihv2hw087" path="res://assets/enemies/cheetoGerm/cheetoGerm-hurt-1.png" id="10_wpm67"]
+[ext_resource type="Texture2D" uid="uid://cgaa3wai88fnn" path="res://assets/enemies/cheetoGerm/cheetoGerm-hurt-2.png" id="11_854ru"]
+[ext_resource type="Texture2D" uid="uid://b0ea2b7s3sql4" path="res://assets/enemies/cheetoGerm/cheetoGerm-hurt-3.png" id="12_tffkk"]
+[ext_resource type="Texture2D" uid="uid://chaq2lomajm1m" path="res://assets/enemies/cheetoGerm/cheetoGerm-hurt-4.png" id="13_mi8uf"]
+[ext_resource type="Texture2D" uid="uid://biqqxedfrro4g" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-1.png" id="14_lnyuk"]
+[ext_resource type="Texture2D" uid="uid://nfjq4c7lb6il" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-2.png" id="15_xohum"]
+[ext_resource type="Texture2D" uid="uid://cxlnraapyp6k3" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-3.png" id="16_xoqoi"]
+[ext_resource type="Texture2D" uid="uid://brdm1qox3m64" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-4.png" id="17_u35fs"]
+[ext_resource type="Texture2D" uid="uid://j0pq7lpbbfut" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-5.png" id="18_mfh53"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_psnoa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_k8eix")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_lqmlp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_qudoc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ff8li")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_8bkqj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_0qqnf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_20500")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_hen33")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_wpm67")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_854ru")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_tffkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_mi8uf")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_lnyuk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_xohum")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_xoqoi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("17_u35fs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_mfh53")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf1lu"]
+radius = 365.0
+height = 1488.0
+
+[node name="CheetoGerm" type="RigidBody2D"]
+position = Vector2(-86, 28)
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"attack"
+frame_progress = 0.786529
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(118, 56)
+shape = SubResource("CapsuleShape2D_kf1lu")

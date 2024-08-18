@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b32e7nkyfmr3k"]
+[gd_scene load_steps=13 format=3 uid="uid://b32e7nkyfmr3k"]
 
 [ext_resource type="Script" path="res://rat.gd" id="1_00nxb"]
 [ext_resource type="Texture2D" uid="uid://ccrt4f08p1kd0" path="res://assets/base_rat_down1.png" id="1_1krn0"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://bvhk286l42ag7" path="res://assets/base_rat_down3.png" id="3_rmmfr"]
 [ext_resource type="Texture2D" uid="uid://ckgjakvxygkso" path="res://assets/base_rat_up3.png" id="3_se12w"]
 [ext_resource type="Texture2D" uid="uid://spd8b0gmjj0p" path="res://assets/base_rat_down4.png" id="4_ps7wa"]
+[ext_resource type="Script" path="res://modifiers/Damageable.gd" id="9_2svmp"]
+[ext_resource type="PackedScene" uid="uid://dvhvt4iv1h3ii" path="res://modifiers/biteAttacker.tscn" id="10_5utx7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -43,10 +45,9 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_b8oo0"]
-radius = 34.0
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jy6cj"]
 
-[node name="rat" type="Node2D"]
+[node name="rat" type="Node2D" groups=["BITER", "FRIENDLY"]]
 script = ExtResource("1_00nxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -57,5 +58,13 @@ animation = &"up"
 frame_progress = 0.237928
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_b8oo0")
+scale = Vector2(3.58, 3.58)
+shape = SubResource("CapsuleShape2D_jy6cj")
 disabled = true
+
+[node name="Damageable" type="Node2D" parent="."]
+script = ExtResource("9_2svmp")
+
+[node name="BiteAttacker" parent="." instance=ExtResource("10_5utx7")]
+position = Vector2(1, -55)
+disable_mode = 1
