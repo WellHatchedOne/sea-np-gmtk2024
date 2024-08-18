@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://2vbod8x0vbdv"]
+[gd_scene load_steps=3 format=3 uid="uid://2vbod8x0vbdv"]
 
 [ext_resource type="Script" path="res://ui/menus/mainMenu/mainmenu.gd" id="1_0chwt"]
+[ext_resource type="PackedScene" uid="uid://8pakirupa35h" path="res://Mainmenumusic.tscn" id="2_a6tyw"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -10,6 +11,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0chwt")
+
+[node name="AudioStreamPlayer2D" parent="." instance=ExtResource("2_a6tyw")]
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2f8rg337sig6"]
+[gd_scene load_steps=11 format=3 uid="uid://d2f8rg337sig6"]
 
 [ext_resource type="Script" path="res://mapGen/dungeon.gd" id="1_g1b25"]
 [ext_resource type="Script" path="res://mapGen/Branch.gd" id="2_c8m0v"]
 [ext_resource type="Texture2D" uid="uid://cqcr45ue6dtf0" path="res://assets/tileset16x.png" id="3_m7p3c"]
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
 [ext_resource type="PackedScene" uid="uid://uvgdynm14wdy" path="res://ui/huds/hud/hud.tscn" id="7_33jec"]
+[ext_resource type="AudioStream" uid="uid://odjwx5eugfc8" path="res://Music/tune0.wav" id="7_fjle6"]
+[ext_resource type="PackedScene" uid="uid://bqxvbvhcodqdf" path="res://Daniel/MakeOpaqueComponent.tscn" id="7_rubmt"]
 [ext_resource type="PackedScene" uid="uid://dknubmiky3ydk" path="res://Max/pack_of_rats/pack_of_rats.tscn" id="8_n4xp6"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sglwe"]
@@ -426,3 +428,9 @@ Player = NodePath("../PackOfRats")
 player = NodePath("../PackOfRats")
 
 [node name="PackOfRats" parent="." instance=ExtResource("8_n4xp6")]
+
+[node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_rubmt")]
+
+[node name="Dungeon1music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_fjle6")
+autoplay = true
