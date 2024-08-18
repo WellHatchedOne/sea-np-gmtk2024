@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cqcr45ue6dtf0" path="res://assets/tileset16x.png" id="3_m7p3c"]
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
 [ext_resource type="PackedScene" uid="uid://uvgdynm14wdy" path="res://ui/huds/hud/hud.tscn" id="7_33jec"]
-[ext_resource type="PackedScene" uid="uid://bdj2qkwnbgugk" path="res://Dungeonmusic1.tscn" id="7_k0tnq"]
+[ext_resource type="PackedScene" uid="uid://bqxvbvhcodqdf" path="res://Daniel/MakeOpaqueComponent.tscn" id="7_bipso"]
 [ext_resource type="PackedScene" uid="uid://01htn758kxri" path="res://Max/enemy/test_enemy.tscn" id="8_cqtwo"]
 [ext_resource type="PackedScene" uid="uid://dknubmiky3ydk" path="res://Max/pack_of_rats/pack_of_rats.tscn" id="8_n4xp6"]
 [ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="9_aet51"]
@@ -431,8 +431,7 @@ player = NodePath("../PackOfRats")
 [node name="PackOfRats" parent="." instance=ExtResource("8_n4xp6")]
 scale = Vector2(1, 1)
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("7_k0tnq")]
-autoplay = true
+[node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_bipso")]
 
 [node name="TestEnemy" parent="." instance=ExtResource("8_cqtwo")]
 position = Vector2(-162, -134)
