@@ -3,12 +3,12 @@
 importer="wav"
 type="AudioStreamWAV"
 uid="uid://2qmkt4r2nogq"
-path="res://.godot/imported/RATSTEPS.wav-391403b605a5abe5c5a07c2011fcc130.sample"
+path="res://.godot/imported/RATSTEPS.wav-e4d6bbb7207196d9ca5c09354907ed31.sample"
 
 [deps]
 
-source_file="res://Music/RATSTEPS.wav"
-dest_files=["res://.godot/imported/RATSTEPS.wav-391403b605a5abe5c5a07c2011fcc130.sample"]
+source_file="res://assets/Music/RATSTEPS.wav"
+dest_files=["res://.godot/imported/RATSTEPS.wav-e4d6bbb7207196d9ca5c09354907ed31.sample"]
 
 [params]
 
