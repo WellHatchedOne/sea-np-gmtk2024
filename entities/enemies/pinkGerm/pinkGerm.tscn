@@ -85,14 +85,13 @@ radius = 272.0
 height = 600.0
 
 [node name="PinkGerm" type="RigidBody2D"]
-position = Vector2(-86, 28)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-77, 103)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"death"
-frame = 1
-frame_progress = 0.498747
+frame = 2
+frame_progress = 0.219422
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(88, -104)
 shape = SubResource("CapsuleShape2D_kf1lu")
