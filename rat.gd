@@ -3,7 +3,7 @@ class_name Rat
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
-var delay:float = 0
+var delay:float = 1
 var currentDeltaOffset:float = 0
 var currentPositionOffset:Vector2 = Vector2.ZERO
 var deltaQueue:Array[float] = []
@@ -43,19 +43,20 @@ func getRatVelocity(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 	if positionQueue.size() == 0:
 		positionQueue.push_back(swarmVelocity)
 	else:
-		positionQueue.push_back(positionQueue[-1] + swarmVelocity)
+		#positionQueue.push_back('''positionQueue[-1] + '''swarmVelocity)
+		positionQueue.push_back(swarmVelocity)
 	
 	currentDeltaOffset += delta
 	# Get desired position
 	var desiredPosition:Vector2 = Vector2.ZERO
-	while (currentDeltaOffset > delay):
+	while (deltaQueue.size() > 0 && positionQueue.size() > 0 && currentDeltaOffset > delay):
 		currentDeltaOffset -= deltaQueue.pop_front()
-		desiredPosition = positionQueue.pop_front()
+		desiredPosition += positionQueue.pop_front()
 	
-	var desiredGlobalVelocity:Vector2 = (desiredPosition - currentPositionOffset).normalized() * speed
+	var desiredGlobalVelocity:Vector2 = (desiredPosition).normalized() * speed
 	ratVelocity += desiredGlobalVelocity
 	
-	#print("swarmVelocity = " + str(swarmVelocity) + ", currentDeltaOffSet = " + str(currentDeltaOffset) + ", desiredGlobalVelocity = " + str(desiredGlobalVelocity) + ", ratVelocity = " + str(ratVelocity) + ", desiredPosition = " + str(desiredPosition) + ", currentPositionOffset = " + str(currentPositionOffset) +", positionQueue = " + str(positionQueue) + ", deltaQueue = " + str(deltaQueue))
+	print("swarmVelocity = " + str(swarmVelocity) + ", currentDeltaOffSet = " + str(currentDeltaOffset) + ", desiredGlobalVelocity = " + str(desiredGlobalVelocity) + ", ratVelocity = " + str(ratVelocity) + ", desiredPosition = " + str(desiredPosition) + ", currentPositionOffset = " + str(currentPositionOffset) +", positionQueue = " + str(positionQueue) + ", deltaQueue = " + str(deltaQueue))
 	
 	return ratVelocity
 
