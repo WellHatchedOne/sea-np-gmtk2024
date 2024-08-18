@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://jbox0txdk1ej"]
+
+[ext_resource type="Texture2D" uid="uid://cbgluhbnfykam" path="res://tempMains/Max/textures/test_image.png" id="1_1wg73"]
+
+[node name="TestEnemy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.052, 0.052)
+texture = ExtResource("1_1wg73")

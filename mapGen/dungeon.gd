@@ -24,8 +24,8 @@ var paths: Array = []
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tilemap = get_node("TileMap")
-	root_node  = Branch.new(Vector2i(0, 0), Vector2i(60, 30)) # 60 tiles wide and 30 tall
-	root_node.split(2, paths)
+	root_node  = Branch.new(Vector2i(0, 0), Vector2i(90, 90)) # 60 tiles wide and 30 tall
+	root_node.split(3, paths)
 	queue_redraw()
 
 func _draw():

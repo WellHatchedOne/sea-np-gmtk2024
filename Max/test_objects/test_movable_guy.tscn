@@ -57,4 +57,4 @@ position_smoothing_speed = 10.0
 position = Vector2(15, 14)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_wgdlt")
-animation = &"up"
+animation = &"down"

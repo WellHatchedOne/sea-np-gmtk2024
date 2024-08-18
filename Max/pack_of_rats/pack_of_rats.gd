@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name PackOfRats
 
 @export var speed: float = 400
-const RAT = preload("res://rat.tscn")
 @onready var pack_collision_circle = $CollisionShape2D
+const RAT = preload("res://Max/pack_of_rats/rat.tscn")
 
 var current_radius = 0
 var rat_children: Array = []
@@ -29,6 +29,7 @@ func play_movement_animations():
 			rat.animated_sprite_2d.stop()
 
 		if velocity.x != 0:
+			#rat.animated_spwrite.animation ="side"
 			rat.animated_sprite_2d.flip_v = false
 			rat.animated_sprite_2d.flip_h = velocity.x < 0
 		elif velocity.y != 0:
@@ -36,6 +37,21 @@ func play_movement_animations():
 				rat.animated_sprite_2d.animation = "down"
 			else:
 				rat.animated_sprite_2d.animation = "up"
+				
+#if velocity.length() > 0:
+		#$AnimatedSprite2D.play()
+	#else:
+		#$AnimatedSprite2D.stop()
+#
+	#if velocity.x != 0:
+		#$AnimatedSprite2D.animation = "side"
+		#$AnimatedSprite2D.flip_v = false
+		#$AnimatedSprite2D.flip_h = velocity.x < 0
+	#elif velocity.y != 0:
+		#if velocity.y > 0:
+			#$AnimatedSprite2D.animation = "down"
+		#else:
+			#$AnimatedSprite2D.animation = "up"
 
 func _ready():
 	spawn_rat(0,0)

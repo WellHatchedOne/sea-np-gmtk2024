@@ -5,6 +5,8 @@
 
 [node name="PackOfRats" type="CharacterBody2D"]
 scale = Vector2(0.2, 0.2)
+collision_layer = 9
+collision_mask = 9
 script = ExtResource("1_03lfw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
