@@ -10,3 +10,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+	
+# Code should eventually cause a rat to be deleted
+func _on_hit_by_bullet():
+	pass

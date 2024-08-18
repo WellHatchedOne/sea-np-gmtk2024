@@ -11,7 +11,3 @@ func start(pos):
 func _physics_process(delta):
 	if start_traveling:
 		position += direction*speed
-
-func _on_area_entered(area):
-	if area is BulletHitboxComponent:
-		print("hitable!")
