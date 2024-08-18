@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ne6wq8u32uxh"
-path="res://.godot/imported/cheese.png-e03e7b84da808d1ca5a284d6984d6b74.ctex"
+uid="uid://icmwleke4qa6"
+path="res://.godot/imported/water_rat_up4.png-be5a97216fd44c3769691ce8f36a36d0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/cheese.png"
-dest_files=["res://.godot/imported/cheese.png-e03e7b84da808d1ca5a284d6984d6b74.ctex"]
+source_file="res://assets/Rat/water_rat/water_rat_up4.png"
+dest_files=["res://.godot/imported/water_rat_up4.png-be5a97216fd44c3769691ce8f36a36d0.ctex"]
 
 [params]
 
