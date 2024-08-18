@@ -6,10 +6,13 @@
 radius = 200.0
 
 [node name="ShootAtTargetComponent" type="Area2D"]
+collision_layer = 0
 script = ExtResource("1_id5wa")
 
 [node name="VisionCircleShape" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_0d6oc")
+
+[node name="FireRateTimer" type="Timer" parent="."]
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
 [connection signal="body_exited" from="." to="." method="_on_body_exited"]
