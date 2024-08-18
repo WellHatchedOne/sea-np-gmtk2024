@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://ycf41nptoc7x"]
+
+[node name="BiteAttackTimer" type="Node2D"]
+
+[node name="Timer" type="Timer" parent="."]
+autostart = true

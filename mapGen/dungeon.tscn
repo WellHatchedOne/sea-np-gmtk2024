@@ -295,6 +295,13 @@ layer_0/name = "World"
 layer_1/name = "World 2"
 layer_1/tile_data = PackedInt32Array()
 
+[node name="TileMap" type="TileMap" parent="TileMap"]
+tile_set = SubResource("TileSet_4ha60")
+format = 2
+layer_0/name = "World"
+layer_1/name = "World 2"
+layer_1/tile_data = PackedInt32Array()
+
 [node name="Hud" parent="." instance=ExtResource("7_33jec")]
 
 [node name="RatMiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_k1yuq")]
