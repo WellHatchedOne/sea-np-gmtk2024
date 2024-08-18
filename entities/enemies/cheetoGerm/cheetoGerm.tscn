@@ -37,7 +37,7 @@ animations = [{
 "duration": 1.0,
 "texture": ExtResource("5_ff8li")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack",
 "speed": 5.0
 }, {
@@ -101,13 +101,11 @@ radius = 365.0
 height = 1488.0
 
 [node name="CheetoGerm" type="RigidBody2D"]
-position = Vector2(-86, 28)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-101, -102)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"attack"
-frame_progress = 0.786529
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(118, 56)
 shape = SubResource("CapsuleShape2D_kf1lu")
