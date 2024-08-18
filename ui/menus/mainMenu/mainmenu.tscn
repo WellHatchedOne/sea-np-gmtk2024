@@ -1,7 +1,8 @@
 [gd_scene load_steps=3 format=3 uid="uid://2vbod8x0vbdv"]
+[gd_scene load_steps=3 format=3 uid="uid://2vbod8x0vbdv"]
 
 [ext_resource type="Script" path="res://ui/menus/mainMenu/mainmenu.gd" id="1_0chwt"]
-[ext_resource type="PackedScene" uid="uid://8pakirupa35h" path="res://Mainmenumusic.tscn" id="2_rlxbs"]
+[ext_resource type="Texture2D" uid="uid://cxuo3ueoauep2" path="res://ui/menus/mainMenu/MainMenuBackground_placeholder.png" id="2_e3wtq"]
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -11,6 +12,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_0chwt")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("2_e3wtq")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
