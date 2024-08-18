@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://01htn758kxri"]
+
+[ext_resource type="Texture2D" uid="uid://biqqxedfrro4g" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-1.png" id="1_4iqpv"]
+
+[node name="TestEnemy" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-4, -6)
+scale = Vector2(0.046875, 0.046875)
+texture = ExtResource("1_4iqpv")
