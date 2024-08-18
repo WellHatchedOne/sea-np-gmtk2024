@@ -295,7 +295,8 @@ layer_0/name = "World"
 layer_1/name = "World 2"
 layer_1/tile_data = PackedInt32Array()
 
-[node name="Hud" parent="." instance=ExtResource("7_33jec")]
+[node name="Hud" parent="." node_paths=PackedStringArray("Player") instance=ExtResource("7_33jec")]
+Player = NodePath("../PackOfRats")
 
 [node name="RatMiniMap" parent="." node_paths=PackedStringArray("player") instance=ExtResource("6_k1yuq")]
 player = NodePath("../PackOfRats")

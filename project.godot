@@ -15,10 +15,13 @@ run/main_scene="res://mapGen/dungeon.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Mainmenumusic="*res://Mainmenumusic.tscn"
+
 [display]
 
 window/size/always_on_top=true
-window/stretch/scale=3.03
 
 [input]
 

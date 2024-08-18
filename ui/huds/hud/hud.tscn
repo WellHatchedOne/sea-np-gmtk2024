@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://uvgdynm14wdy"]
+[gd_scene load_steps=4 format=3 uid="uid://uvgdynm14wdy"]
 
 [ext_resource type="Script" path="res://ui/huds/hud/hud.gd" id="1_xh6qk"]
+[ext_resource type="Script" path="res://ui/huds/hud/Label.gd" id="2_virew"]
+
+[sub_resource type="Theme" id="Theme_h8jny"]
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_xh6qk")
@@ -36,3 +39,16 @@ theme_override_constants/margin_top = 10
 [node name="ColorRect" type="ColorRect" parent="Control/ColorRect/MarginContainer"]
 layout_mode = 2
 color = Color(0.207843, 0.219608, 0.223529, 1)
+
+[node name="Ratcount" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 29.0
+offset_right = 166.0
+offset_bottom = 68.0
+theme = SubResource("Theme_h8jny")
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 10
+theme_override_font_sizes/font_size = 22
+text = "Rat Count 1/50"
+script = ExtResource("2_virew")
