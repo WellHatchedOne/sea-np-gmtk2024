@@ -19,6 +19,10 @@ config/icon="res://icon.svg"
 
 window/size/always_on_top=true
 
+[autoload]
+
+Mainmenumusic="*res://Mainmenumusic.tscn"
+
 [input]
 
 move_left={
