@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://bqxvbvhcodqdf"]
+
+[ext_resource type="Script" path="res://Daniel/MakeOpaqueComponent.gd" id="1_00xgq"]
+[ext_resource type="Script" path="res://Daniel/Cooldown_Display.gd" id="2_yn3r5"]
+
+[node name="MakeOpaqueComponent" type="Node2D"]
+script = ExtResource("1_00xgq")
+
+[node name="DodgeTimer" type="Timer" parent="."]
+one_shot = true
+
+[node name="CooldownTimer" type="Timer" parent="."]
+wait_time = 5.0
+one_shot = true
+
+[node name="Cooldown_Display" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+script = ExtResource("2_yn3r5")
