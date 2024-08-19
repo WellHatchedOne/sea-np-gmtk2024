@@ -10,8 +10,6 @@ func _ready():
 	get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
 	print(level.spawnPoint)
 	$PackOfRats.position = level.spawnPoint
-
-	load_new_level(0)
 	music()
 
 
