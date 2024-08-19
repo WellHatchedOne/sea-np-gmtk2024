@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cow1mqw4fgcej"]
+[gd_scene load_steps=18 format=3 uid="uid://cow1mqw4fgcej"]
 
 [ext_resource type="Texture2D" uid="uid://dqkwn1t2v6sob" path="res://assets/enemies/pinkGerm/pinkGerm-hurt-1.png" id="1_e1fby"]
 [ext_resource type="Texture2D" uid="uid://bppewysuij457" path="res://assets/enemies/pinkGerm/pinkGerm-attack-1.png" id="1_i71bb"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://bu7s7hladl0my" path="res://assets/enemies/pinkGerm/pinkGerm-death-2.png" id="6_6uqul"]
 [ext_resource type="Texture2D" uid="uid://pwy3qamtoj6f" path="res://assets/enemies/pinkGerm/pinkGerm-death-3.png" id="7_wm8ef"]
 [ext_resource type="Texture2D" uid="uid://bnkyijh3nbwb3" path="res://assets/enemies/pinkGerm/pinkGerm-death-4.png" id="8_4wbam"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="15_h0raf"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -85,13 +86,16 @@ radius = 272.0
 height = 600.0
 
 [node name="PinkGerm" type="RigidBody2D"]
+scale = Vector2(0.01, 0.01)
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-77, 103)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
-animation = &"death"
-frame = 2
-frame_progress = 0.219422
+animation = &"idle"
+frame_progress = 0.272746
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_kf1lu")
+
+[node name="HealthComponent" parent="." instance=ExtResource("15_h0raf")]
