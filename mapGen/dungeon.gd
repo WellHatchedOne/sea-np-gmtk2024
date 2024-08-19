@@ -14,6 +14,22 @@ var tile_size := 64
 var source_id := 0
 
 var tileMapFloorVector := Vector2i(0, 8)
+
+var tileMapFloorVectorTrapNE := Vector2i(0, 6)
+var tileMapFloorVectorTrapNW := Vector2i(1, 6)
+var tileMapFloorVectorTrapSE := Vector2i(0, 7)
+var tileMapFloorVectorTrapSW := Vector2i(1, 7)
+
+var tileMapFloorVectorClawNE := Vector2i(0, 4)
+var tileMapFloorVectorClawNW := Vector2i(1, 4)
+var tileMapFloorVectorClawSE := Vector2i(0, 5)
+var tileMapFloorVectorClawSW := Vector2i(1, 5)
+
+var tileMapFloorVectorTubeNE := Vector2i(2, 4)
+var tileMapFloorVectorTubeNW := Vector2i(3, 4)
+var tileMapFloorVectorTubeSE := Vector2i(2, 5)
+var tileMapFloorVectorTubeSW := Vector2i(3, 5)
+
 var tileMapWallVector := Vector2i(0, 0)
 var tileMapCornerVector := Vector2i(5, 0)
 
@@ -67,10 +83,14 @@ func _draw():
 		for x in range(leaf.size.x):
 			for y in range(leaf.size.y):
 				# Only render tiles in actual rooms
+				var xposition = x + leaf.position.x
+				var yposition = y + leaf.position.y
+				var position = Vector2i(xposition,yposition)
 				if not leaf.isNotFloorTile(x, y, padding):
 					# 1 is the atlas ID
 					# 0,8 is the tile location in the atlas
-					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), source_id, tileMapFloorVector)
+					setRandomFloorTile(xposition, yposition)
+					spawn_enemy(Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
 				elif not leaf.isNotFloorTile(x, y + 1, padding):
 					# Render top wall
 					tilemap.set_cell(0, Vector2i(x + leaf.position.x,y + leaf.position.y), source_id, tileMapWallVector, tileMapTopAlt)
@@ -138,8 +158,12 @@ func _draw():
 							tilemap.set_cell(1, downPos, source_id, tileMapWallVector, tileMapBottomAlt)
 				
 				# Now draw the path connection tiles
-				tilemap.set_cell(0, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 9))
-				tilemap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 15))
+				if DEBUG:
+					tilemap.set_cell(0, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 9))
+					tilemap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), source_id, Vector2i(0, 15))
+				else:
+					tilemap.set_cell(0, Vector2i(path['left'].x+i,path['left'].y), source_id, tileMapFloorVector)
+					tilemap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), source_id, tileMapFloorVector)
 		else:
 			# vertical
 			for i in range(path['right'].y - path['left'].y):
@@ -179,6 +203,52 @@ func _draw():
 							tilemap.set_cell(1, rightPos, source_id, tileMapWallVector, tileMapRightAlt)
 
 				# Now draw the path connection tiles
-				tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 11))
-				tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 12))
+				if DEBUG:
+					tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 11))
+					tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), source_id, Vector2i(0, 12))
+				else:
+					tilemap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), source_id, tileMapFloorVector)
+					tilemap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), source_id, tileMapFloorVector)
 
+func spawn_enemy(spawn_position: Vector2i, spawn_percent: float = 1):
+	if !(rng.randf_range(0,1) <= spawn_percent):
+		return
+	var new_enemy = ENEMY.instantiate()
+	new_enemy.position = spawn_position
+	self.add_child(new_enemy)
+	classify_entity(new_enemy)
+
+func _on_biteTimer_timeout():
+	for biter in biters:
+		biter.get_node("BiteAttacker").attack()
+	
+func classify_entity(entity):
+	if entity.is_in_group("BITER"):
+		biters.append(entity)
+
+func setRandomFloorTile(xposition, yposition):
+	var rand := rng.randi_range(0, 99) # [0, 100) ints
+	tilemap.set_cell(0, Vector2i(xposition, yposition), source_id, tileMapFloorVector)
+	# random floor tiles
+	if isBottomRightOfFourFloorTiles(xposition, yposition) && rand > 94:
+		if rand <= 96:
+			tilemap.set_cell(0, Vector2i(xposition - 1, yposition - 1), source_id, tileMapFloorVectorTrapNE)
+			tilemap.set_cell(0, Vector2i(xposition, yposition - 1), source_id, tileMapFloorVectorTrapNW)
+			tilemap.set_cell(0, Vector2i(xposition - 1, yposition), source_id, tileMapFloorVectorTrapSE)
+			tilemap.set_cell(0, Vector2i(xposition, yposition), source_id, tileMapFloorVectorTrapSW)
+		elif rand <= 98:
+			tilemap.set_cell(0, Vector2i(xposition - 1, yposition - 1), source_id, tileMapFloorVectorClawNE)
+			tilemap.set_cell(0, Vector2i(xposition, yposition - 1), source_id, tileMapFloorVectorClawNW)
+			tilemap.set_cell(0, Vector2i(xposition - 1, yposition), source_id, tileMapFloorVectorClawSE)
+			tilemap.set_cell(0, Vector2i(xposition, yposition), source_id, tileMapFloorVectorClawSW)
+		else:
+			tilemap.set_cell(0, Vector2i(xposition - 1, yposition - 1), source_id, tileMapFloorVectorTubeNE)
+			tilemap.set_cell(0, Vector2i(xposition, yposition - 1), source_id, tileMapFloorVectorTubeNW)
+			tilemap.set_cell(0, Vector2i(xposition - 1, yposition), source_id, tileMapFloorVectorTubeSE)
+			tilemap.set_cell(0, Vector2i(xposition, yposition), source_id, tileMapFloorVectorTubeSW)
+	
+func isBottomRightOfFourFloorTiles(xposition, yposition):
+	return tileIsSetToFloorVector(xposition, yposition) && tileIsSetToFloorVector(xposition - 1, yposition) && tileIsSetToFloorVector(xposition, yposition - 1) && tileIsSetToFloorVector(xposition - 1, yposition - 1)
+	
+func tileIsSetToFloorVector(xpos, ypos):
+	return tilemap.get_cell_atlas_coords(0, Vector2i(xpos, ypos)) == tileMapFloorVector
