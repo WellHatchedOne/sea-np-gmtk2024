@@ -34,7 +34,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -51,7 +51,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -68,7 +68,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jy6cj"]
@@ -82,7 +82,8 @@ script = ExtResource("1_00nxb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
-animation = &"side"
+animation = &"down"
+frame_progress = 0.909291
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3.58, 3.58)
