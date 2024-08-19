@@ -9,7 +9,6 @@ var delay:float = 0
 var currentTimeOffset:float = 0
 var timeOffsetQueue:Array[float] = []
 var positionOffSetQueue:Array[Vector2] = []
-var currentPositionOffset:Vector2 = Vector2.ZERO
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -45,7 +44,7 @@ func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float
 	currentTimeOffset += delta
 
 	# Get desired position
-	var desiredPosition:Vector2 = currentPositionOffset
+	var desiredPosition:Vector2 = Vector2.ZERO
 	while (timeOffsetQueue.size() > 0 && positionOffSetQueue.size() > 0 && currentTimeOffset > delay):
 		currentTimeOffset -= timeOffsetQueue.pop_front()
 		desiredPosition += positionOffSetQueue.pop_front()
