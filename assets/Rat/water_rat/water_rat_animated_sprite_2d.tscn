@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://cvucmjpdd2ata"]
+
+[ext_resource type="Texture2D" uid="uid://dxaw0v2hcx6b1" path="res://assets/Rat/water_rat/water_rat_down1.png" id="1_oy7n4"]
+[ext_resource type="Texture2D" uid="uid://csvjuqfn6kk6j" path="res://assets/Rat/water_rat/water_rat_down2.png" id="2_metq5"]
+[ext_resource type="Texture2D" uid="uid://dsxcmh0x8u1ak" path="res://assets/Rat/water_rat/water_rat_down3.png" id="3_4o6wq"]
+[ext_resource type="Texture2D" uid="uid://cjlwn02xi0dbj" path="res://assets/Rat/water_rat/water_rat_down4.png" id="4_w21mq"]
+[ext_resource type="Texture2D" uid="uid://wyxrdmt1a60i" path="res://assets/Rat/water_rat/water_rat_side1.png" id="5_u2aep"]
+[ext_resource type="Texture2D" uid="uid://iagvk52wekkg" path="res://assets/Rat/water_rat/water_rat_side2.png" id="6_ekfsp"]
+[ext_resource type="Texture2D" uid="uid://svyu6qrb27ek" path="res://assets/Rat/water_rat/water_rat_side3.png" id="7_cx4k8"]
+[ext_resource type="Texture2D" uid="uid://451p32s268ey" path="res://assets/Rat/water_rat/water_rat_side4.png" id="8_j06yt"]
+[ext_resource type="Texture2D" uid="uid://cifodrcywqld5" path="res://assets/Rat/water_rat/water_rat_up1.png" id="9_rd47b"]
+[ext_resource type="Texture2D" uid="uid://pbf0s7ve6ktx" path="res://assets/Rat/water_rat/water_rat_up2.png" id="10_rghch"]
+[ext_resource type="Texture2D" uid="uid://b5gg3i010lwe7" path="res://assets/Rat/water_rat/water_rat_up3.png" id="11_1rovb"]
+[ext_resource type="Texture2D" uid="uid://icmwleke4qa6" path="res://assets/Rat/water_rat/water_rat_up4.png" id="12_cnevk"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_oy7n4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_metq5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_4o6wq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_w21mq")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_u2aep")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ekfsp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_cx4k8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_j06yt")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_rd47b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_rghch")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_1rovb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_cnevk")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="WaterRatAnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_pedtu")
+animation = &"up"

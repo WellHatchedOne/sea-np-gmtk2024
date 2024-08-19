@@ -1,20 +1,21 @@
-[gd_scene load_steps=18 format=3 uid="uid://b32e7nkyfmr3k"]
+[gd_scene load_steps=19 format=3 uid="uid://b32e7nkyfmr3k"]
 
 [ext_resource type="Script" path="res://rat.gd" id="1_00nxb"]
 [ext_resource type="Texture2D" uid="uid://3rlb5dps5bck" path="res://assets/Rat/base_rat/base_rat_down1.png" id="2_sn3oa"]
 [ext_resource type="Texture2D" uid="uid://rjg1q4oanlwe" path="res://assets/Rat/base_rat/base_rat_down2.png" id="3_ei2gg"]
 [ext_resource type="Texture2D" uid="uid://dti8oak3fr5dr" path="res://assets/Rat/base_rat/base_rat_down3.png" id="4_abif4"]
 [ext_resource type="Texture2D" uid="uid://ch77dga62p0ab" path="res://assets/Rat/base_rat/base_rat_down4.png" id="5_bc7qi"]
-[ext_resource type="Texture2D" uid="uid://xtng5oegt102" path="res://assets/Rat/base_rat/base_rat_side1.png" id="6_74ekd"]
-[ext_resource type="Texture2D" uid="uid://cosmwxj46luf1" path="res://assets/Rat/base_rat/base_rat_side2.png" id="7_a78ae"]
-[ext_resource type="Texture2D" uid="uid://388q3r4elh72" path="res://assets/Rat/base_rat/base_rat_side3.png" id="8_ymfij"]
+[ext_resource type="Texture2D" uid="uid://xtng5oegt102" path="res://assets/Rat/base_rat/base_rat_side1.png" id="6_iv28q"]
+[ext_resource type="Texture2D" uid="uid://cosmwxj46luf1" path="res://assets/Rat/base_rat/base_rat_side2.png" id="7_lemv8"]
+[ext_resource type="Texture2D" uid="uid://388q3r4elh72" path="res://assets/Rat/base_rat/base_rat_side3.png" id="8_wlt1a"]
+[ext_resource type="Texture2D" uid="uid://bryit870ibmci" path="res://assets/Rat/base_rat/base_rat_side4.png" id="9_0s1w4"]
 [ext_resource type="Script" path="res://modifiers/Damageable.gd" id="9_2svmp"]
-[ext_resource type="Texture2D" uid="uid://bryit870ibmci" path="res://assets/Rat/base_rat/base_rat_side4.png" id="9_xl47m"]
-[ext_resource type="Texture2D" uid="uid://kmp52xyoquud" path="res://assets/Rat/base_rat/base_rat_up1.png" id="10_0vnp3"]
 [ext_resource type="PackedScene" uid="uid://dvhvt4iv1h3ii" path="res://modifiers/biteAttacker.tscn" id="10_5utx7"]
-[ext_resource type="Texture2D" uid="uid://hmimbs3ynw0d" path="res://assets/Rat/base_rat/base_rat_up2.png" id="11_e7mo4"]
-[ext_resource type="Texture2D" uid="uid://cgxrh7evopryo" path="res://assets/Rat/base_rat/base_rat_up3.png" id="12_ylbfe"]
-[ext_resource type="PackedScene" uid="uid://g7rt55sa0ie5" path="res://Max/components/BulletHitboxComponent.tscn" id="15_flnnw"]
+[ext_resource type="Texture2D" uid="uid://kmp52xyoquud" path="res://assets/Rat/base_rat/base_rat_up1.png" id="10_6wxns"]
+[ext_resource type="Texture2D" uid="uid://hmimbs3ynw0d" path="res://assets/Rat/base_rat/base_rat_up2.png" id="11_ucp6u"]
+[ext_resource type="Texture2D" uid="uid://cgxrh7evopryo" path="res://assets/Rat/base_rat/base_rat_up3.png" id="12_8akjo"]
+[ext_resource type="Texture2D" uid="uid://bww6dwi0digwf" path="res://assets/Rat/base_rat/base_rat_up4.png" id="13_furcd"]
+[ext_resource type="PackedScene" path="res://Max/components/BulletHitboxComponent.tscn" id="15_flnnw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -37,16 +38,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_74ekd")
+"texture": ExtResource("6_iv28q")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_a78ae")
+"texture": ExtResource("7_lemv8")
 }, {
 "duration": 1.0,
-"texture": ExtResource("8_ymfij")
+"texture": ExtResource("8_wlt1a")
 }, {
 "duration": 1.0,
-"texture": ExtResource("9_xl47m")
+"texture": ExtResource("9_0s1w4")
 }],
 "loop": true,
 "name": &"side",
@@ -54,13 +55,16 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("10_0vnp3")
+"texture": ExtResource("10_6wxns")
 }, {
 "duration": 1.0,
-"texture": ExtResource("11_e7mo4")
+"texture": ExtResource("11_ucp6u")
 }, {
 "duration": 1.0,
-"texture": ExtResource("12_ylbfe")
+"texture": ExtResource("12_8akjo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_furcd")
 }],
 "loop": true,
 "name": &"up",
@@ -76,7 +80,6 @@ collision_layer = 4
 script = ExtResource("1_00nxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(16, 12)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
 animation = &"side"

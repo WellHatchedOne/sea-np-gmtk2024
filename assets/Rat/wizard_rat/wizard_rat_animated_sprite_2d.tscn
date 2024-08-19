@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://bi6hx7uud88ah"]
+
+[ext_resource type="Texture2D" uid="uid://dspeel2xymyai" path="res://assets/Rat/wizard_rat/Wizard_Rat_Side-1.png" id="1_duyo0"]
+[ext_resource type="Texture2D" uid="uid://m48wk8st7t0f" path="res://assets/Rat/wizard_rat/Wizard_Rat_Down-1.png" id="1_md3m6"]
+[ext_resource type="Texture2D" uid="uid://cpm5b1l0ren4w" path="res://assets/Rat/wizard_rat/Wizard_Rat_Side-2.png" id="2_2f0bb"]
+[ext_resource type="Texture2D" uid="uid://dss7a7jme2ips" path="res://assets/Rat/wizard_rat/Wizard_Rat_Down-2.png" id="2_tgepd"]
+[ext_resource type="Texture2D" uid="uid://bhqwxe4yovh4" path="res://assets/Rat/wizard_rat/Wizard_Rat_Side-3.png" id="3_71gm1"]
+[ext_resource type="Texture2D" uid="uid://dpnqacss4gur1" path="res://assets/Rat/wizard_rat/Wizard_Rat_Down-3.png" id="3_cea5n"]
+[ext_resource type="Texture2D" uid="uid://0sepgw0rsw5b" path="res://assets/Rat/wizard_rat/Wizard_Rat_Down-4.png" id="4_aogvs"]
+[ext_resource type="Texture2D" uid="uid://bene1oxu5cgia" path="res://assets/Rat/wizard_rat/Wizard_Rat_Side-4.png" id="4_edjqa"]
+[ext_resource type="Texture2D" uid="uid://b5b6hm1csf5br" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-1.png" id="5_vue1r"]
+[ext_resource type="Texture2D" uid="uid://bpvsre54rmgy7" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-2.png" id="6_t0imb"]
+[ext_resource type="Texture2D" uid="uid://ctijjjqjqq8g1" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-3.png" id="7_kj8kn"]
+[ext_resource type="Texture2D" uid="uid://du56utep6lkeg" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-4.png" id="8_na2hm"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_md3m6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_tgepd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_cea5n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_aogvs")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_duyo0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_2f0bb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_71gm1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_edjqa")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_vue1r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_t0imb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_kj8kn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_na2hm")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="WizardRatAnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_pedtu")
+animation = &"down"
