@@ -15,7 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://hmimbs3ynw0d" path="res://assets/Rat/base_rat/base_rat_up2.png" id="11_ucp6u"]
 [ext_resource type="Texture2D" uid="uid://cgxrh7evopryo" path="res://assets/Rat/base_rat/base_rat_up3.png" id="12_8akjo"]
 [ext_resource type="Texture2D" uid="uid://bww6dwi0digwf" path="res://assets/Rat/base_rat/base_rat_up4.png" id="13_furcd"]
-[ext_resource type="PackedScene" path="res://Max/components/BulletHitboxComponent.tscn" id="15_flnnw"]
+[ext_resource type="PackedScene" uid="uid://g7rt55sa0ie5" path="res://Max/components/BulletHitboxComponent.tscn" id="15_flnnw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
