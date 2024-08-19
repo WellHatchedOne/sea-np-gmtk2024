@@ -9,10 +9,11 @@ extends Node2D
 
 @export var fire_audio: AudioStream = null
 
-var DEBUG = false
+var DEBUG = true
 
 var tile_size := 64 # pixels
 
+# More rooms
 var dungeonWidth := 90
 var dungeonHeight := 30
 
@@ -48,6 +49,7 @@ var tileMapTLAlt := 5
 var tileMapBLAlt := 6
 var tileMapBRAlt := 7
 
+# Maybe for enemies, (davis)
 @export var default_spawn_percent: float = 0.025
 
 # END CONSTANTS
@@ -69,12 +71,17 @@ const FOOD = preload("res://Grace/food.tscn")
 #const LIGHTNING_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
 #const BULLET_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
 
+var selected_level = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	print(selected_level)
+	return
 	tilemap = get_node("TileMap")
 	print("got TileMap")
 	root_node = Branch.new(Vector2i(0, 0), Vector2i(dungeonWidth, dungeonHeight)) # 90 tiles wide and 30 tall
-	root_node.split(2, paths)
+	# Theortically 2^split(zero indexed)
+	root_node.split(3, paths)
 	setup_timers()
 	queue_redraw()
 	setPackOfRatsPositionInsideDungeon()
@@ -341,7 +348,6 @@ func spawn_entity(entity_file_path, spawn_position: Vector2i, spawn_percent: flo
 	new_entity.position = spawn_position
 	self.add_child(new_entity)
 	classify_entity(new_entity)
-
 
 func _on_biteTimer_timeout():
 	for biter in biters:
