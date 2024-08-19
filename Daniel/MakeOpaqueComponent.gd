@@ -4,7 +4,6 @@ var turnback = 0
 var dodgestart = false
 var canattack = true
 var dodgebutton = false
-@onready var hud = $Hud
 
 @onready var label = $Cooldown_Display
 
