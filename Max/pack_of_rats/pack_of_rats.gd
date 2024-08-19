@@ -8,7 +8,7 @@ const RAT_DELAY_MULTIPLICATIVE_MODIFIER:float = .002
 const RAT_DELAY_RANDOM_MODIFIER:float = .3
 const RAT = preload("res://rat.tscn")
 @onready var pack_collision_circle = $CollisionShape2D
-signal ratsignal
+#signal ratsignal
 var current_radius = 0
 var rat_children:Array[Rat] = []
 var ratnumber = 0
@@ -35,6 +35,7 @@ func _ready():
 	spawn_spiral_rat()
 
 func spawn_spiral_rat():
+	print("spawn spiral rat")
 	var spiralCoordinates:Vector2 = get_spiral_coordinates_from_poisition(ratnumber)
 	spawn_rat(getRatPosistionFromSpiralCoordinates(spiralCoordinates))
 
@@ -72,6 +73,7 @@ func getRatPosistionFromSpiralCoordinates(spiralPosition:Vector2) -> Vector2:
 	return Vector2(x, y)
 
 func spawn_rat(new_position:Vector2):
+	print("spawn rat")
 	var new_rat:Rat = RAT.instantiate()
 	var radius_from_parent_origin = Vector2(0,0).distance_to(new_position)
 	new_rat.position = new_position
@@ -83,9 +85,9 @@ func spawn_rat(new_position:Vector2):
 		new_rat.set_delay(0)
 	else:
 		new_rat.set_delay(get_rat_delay(new_position))
-	emit_signal("ratsignal")
-	get_parent().classify_entity(new_rat)
-	emit_signal("ratsignal")
+	#emit_signal("ratsignal")
+	#get_parent().classify_entity(new_rat)
+	#emit_signal("ratsignal")
 	
 	if (ratnumber == 1):
 		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D

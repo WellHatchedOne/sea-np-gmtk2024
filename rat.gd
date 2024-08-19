@@ -4,6 +4,9 @@ class_name Rat
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 const DISTANCE_FROM_PACK_TO_STOP_MOVING = 500
+const DISTANCE_FROM_PACK_TO_START_MOVING = 50
+enum RatState {FOLLOWING, SITTING}
+var currentRatState = RatState.FOLLOWING
 var startingPosition:Vector2
 var delay:float = 0
 var currentTimeOffset:float = 0
@@ -32,8 +35,9 @@ func set_delay(newDelay:float):
 # Moves the rat for this frame relative to the swarm
 func ratMove(swarmVelocity:Vector2, speed:float, delta:float):
 	var desiredGlobalPosition:Vector2 = getRatDesiredGlobalPosition(swarmVelocity, speed, delta)
-	moveAndSlideRat(desiredGlobalPosition, swarmVelocity, speed, delta)
-	animateRat(swarmVelocity)
+	var shouldAnimate = moveAndSlideRat(desiredGlobalPosition, swarmVelocity, speed, delta)
+	if shouldAnimate:
+		animateRat(swarmVelocity)
 
 func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 	# Push this frame's velocity onto our queue of time and position offsets
@@ -51,12 +55,18 @@ func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float
 
 	return desiredPosition
 
-func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, speed:float, delta:float):
-	if(position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+# Returns true if motion should be animated, false if not
+func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, speed:float, delta:float) -> bool:
+	if (position.distance_to(Vector2.ZERO) < DISTANCE_FROM_PACK_TO_START_MOVING):
+		currentRatState = RatState.FOLLOWING
+
+	if(currentRatState == RatState.SITTING || 
+		position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+		currentRatState = RatState.SITTING
 		# Make the rats stay stil if they are too far away (technically, they have to move to oppose the pack)
 		velocity = -1 * swarmVelocity
 		move_and_slide()
-		return
+		return false
 
 	var desiredGlobalVelocity:Vector2 = (desiredGlobalPosition).normalized() * speed
 	if(swarmVelocity == Vector2.ZERO && desiredGlobalVelocity == Vector2.ZERO):
@@ -64,12 +74,15 @@ func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, spee
 		velocity = vectorToStartingPosition.normalized() * speed
 		if vectorToStartingPosition.length() > 5:
 			move_and_slide()
+			return true
 		else:
 			# Move back to starting position when rat and frame isn't moving
 			position = position.move_toward(startingPosition, speed * delta)
+			return false
 	else:
 		velocity = desiredGlobalVelocity - swarmVelocity
 		move_and_slide()
+		return true
 
 # GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack)
 func animateRat(swarmVelocity:Vector2):
