@@ -1,0 +1,16 @@
+[gd_scene load_steps=4 format=3 uid="uid://j8p7h64oj3di"]
+
+[ext_resource type="Script" path="res://Max/components/RatAbilityComponent/RatAbilityController.gd" id="1_lkr1q"]
+[ext_resource type="PackedScene" uid="uid://6dk0firucnai" path="res://Max/components/RatAbilityComponent/BulletOrigin.tscn" id="2_hrjp0"]
+[ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="3_une1g"]
+
+[node name="RatAbilityController" type="Node2D"]
+script = ExtResource("1_lkr1q")
+
+[node name="BulletOrigin" parent="." instance=ExtResource("2_hrjp0")]
+
+[node name="BulletDestination" parent="." instance=ExtResource("3_une1g")]
+position = Vector2(0, -148)
+
+[node name="Timer" type="Timer" parent="BulletDestination"]
+wait_time = 0.5

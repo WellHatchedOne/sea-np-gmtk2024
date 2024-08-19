@@ -39,14 +39,12 @@ func shoot_at_target():
 	var new_bullet: Bullet = BULLET.instantiate()
 	# Added call_deferred to queue the action since there are also collision checks
 	self.call_deferred("add_child", new_bullet)
+	var travel_direction = get_parent().position.direction_to(target.position)
+	
 	new_bullet.start(self.position)
-	new_bullet.speed = bullet_speed
-	new_bullet.direction = get_parent().position.direction_to(target.position)
-	new_bullet.start_traveling = true
-	
-	print(target.position)
+	new_bullet.launch(bullet_speed, travel_direction, true)
+
 	play_music()
-	
 
 func _fire_rate_event():
 	shoot_at_target()

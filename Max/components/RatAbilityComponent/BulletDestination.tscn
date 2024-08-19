@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://chow8ybeccsgg"]
+
+[ext_resource type="Script" path="res://Max/components/RatAbilityComponent/BulletDestination.gd" id="1_vt23c"]
+[ext_resource type="Texture2D" uid="uid://cla4syku151rh" path="res://icon.svg" id="2_6yc7x"]
+
+[node name="BulletDestination" type="Node2D"]
+script = ExtResource("1_vt23c")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(0.6, 0, 0, 1)
+
+[node name="BulletSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_6yc7x")
+
+[node name="Area2D" type="Area2D" parent="."]

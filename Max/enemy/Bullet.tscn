@@ -1,22 +1,19 @@
 [gd_scene load_steps=3 format=3 uid="uid://dgdvy6s1x0rj0"]
 
 [ext_resource type="Script" path="res://Max/enemy/Bullet.gd" id="1_ssk1y"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_hbc24"]
+[ext_resource type="Texture2D" uid="uid://5g5jphkbuv7x" path="res://assets/bullets/Fire_Projectile_60px.png" id="2_tr8al"]
 
 [node name="Bullet" type="Area2D"]
 collision_layer = 64
 collision_mask = 5
 script = ExtResource("1_ssk1y")
 
-[node name="ColorRect" type="ColorRect" parent="."]
-offset_left = -10.0
-offset_top = -10.0
-offset_right = 10.0
-offset_bottom = 10.0
+[node name="Area2D" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_hbc24")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tr8al")
+
+[node name="Timer" type="Timer" parent="."]
 
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
