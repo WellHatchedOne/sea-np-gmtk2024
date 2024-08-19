@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://6g2ibq8l3x3u"]
+
+[ext_resource type="Script" path="res://backgroundmusicchanger.gd" id="1_e8v7u"]
+[ext_resource type="AudioStream" uid="uid://odjwx5eugfc8" path="res://assets/Music/tune0.wav" id="2_yyhvw"]
+
+[node name="Backgroundmusic" type="Node2D"]
+script = ExtResource("1_e8v7u")
+Backmusic = ExtResource("2_yyhvw")
+
+[node name="Backgroundm" type="AudioStreamPlayer" parent="."]

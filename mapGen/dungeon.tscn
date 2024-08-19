@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://cqcr45ue6dtf0" path="res://assets/tileset16x.png" id="3_m7p3c"]
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
 [ext_resource type="PackedScene" uid="uid://uvgdynm14wdy" path="res://ui/huds/hud/hud.tscn" id="7_33jec"]
-[ext_resource type="PackedScene" uid="uid://bdj2qkwnbgugk" path="res://Dungeonmusic1.tscn" id="7_k0tnq"]
+[ext_resource type="PackedScene" uid="uid://bqxvbvhcodqdf" path="res://Daniel/MakeOpaqueComponent.tscn" id="7_bipso"]
 [ext_resource type="PackedScene" uid="uid://01htn758kxri" path="res://Max/enemy/test_enemy.tscn" id="8_cqtwo"]
 [ext_resource type="PackedScene" uid="uid://dknubmiky3ydk" path="res://Max/pack_of_rats/pack_of_rats.tscn" id="8_n4xp6"]
 [ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="9_aet51"]
@@ -402,6 +402,36 @@ texture_region_size = Vector2i(64, 64)
 7:17/0 = 0
 7:17/0/physics_layer_0/linear_velocity = Vector2(0, 0)
 7:17/0/physics_layer_0/angular_velocity = 0.0
+1:6/0 = 0
+1:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:6/0/physics_layer_0/angular_velocity = 0.0
+0:6/0 = 0
+0:6/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:6/0/physics_layer_0/angular_velocity = 0.0
+0:5/0 = 0
+0:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:5/0/physics_layer_0/angular_velocity = 0.0
+0:4/0 = 0
+0:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+0:4/0/physics_layer_0/angular_velocity = 0.0
+1:4/0 = 0
+1:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:4/0/physics_layer_0/angular_velocity = 0.0
+1:5/0 = 0
+1:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+1:5/0/physics_layer_0/angular_velocity = 0.0
+2:5/0 = 0
+2:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:5/0/physics_layer_0/angular_velocity = 0.0
+3:4/0 = 0
+3:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:4/0/physics_layer_0/angular_velocity = 0.0
+2:4/0 = 0
+2:4/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+2:4/0/physics_layer_0/angular_velocity = 0.0
+3:5/0 = 0
+3:5/0/physics_layer_0/linear_velocity = Vector2(0, 0)
+3:5/0/physics_layer_0/angular_velocity = 0.0
 
 [sub_resource type="TileSet" id="TileSet_f04b4"]
 tile_size = Vector2i(64, 64)
@@ -429,10 +459,8 @@ Player = NodePath("../PackOfRats")
 player = NodePath("../PackOfRats")
 
 [node name="PackOfRats" parent="." instance=ExtResource("8_n4xp6")]
-scale = Vector2(1, 1)
 
-[node name="AudioStreamPlayer" parent="." instance=ExtResource("7_k0tnq")]
-autoplay = true
+[node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_bipso")]
 
 [node name="TestEnemy" parent="." instance=ExtResource("8_cqtwo")]
 position = Vector2(-162, -134)

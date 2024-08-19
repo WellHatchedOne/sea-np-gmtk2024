@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://5lu1txqclm5m" path="res://Max/pack_of_rats/pack_of_rat_circle.tres" id="2_f6m7k"]
 
 [node name="PackOfRats" type="CharacterBody2D"]
-scale = Vector2(0.2, 0.2)
+collision_layer = 2
 script = ExtResource("1_03lfw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

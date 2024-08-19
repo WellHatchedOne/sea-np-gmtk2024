@@ -5,7 +5,11 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_da7h1"]
 
 [node name="BulletHitboxComponent" type="Area2D"]
+collision_layer = 64
+collision_mask = 64
 script = ExtResource("1_c5r1b")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_da7h1")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
