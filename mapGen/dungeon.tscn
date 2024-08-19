@@ -430,9 +430,6 @@ player = NodePath("../PackOfRats")
 
 [node name="PackOfRats" parent="." instance=ExtResource("8_n4xp6")]
 scale = Vector2(1, 1)
-speed = 400.0
-ratWidthDist = 50
-ratHeightDist = 50
 
 [node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_bipso")]
 

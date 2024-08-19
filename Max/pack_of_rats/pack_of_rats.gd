@@ -2,8 +2,8 @@ extends CharacterBody2D
 class_name PackOfRats
 
 @export var speed: float = 400
-@export var ratWidthDist = 50
-@export var ratHeightDist = 50
+@export var ratWidthDist = 15
+@export var ratHeightDist = 15
 const RAT_DELAY_MULTIPLICATIVE_MODIFIER:float = .002
 const RAT_DELAY_RANDOM_MODIFIER:float = .3
 const RAT = preload("res://rat.tscn")

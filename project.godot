@@ -15,13 +15,13 @@ run/main_scene="res://ui/menus/mainMenu/mainmenu.tscn"
 config/features=PackedStringArray("4.2", "Forward Plus")
 config/icon="res://icon.svg"
 
-[display]
-
-window/size/always_on_top=true
-
 [autoload]
 
 Mainmenumusic="*res://Mainmenumusic.tscn"
+
+[display]
+
+window/size/always_on_top=true
 
 [input]
 
