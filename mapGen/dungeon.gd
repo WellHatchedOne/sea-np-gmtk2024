@@ -11,7 +11,10 @@ extends Node2D
 
 var DEBUG = false
 
-var tile_size := 64
+var tile_size := 64 # pixels
+
+var dungeonWidth := 90
+var dungeonHeight := 30
 
 var source_id := 0
 
@@ -65,21 +68,66 @@ const BITE_ATTACK_TIMER = preload("res://Events/Timers/biteAttackTimer.tscn")
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	tilemap = get_node("TileMap")
-	root_node  = Branch.new(Vector2i(0, 0), Vector2i(90, 30)) # 90 tiles wide and 30 tall
+	root_node  = Branch.new(Vector2i(0, 0), Vector2i(dungeonWidth, dungeonHeight)) # 90 tiles wide and 30 tall
 	root_node.split(2, paths)
 	setup_timers()
 	queue_redraw()
 	setPackOfRatsPositionInsideDungeon()
 	
 	music()
-	
+
+
+
 func setPackOfRatsPositionInsideDungeon():
-	var numRooms = root_node.get_leaves().size()
+	var roomArray = root_node.get_leaves()
+	var numRooms = roomArray.size()
 	print("numOfRooms: " + str(numRooms))
-	var startRoomNum = rng.randi_range(0, numRooms - 1)
+	
+	# find largest room for boss
+	var largestRoom = 0
+	var neMostRoom = 0
+	var seMostRoom = 0
+	var nwMostRoom = 0
+	var swMostRoom = 0
+	for room in range(numRooms):
+		print("room: " + str(room) + ", position: " + str(roomArray[room].position) + ", size: " + str(roomArray[room].size))
+		print("area: " + str(roomArray[room].size.x * roomArray[room].size.y))
+		if(roomArray[room].size.x * roomArray[room].size.y > roomArray[largestRoom].size.x * roomArray[largestRoom].size.y):
+			largestRoom = room
+		if(roomArray[room].getNECorner() == Vector2i(0, 0)):
+			neMostRoom = room
+		if(roomArray[room].getNWCorner() == Vector2i(dungeonWidth, 0)):
+			nwMostRoom = room
+		if(roomArray[room].getSECorner() == Vector2i(0, dungeonHeight)):
+			seMostRoom = room
+		if(roomArray[room].getSWCorner() == Vector2i(dungeonWidth, dungeonHeight)):
+			swMostRoom = room
+	
+	print("Boss Room (largestRoom): " + str(largestRoom))
+	print(neMostRoom)
+	print(nwMostRoom)
+	print(seMostRoom)
+	print(swMostRoom)
+	
+	# use dictionary as hashset
+	# we want rat to spawn in a corner room
+	var spawnRoomCandidates : Dictionary = {
+		neMostRoom: null,
+		nwMostRoom: null,
+		seMostRoom: null,
+		swMostRoom: null,
+	}
+	
+	# we dont want rat to spawn in boss room
+	spawnRoomCandidates.erase(largestRoom)
+	print("spawnRoomCandidates: " + str(spawnRoomCandidates))
+	
+	var keysIndex = rng.randi_range(0, spawnRoomCandidates.size() - 1)
+	print("keysIndex: " + str(keysIndex))
+	var startRoomNum = spawnRoomCandidates.keys()[keysIndex]
 	print("startRoomNum: " + str(startRoomNum))
-	var startRoomLeaf = root_node.get_leaves()[startRoomNum]
-	var centerOfRoom = (startRoomLeaf.size + startRoomLeaf.position) / 2
+	var startRoomLeaf = roomArray[startRoomNum]
+	var centerOfRoom = startRoomLeaf.get_center()
 	print("centerOfRoom: " + str(centerOfRoom))
 	
 	$PackOfRats.position = centerOfRoom * tile_size
