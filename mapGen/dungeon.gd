@@ -6,7 +6,9 @@ func _ready():
 	
 	var level = LEVEL.instantiate()
 	level.tilemapAtlasId = 2
-	get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
+	#get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
+	add_child(level)
+	move_child(level, 0)
 	print(level.spawnPoint)
 	
 	$PackOfRats.position = level.spawnPoint

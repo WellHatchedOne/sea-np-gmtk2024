@@ -25,7 +25,7 @@ var paddings = Vector4i(
 
 var tilemapAtlasId := 0
 
-@export var default_spawn_percent: float = 0.025
+@export var default_spawn_percent: float = 0.25
 
 # END CONSTANTS
 
@@ -144,6 +144,15 @@ func _draw():
 	for path in paths:
 		renderRoomConnection(path)
 
+# We should keep track of where things spawn so that we don't accidentally spawn things right next to each other
+func handleRandomEnemySpawning(tile_x, tile_y):
+	var level_x = tile_x * tile_size
+	var level_y = tile_y * tile_size
+	
+	spawn_entity(ENEMY, Vector2i(level_x, level_y), 0.1)
+	
+	pass
+
 func renderFloor(leaf: Branch, padding: Vector4i):
 	for x in range(leaf.size.x):
 		for y in range(leaf.size.y):
@@ -151,12 +160,16 @@ func renderFloor(leaf: Branch, padding: Vector4i):
 			var xposition = x + leaf.position.x
 			var yposition = y + leaf.position.y
 			var currPosition = Vector2i(xposition, yposition)
+			'''IF TILE IS FLOOR'''
 			if not leaf.isNotFloorTile(x, y, padding):
 				# 1 is the atlas ID
 				# 0,8 is the tile location in the atlas
 				setRandomFloorTile(xposition, yposition)
-				spawn_entity(ENEMY, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
-				spawn_entity(FOOD, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
+				#handleRandomEnemySpawning(position.x, position.y)
+				spawn_entity(ENEMY, Vector2i(tile_size*xposition, tile_size*yposition), default_spawn_percent)
+				spawn_entity(FOOD, Vector2i(tile_size*xposition, tile_size*yposition), default_spawn_percent)
+				#spawn_entity(FOOD, Vector2i(400, 290), default_spawn_percent)
+				
 			elif not leaf.isNotFloorTile(x, y + 1, padding):
 				# Render top wall
 				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapTopAlt)
