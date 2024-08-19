@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cdbd0ktd436b8"]
+
+[ext_resource type="TileSet" uid="uid://i5ura0808mxh" path="res://mapGen/tilemaps/levelTileSet.tres" id="1_w46rg"]
+[ext_resource type="Script" path="res://mapGen/tilemaps/levelTileMap.gd" id="2_7xh5x"]
+
+[node name="LevelTileMap" type="TileMap"]
+tile_set = ExtResource("1_w46rg")
+format = 2
+script = ExtResource("2_7xh5x")
