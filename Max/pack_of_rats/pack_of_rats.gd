@@ -79,7 +79,10 @@ func spawn_rat(new_position:Vector2):
 	ratnumber += 1
 	self.add_child(new_rat)
 	rat_children.append(new_rat)
-	new_rat.set_delay(get_rat_delay(new_position))
+	if ratnumber == 1:
+		new_rat.set_delay(0)
+	else:
+		new_rat.set_delay(get_rat_delay(new_position))
 	emit_signal("ratsignal")
 	get_parent().classify_entity(new_rat)
 	emit_signal("ratsignal")
