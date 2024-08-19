@@ -54,3 +54,15 @@ func isNotFloorTile(x: int, y: int, padding: Vector4i):
 
 func get_center() -> Vector2i:
 	return Vector2i(position.x + size.x / 2, position.y + size.y / 2)
+	
+func getNECorner() -> Vector2i:
+	return position
+
+func getNWCorner() -> Vector2i:
+	return position + Vector2i(size.x, 0)
+
+func getSECorner() -> Vector2i:
+	return position + Vector2i(0, size.y)
+
+func getSWCorner() -> Vector2i:
+	return position + size
