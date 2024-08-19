@@ -94,3 +94,5 @@ position = Vector2(1, -55)
 disable_mode = 1
 
 [node name="BulletHitboxComponent" parent="." instance=ExtResource("15_flnnw")]
+
+[node name="Timerstepsfx" type="Timer" parent="."]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2f8rg337sig6"]
+[gd_scene load_steps=13 format=3 uid="uid://d2f8rg337sig6"]
 
 [ext_resource type="Script" path="res://mapGen/dungeon.gd" id="1_g1b25"]
 [ext_resource type="Script" path="res://mapGen/Branch.gd" id="2_c8m0v"]
+[ext_resource type="AudioStream" uid="uid://d0e80w105tax2" path="res://assets/Music/elemental-magic-spell-impact-outgoing-228342.mp3" id="2_vujcp"]
 [ext_resource type="Texture2D" uid="uid://cqcr45ue6dtf0" path="res://assets/tileset16x.png" id="3_m7p3c"]
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
 [ext_resource type="PackedScene" uid="uid://uvgdynm14wdy" path="res://ui/huds/hud/hud.tscn" id="7_33jec"]
@@ -411,6 +412,7 @@ sources/0 = SubResource("TileSetAtlasSource_sglwe")
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_g1b25")
+music1 = ExtResource("2_vujcp")
 
 [node name="Branch" type="Node" parent="."]
 script = ExtResource("2_c8m0v")
@@ -429,7 +431,6 @@ Player = NodePath("../PackOfRats")
 player = NodePath("../PackOfRats")
 
 [node name="PackOfRats" parent="." instance=ExtResource("8_n4xp6")]
-scale = Vector2(1, 1)
 
 [node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_bipso")]
 

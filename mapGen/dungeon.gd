@@ -6,8 +6,8 @@ extends Node2D
 # orange = walls
 
 # CONSTANTS
-
-@export var fire_audio: AudioStream = null
+const default_music = preload("res://assets/Music/tune0.wav")
+@export var music1: AudioStream = null
 
 var DEBUG = true
 
@@ -59,9 +59,9 @@ func _ready():
 func music():
 	var music = AudioStreamPlayer.new()
 	add_child(music)
-	const default_music = preload("res://assets/Music/tune0.wav")
+	
 
-	music.stream = default_music
+	music.stream = music1
 	music.play()
 
 func setup_timers():

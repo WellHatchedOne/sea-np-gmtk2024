@@ -7,10 +7,16 @@ var delay:float = 0
 var currentTimeOffset:float = 0
 var timeOffsetQueue:Array[float] = []
 var positionOffSetQueue:Array[Vector2] = []
+var playsound = true
+var ratwalksfx
 
+const defaultratsfx = preload("res://assets/Music/635012__jigglesticks__small-animal-running-on-grass.wav")
+@export var ratwalksfxselector: AudioStream = defaultratsfx
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	var stimer = get_node("Timerstepsfx")
+	stimer.timeout.connect(_on_stimer_timeout)
+	
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -58,8 +64,26 @@ func animateRat(swarmVelocity:Vector2):
 	var globalRatVelocity:Vector2 = swarmVelocity + velocity
 	if globalRatVelocity.length() > 0:
 		animated_sprite_2d.play()
+		
+		if playsound == true:
+			ratwalksfx = AudioStreamPlayer.new()
+			add_child(ratwalksfx)
+	
+			$Timerstepsfx.start()
+			ratwalksfx.stream = ratwalksfxselector
+			ratwalksfx.play()
+			ratwalksfx.set_autoplay(true)
+			ratwalksfx.set_volume_db(5.0)
+			playsound = false
+			print("playsound")
+		
+		
 	else:
 		animated_sprite_2d.stop()
+		if playsound == false:
+			#ratwalksfx.stop()
+			pass
+		
 
 	if globalRatVelocity.x != 0:
 		animated_sprite_2d.animation = "side"
@@ -70,6 +94,13 @@ func animateRat(swarmVelocity:Vector2):
 			animated_sprite_2d.animation = "down"
 		else:
 			animated_sprite_2d.animation = "up"
-
+			
+			
+	
+func _on_stimer_timeout():
+	playsound = true
+	print("end timer")
+	
+	
 func execute_move():
 	pass
