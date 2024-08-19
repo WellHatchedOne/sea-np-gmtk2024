@@ -83,11 +83,21 @@ func animateRat(swarmVelocity:Vector2):
 		animated_sprite_2d.animation = "side"
 		animated_sprite_2d.flip_v = false
 		animated_sprite_2d.flip_h = globalRatVelocity.x < 0
+		if globalRatVelocity.x < 0:
+			animated_sprite_2d.rotation = (deg_to_rad(90))
+			set_rotation(deg_to_rad(-90))
+		else:
+			animated_sprite_2d.rotation = deg_to_rad(-90)
+			set_rotation(deg_to_rad(90))
 	elif globalRatVelocity.y != 0:
 		if globalRatVelocity.y > 0:
 			animated_sprite_2d.animation = "down"
+			animated_sprite_2d.rotation = (deg_to_rad(180))
+			set_rotation(deg_to_rad(180))
 		else:
 			animated_sprite_2d.animation = "up"
+			animated_sprite_2d.rotation = (deg_to_rad(0))
+			set_rotation(deg_to_rad(0))
 
 func execute_move():
 	pass
