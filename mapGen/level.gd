@@ -1,4 +1,5 @@
 extends Node2D
+class_name Level
 
 # big green squares = space
 # gray = out of bounds
