@@ -9,7 +9,7 @@ extends Node2D
 
 @export var fire_audio: AudioStream = null
 
-var DEBUG = true
+var DEBUG = false
 
 var tile_size := 64
 
