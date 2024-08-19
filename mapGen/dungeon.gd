@@ -172,7 +172,7 @@ func _draw():
 			rng.randi_range(2,2)
 		)
 
-	renderFloor(leaf, padding)
+		renderFloor(leaf, padding)
 	
 	for path in paths:
 		renderRoomConnection(path)
@@ -188,7 +188,7 @@ func renderFloor(leaf: Branch, padding: Vector4i):
 				# 1 is the atlas ID
 				# 0,8 is the tile location in the atlas
 				setRandomFloorTile(xposition, yposition)
-				spawn_enemy(Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
+				spawn_entity(ENEMY, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
 			elif not leaf.isNotFloorTile(x, y + 1, padding):
 				# Render top wall
 				tilemap.set_cell(0, position, source_id, tileMapWallVector, tileMapTopAlt)
