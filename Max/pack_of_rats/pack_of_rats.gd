@@ -10,7 +10,9 @@ const RAT = preload("res://rat.tscn")
 @onready var pack_collision_circle = $CollisionShape2D
 #signal ratsignal
 var current_radius = 0
-var rat_children:Array[Rat] = []
+var alpha_rat = Rat
+var rat_children: Array[Rat] = []
+var all_rats: Array[Rat] = []
 var ratnumber = 0
 
 func _input(event):
@@ -27,17 +29,16 @@ func _physics_process(delta) -> void:
 	move_rats(delta)
 	
 func move_rats(delta):
-	for rat in rat_children:
+	for rat in all_rats:
 		rat.enable_collision()
 		rat.ratMove(velocity, speed, delta)
 
 func _ready():
-	spawn_spiral_rat()
+	spawn_spiral_rat(false)
 
-func spawn_spiral_rat():
-	print("spawn spiral rat")
+func spawn_spiral_rat(should_be_child=true):
 	var spiralCoordinates:Vector2 = get_spiral_coordinates_from_poisition(ratnumber)
-	spawn_rat(getRatPosistionFromSpiralCoordinates(spiralCoordinates))
+	spawn_rat(getRatPosistionFromSpiralCoordinates(spiralCoordinates), should_be_child)
 
 func get_spiral_coordinates_from_poisition(position) -> Vector2:
 	# di and dj are vectors for the current segment
@@ -72,26 +73,29 @@ func getRatPosistionFromSpiralCoordinates(spiralPosition:Vector2) -> Vector2:
 	var y = spiralPosition.y * ratHeightDist + randf_range(-1 * ratHeightDist / 2, ratHeightDist / 2)
 	return Vector2(x, y)
 
-func spawn_rat(new_position:Vector2):
+func spawn_rat(new_position:Vector2, should_be_child=true):
 	print("spawn rat")
 	var new_rat:Rat = RAT.instantiate()
 	var radius_from_parent_origin = Vector2(0,0).distance_to(new_position)
 	new_rat.position = new_position
 	
 	ratnumber += 1
-	self.add_child(new_rat)
-	rat_children.append(new_rat)
-	if ratnumber == 1:
-		new_rat.set_delay(0)
-	else:
+	
+	if should_be_child:
+		rat_children.append(new_rat)
 		new_rat.set_delay(get_rat_delay(new_position))
+	else:
+		alpha_rat = new_rat
+		new_rat.set_delay(0)
+		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D
+		update_collision_radius(rat_collision_shape.shape.radius)
+	
+	all_rats.append(new_rat)
+	self.add_child(new_rat)
+	
 	#emit_signal("ratsignal")
 	#get_parent().classify_entity(new_rat)
 	#emit_signal("ratsignal")
-	
-	if (ratnumber == 1):
-		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D
-		update_collision_radius(rat_collision_shape.shape.radius)
 
 # This function determines the rat delay as function of far it is from the center of the pack
 func get_rat_delay(position:Vector2) -> float:
