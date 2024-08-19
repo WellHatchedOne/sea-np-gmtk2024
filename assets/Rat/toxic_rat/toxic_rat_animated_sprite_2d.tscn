@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6r2h84r5vvuu"]
+
+[ext_resource type="Texture2D" uid="uid://buseq4rt7gc0i" path="res://assets/Rat/toxic_rat/Toxic_Down-1.png" id="1_7t50p"]
+[ext_resource type="Texture2D" uid="uid://dgk1n7uwveew4" path="res://assets/Rat/toxic_rat/Toxic_Down-2.png" id="2_bfe53"]
+[ext_resource type="Texture2D" uid="uid://dejijgllideqc" path="res://assets/Rat/toxic_rat/Toxic_Down-3.png" id="3_k70vg"]
+[ext_resource type="Texture2D" uid="uid://bvq6wfxxbx7th" path="res://assets/Rat/toxic_rat/Toxic_Down-4.png" id="4_ymjo5"]
+[ext_resource type="Texture2D" uid="uid://by0kstnr8cfhr" path="res://assets/Rat/toxic_rat/Toxic_Side-1.png" id="5_phksg"]
+[ext_resource type="Texture2D" uid="uid://rvo1b8focvg5" path="res://assets/Rat/toxic_rat/Toxic_Side-2.png" id="6_u3qw7"]
+[ext_resource type="Texture2D" uid="uid://c0edohp4o1tim" path="res://assets/Rat/toxic_rat/Toxic_Side-3.png" id="7_480ho"]
+[ext_resource type="Texture2D" uid="uid://bso1bn1kxwmpy" path="res://assets/Rat/toxic_rat/Toxic_Side-4.png" id="8_ft6r1"]
+[ext_resource type="Texture2D" uid="uid://cgxdc457bbkf3" path="res://assets/Rat/toxic_rat/Toxic_Up-1.png" id="9_hsymn"]
+[ext_resource type="Texture2D" uid="uid://ceq0lc44yndtv" path="res://assets/Rat/toxic_rat/Toxic_Up-2.png" id="10_qf1f5"]
+[ext_resource type="Texture2D" uid="uid://co7d0crm0a6dx" path="res://assets/Rat/toxic_rat/Toxic_Up-3.png" id="11_7b8uq"]
+[ext_resource type="Texture2D" uid="uid://dryaxu2qvl103" path="res://assets/Rat/toxic_rat/Toxic_Up-4.png" id="12_7kkut"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_7t50p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_bfe53")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_k70vg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_ymjo5")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_phksg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_u3qw7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_480ho")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_ft6r1")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_hsymn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_qf1f5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_7b8uq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7kkut")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="ToxicRatAnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_pedtu")
+animation = &"up"

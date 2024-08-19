@@ -1,0 +1,73 @@
+[gd_scene load_steps=14 format=3 uid="uid://dg7n24ps1sdch"]
+
+[ext_resource type="Texture2D" uid="uid://cou4c8eo0cgi7" path="res://assets/Rat/electric_rat/Electric_Down-1.png" id="1_0ypqf"]
+[ext_resource type="Texture2D" uid="uid://cxofxhqp6uo8k" path="res://assets/Rat/electric_rat/Electric_Down-2.png" id="2_trgvv"]
+[ext_resource type="Texture2D" uid="uid://ciudmyjm5qinq" path="res://assets/Rat/electric_rat/Electric_Down-3.png" id="3_u1ho2"]
+[ext_resource type="Texture2D" uid="uid://bviwfi3nlpd0v" path="res://assets/Rat/electric_rat/Electric_Down-4.png" id="4_xdjp3"]
+[ext_resource type="Texture2D" uid="uid://h02hmqdl6as0" path="res://assets/Rat/electric_rat/Electric_Side-1.png" id="5_ktqgu"]
+[ext_resource type="Texture2D" uid="uid://bmlwb15814jjg" path="res://assets/Rat/electric_rat/Electric_Side-2.png" id="6_ste4e"]
+[ext_resource type="Texture2D" uid="uid://dm3036k26jagv" path="res://assets/Rat/electric_rat/Electric_Side-3.png" id="7_qgv6l"]
+[ext_resource type="Texture2D" uid="uid://bgwsbss7anql8" path="res://assets/Rat/electric_rat/Electric_Side-4.png" id="8_xlt24"]
+[ext_resource type="Texture2D" uid="uid://cddaejkdgiwa4" path="res://assets/Rat/electric_rat/Electrical_Up-1.png" id="9_dv8ur"]
+[ext_resource type="Texture2D" uid="uid://cy4t50x6bswak" path="res://assets/Rat/electric_rat/Electrical_Up-2.png" id="10_popjd"]
+[ext_resource type="Texture2D" uid="uid://dtqot3tmq06xs" path="res://assets/Rat/electric_rat/Electrical_Up-3.png" id="11_v6vdj"]
+[ext_resource type="Texture2D" uid="uid://c2qw7rbfcpug1" path="res://assets/Rat/electric_rat/Electrical_Up-4.png" id="12_7loor"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_0ypqf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_trgvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_u1ho2")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xdjp3")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_ktqgu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ste4e")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_qgv6l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xlt24")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_dv8ur")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_popjd")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_v6vdj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7loor")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="ElectricRatAnimatedSprite2D" type="AnimatedSprite2D"]
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_pedtu")
+animation = &"up"
