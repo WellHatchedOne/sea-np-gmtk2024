@@ -11,7 +11,7 @@ func _init(position: Vector2i, size: Vector2i):
 	self.position = position
 	self.size = size
 
-func get_leaves():
+func get_leaves() -> Array:
 	# Each branch can have either zero or two child branches, so:
 	# null = false
 	# not (false && false) = true
