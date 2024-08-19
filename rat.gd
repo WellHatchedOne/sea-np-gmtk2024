@@ -4,10 +4,9 @@ class_name Rat
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 var delay:float = 0
-var currentDeltaOffset:float = 0
-var currentPositionOffset:Vector2 = Vector2.ZERO
-var deltaQueue:Array[float] = []
-var positionQueue:Array[Vector2] = []
+var currentTimeOffset:float = 0
+var timeOffsetQueue:Array[float] = []
+var positionOffSetQueue:Array[Vector2] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -24,43 +23,39 @@ func _on_hit_by_bullet():
 func enable_collision():
 	collision_shape_2d.disabled = false
 
+# Sets how much of a time delay the rat has from the pack
 func set_delay(newDelay:float):
 	delay = newDelay
 
+# Moves the rat for this frame relative to the swarm
 func ratMove(swarmVelocity:Vector2, speed:float, delta:float):
 	velocity = getRatVelocity(swarmVelocity, speed, delta)
 	move_and_slide()
-	currentPositionOffset += velocity
-	var globalRatVelocity:Vector2 = swarmVelocity + velocity
-	animateRat(globalRatVelocity)
+	animateRat(swarmVelocity)
 
 func getRatVelocity(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
-	# Start with a rat velocity opposite of the swarm. This will keep the rat still
-	var ratVelocity:Vector2 = swarmVelocity * -1
-	
-	# Push this frame's velocity onto our stack
-	deltaQueue.push_back(delta)
-	if positionQueue.size() == 0:
-		positionQueue.push_back(swarmVelocity)
-	else:
-		positionQueue.push_back(positionQueue[-1] + swarmVelocity)
-	
-	currentDeltaOffset += delta
+	# Push this frame's velocity onto our queue of time and position offsets
+	timeOffsetQueue.push_back(delta)
+	positionOffSetQueue.push_back(swarmVelocity)
+
+	# Modify our current time offset based on this frame
+	currentTimeOffset += delta
+
 	# Get desired position
 	var desiredPosition:Vector2 = Vector2.ZERO
-	while (currentDeltaOffset > delay):
-		currentDeltaOffset -= deltaQueue.pop_front()
-		desiredPosition = positionQueue.pop_front()
-	
-	var desiredGlobalVelocity:Vector2 = (desiredPosition - currentPositionOffset).normalized() * speed
-	ratVelocity += desiredGlobalVelocity
-	
-	#print("swarmVelocity = " + str(swarmVelocity) + ", currentDeltaOffSet = " + str(currentDeltaOffset) + ", desiredGlobalVelocity = " + str(desiredGlobalVelocity) + ", ratVelocity = " + str(ratVelocity) + ", desiredPosition = " + str(desiredPosition) + ", currentPositionOffset = " + str(currentPositionOffset) +", positionQueue = " + str(positionQueue) + ", deltaQueue = " + str(deltaQueue))
-	
-	return ratVelocity
+	while (timeOffsetQueue.size() > 0 && positionOffSetQueue.size() > 0 && currentTimeOffset > delay):
+		currentTimeOffset -= timeOffsetQueue.pop_front()
+		desiredPosition += positionOffSetQueue.pop_front()
 
-# GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack
-func animateRat(globalRatVelocity):
+	# Determine our global velocity based on speed
+	var desiredGlobalVelocity:Vector2 = (desiredPosition).normalized() * speed
+
+	# Need to subtract the swarm velocity since rats move relative to the swarm
+	return desiredGlobalVelocity - swarmVelocity
+
+# GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack)
+func animateRat(swarmVelocity:Vector2):
+	var globalRatVelocity:Vector2 = swarmVelocity + velocity
 	if globalRatVelocity.length() > 0:
 		animated_sprite_2d.play()
 	else:

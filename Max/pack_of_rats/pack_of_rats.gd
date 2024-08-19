@@ -2,8 +2,10 @@ extends CharacterBody2D
 class_name PackOfRats
 
 @export var speed: float = 400
-@export var ratWidthDist = 50
-@export var ratHeightDist = 50
+@export var ratWidthDist = 15
+@export var ratHeightDist = 15
+const RAT_DELAY_MULTIPLICATIVE_MODIFIER:float = .002
+const RAT_DELAY_RANDOM_MODIFIER:float = .3
 const RAT = preload("res://rat.tscn")
 @onready var pack_collision_circle = $CollisionShape2D
 signal ratsignal
@@ -70,13 +72,14 @@ func getRatPosistionFromSpiralCoordinates(spiralPosition:Vector2) -> Vector2:
 	return Vector2(x, y)
 
 func spawn_rat(new_position:Vector2):
-	var new_rat = RAT.instantiate()
+	var new_rat:Rat = RAT.instantiate()
 	var radius_from_parent_origin = Vector2(0,0).distance_to(new_position)
 	new_rat.position = new_position
 	
 	ratnumber += 1
 	self.add_child(new_rat)
 	rat_children.append(new_rat)
+	new_rat.set_delay(get_rat_delay(new_position))
 	emit_signal("ratsignal")
 	get_parent().classify_entity(new_rat)
 	emit_signal("ratsignal")
@@ -87,6 +90,11 @@ func spawn_rat(new_position:Vector2):
 	elif radius_from_parent_origin > current_radius:
 		current_radius = radius_from_parent_origin
 		update_collision_radius(radius_from_parent_origin)
+
+# This function determines the rat delay as function of far it is from the center of the pack
+func get_rat_delay(position:Vector2) -> float:
+	return abs(position.distance_to(Vector2.ZERO) * RAT_DELAY_MULTIPLICATIVE_MODIFIER
+	+ randf_range(-1 * RAT_DELAY_RANDOM_MODIFIER, RAT_DELAY_RANDOM_MODIFIER))
 
 func update_collision_radius(new_radius):
 	pack_collision_circle.shape.radius = new_radius
