@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://d2f8rg337sig6"]
+[gd_scene load_steps=14 format=3 uid="uid://d2f8rg337sig6"]
 
 [ext_resource type="Script" path="res://mapGen/dungeon.gd" id="1_g1b25"]
 [ext_resource type="Script" path="res://mapGen/Branch.gd" id="2_c8m0v"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://01htn758kxri" path="res://Max/enemy/test_enemy.tscn" id="8_cqtwo"]
 [ext_resource type="PackedScene" uid="uid://dknubmiky3ydk" path="res://Max/pack_of_rats/pack_of_rats.tscn" id="8_n4xp6"]
 [ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="9_aet51"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="10_q6xn5"]
+[ext_resource type="PackedScene" uid="uid://b76cuj6lr0md1" path="res://Daniel/enemyprotype.tscn" id="11_haake"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_sglwe"]
 texture = ExtResource("3_m7p3c")
@@ -459,6 +461,7 @@ Player = NodePath("../PackOfRats")
 player = NodePath("../PackOfRats")
 
 [node name="PackOfRats" parent="." instance=ExtResource("8_n4xp6")]
+position = Vector2(-1249, -240)
 
 [node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_bipso")]
 
@@ -468,3 +471,14 @@ position = Vector2(-162, -134)
 [node name="ShootAtTargetComponent" parent="TestEnemy" instance=ExtResource("9_aet51")]
 fire_rate = 0.7
 fire_rate_variance = 0.7
+
+[node name="Enemy" parent="." instance=ExtResource("11_haake")]
+position = Vector2(274, 203)
+collision_layer = 0
+collision_mask = 2
+
+[node name="MoveAtTargetComponent" parent="Enemy" instance=ExtResource("10_q6xn5")]
+collision_mask = 6
+enemy_radius = 500.0
+
+[editable path="Enemy/MoveAtTargetComponent"]

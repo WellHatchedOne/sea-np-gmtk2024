@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://24ffblxeyk17"]
+
+[ext_resource type="Script" path="res://Max/components/ShootAtTargetComponent.gd" id="1_q1r6y"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0d6oc"]
+radius = 200.0
+
+[node name="ShootAtTargetComponent" type="Area2D"]
+collision_layer = 0
+script = ExtResource("1_q1r6y")
+
+[node name="VisionCircleShape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0d6oc")
+
+[node name="FireRateTimer" type="Timer" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]
