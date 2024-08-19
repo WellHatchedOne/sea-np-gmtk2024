@@ -5,7 +5,6 @@ var dodgestart = false
 var canattack = true
 var dodgebutton = false
 
-
 @onready var label = $Cooldown_Display
 
 

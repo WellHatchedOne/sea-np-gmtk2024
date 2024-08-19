@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://bnmxhpyrxgao7"]
+
+[ext_resource type="Script" path="res://mapGen/level.gd" id="1_qsflg"]
+[ext_resource type="Script" path="res://mapGen/Branch.gd" id="3_ds5up"]
+[ext_resource type="PackedScene" uid="uid://cdbd0ktd436b8" path="res://mapGen/tilemaps/levelTileMap.tscn" id="3_xm7ge"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_qsflg")
+
+[node name="Branch" type="Node" parent="."]
+script = ExtResource("3_ds5up")
+
+[node name="LevelTileMap" parent="." instance=ExtResource("3_xm7ge")]
