@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2dab4m0k7d41"]
+
+[ext_resource type="Script" path="res://Will/PauseListener.gd" id="1_8hhk8"]
+[ext_resource type="PackedScene" uid="uid://belcfjw0k768u" path="res://ui/menus/pauseMenu/pausepopup.tscn" id="2_303cg"]
+
+[node name="PauseListener" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_8hhk8")
+
+[node name="PausePopup" parent="." instance=ExtResource("2_303cg")]

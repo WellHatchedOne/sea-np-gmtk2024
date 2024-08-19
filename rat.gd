@@ -3,6 +3,11 @@ class_name Rat
 
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
+const DISTANCE_FROM_PACK_TO_STOP_MOVING = 500
+const DISTANCE_FROM_PACK_TO_START_MOVING = 50
+enum RatState {FOLLOWING, SITTING}
+var currentRatState = RatState.FOLLOWING
+var startingPosition:Vector2
 var delay:float = 0
 var currentTimeOffset:float = 0
 var timeOffsetQueue:Array[float] = []
@@ -10,7 +15,7 @@ var positionOffSetQueue:Array[Vector2] = []
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	startingPosition = position
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -29,11 +34,11 @@ func set_delay(newDelay:float):
 
 # Moves the rat for this frame relative to the swarm
 func ratMove(swarmVelocity:Vector2, speed:float, delta:float):
-	velocity = getRatVelocity(swarmVelocity, speed, delta)
-	move_and_slide()
+	var desiredGlobalPosition:Vector2 = getRatDesiredGlobalPosition(swarmVelocity, speed, delta)
+	moveAndSlideRat(desiredGlobalPosition, swarmVelocity, speed, delta)
 	animateRat(swarmVelocity)
 
-func getRatVelocity(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
+func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 	# Push this frame's velocity onto our queue of time and position offsets
 	timeOffsetQueue.push_back(delta)
 	positionOffSetQueue.push_back(swarmVelocity)
@@ -47,11 +52,32 @@ func getRatVelocity(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 		currentTimeOffset -= timeOffsetQueue.pop_front()
 		desiredPosition += positionOffSetQueue.pop_front()
 
-	# Determine our global velocity based on speed
-	var desiredGlobalVelocity:Vector2 = (desiredPosition).normalized() * speed
+	return desiredPosition
 
-	# Need to subtract the swarm velocity since rats move relative to the swarm
-	return desiredGlobalVelocity - swarmVelocity
+func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, speed:float, delta:float):
+	if (position.distance_to(Vector2.ZERO) < DISTANCE_FROM_PACK_TO_START_MOVING):
+		currentRatState = RatState.FOLLOWING
+
+	if(currentRatState == RatState.SITTING || 
+		position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+		currentRatState = RatState.SITTING
+		# Make the rats stay stil if they are too far away (technically, they have to move to oppose the pack)
+		velocity = -1 * swarmVelocity
+		move_and_slide()
+		return
+
+	var desiredGlobalVelocity:Vector2 = (desiredGlobalPosition).normalized() * speed
+	if(swarmVelocity == Vector2.ZERO && desiredGlobalVelocity == Vector2.ZERO):
+		var vectorToStartingPosition = startingPosition - position
+		velocity = vectorToStartingPosition.normalized() * speed
+		if vectorToStartingPosition.length() > 5:
+			move_and_slide()
+		else:
+			# Move back to starting position when rat and frame isn't moving
+			position = position.move_toward(startingPosition, speed * delta)
+	else:
+		velocity = desiredGlobalVelocity - swarmVelocity
+		move_and_slide()
 
 # GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack)
 func animateRat(swarmVelocity:Vector2):
@@ -65,11 +91,21 @@ func animateRat(swarmVelocity:Vector2):
 		animated_sprite_2d.animation = "side"
 		animated_sprite_2d.flip_v = false
 		animated_sprite_2d.flip_h = globalRatVelocity.x < 0
+		if globalRatVelocity.x < 0:
+			animated_sprite_2d.rotation = (deg_to_rad(90))
+			set_rotation(deg_to_rad(-90))
+		else:
+			animated_sprite_2d.rotation = deg_to_rad(-90)
+			set_rotation(deg_to_rad(90))
 	elif globalRatVelocity.y != 0:
 		if globalRatVelocity.y > 0:
 			animated_sprite_2d.animation = "down"
+			animated_sprite_2d.rotation = (deg_to_rad(180))
+			set_rotation(deg_to_rad(180))
 		else:
 			animated_sprite_2d.animation = "up"
+			animated_sprite_2d.rotation = (deg_to_rad(0))
+			set_rotation(deg_to_rad(0))
 
 func execute_move():
 	pass

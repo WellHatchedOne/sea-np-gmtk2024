@@ -81,18 +81,17 @@ func spawn_rat(new_position:Vector2):
 	ratnumber += 1
 	self.add_child(new_rat)
 	rat_children.append(new_rat)
-	new_rat.set_delay(get_rat_delay(new_position))
+	if ratnumber == 1:
+		new_rat.set_delay(0)
+	else:
+		new_rat.set_delay(get_rat_delay(new_position))
 	#emit_signal("ratsignal")
-	##get_parent().classify_entity(new_rat)
+	#get_parent().classify_entity(new_rat)
 	#emit_signal("ratsignal")
 	
-	if (new_position == Vector2.ZERO):
+	if (ratnumber == 1):
 		var rat_collision_shape = new_rat.find_child("CollisionShape2D") as CollisionShape2D
 		update_collision_radius(rat_collision_shape.shape.radius)
-	elif radius_from_parent_origin > current_radius:
-		current_radius = radius_from_parent_origin
-		update_collision_radius(radius_from_parent_origin)
-	print("rat spawned")
 
 # This function determines the rat delay as function of far it is from the center of the pack
 func get_rat_delay(position:Vector2) -> float:

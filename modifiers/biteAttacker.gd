@@ -4,7 +4,7 @@ extends Area2D
 
 var FRIENDLY_GROUP = "FRIENDLY"
 var ENEMY_GROUP = "ENEMY"
-var DEBUG = true
+var DEBUG = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -17,7 +17,7 @@ func attack():
 	var overlappingBodies = get_overlapping_bodies()
 	var target = null
 	if get_parent().is_in_group(FRIENDLY_GROUP):
-		print("rat attacking")
+		#print("rat attacking")
 		target = getFirstDamageableInGroup(overlappingBodies, ENEMY_GROUP)
 	else:
 		target = getFirstDamageableInGroup(overlappingBodies, FRIENDLY_GROUP)

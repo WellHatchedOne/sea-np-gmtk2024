@@ -1,0 +1,29 @@
+[gd_scene load_steps=8 format=3 uid="uid://bnx3i48rjjys5"]
+
+[ext_resource type="PackedScene" uid="uid://dqpxbwjydjsp3" path="res://assets/Rat/fire_rat/fire_rat_animated_sprite_2d.tscn" id="1_b27gy"]
+[ext_resource type="Script" path="res://Grace/grace_test_main.gd" id="1_ii12g"]
+[ext_resource type="PackedScene" uid="uid://b32e7nkyfmr3k" path="res://rat.tscn" id="2_n1gqn"]
+[ext_resource type="PackedScene" uid="uid://dg7n24ps1sdch" path="res://assets/Rat/electric_rat/electric_rat_animated_sprite_2d.tscn" id="4_wgjp1"]
+[ext_resource type="PackedScene" uid="uid://c6r2h84r5vvuu" path="res://assets/Rat/toxic_rat/toxic_rat_animated_sprite_2d.tscn" id="5_our7x"]
+[ext_resource type="PackedScene" uid="uid://cvucmjpdd2ata" path="res://assets/Rat/water_rat/water_rat_animated_sprite_2d.tscn" id="6_txwju"]
+[ext_resource type="PackedScene" uid="uid://bi6hx7uud88ah" path="res://assets/Rat/wizard_rat/wizard_rat_animated_sprite_2d.tscn" id="7_xh5p1"]
+
+[node name="grace_test_main" type="Node"]
+script = ExtResource("1_ii12g")
+
+[node name="FireRatAnimatedSprite2D" parent="." instance=ExtResource("1_b27gy")]
+position = Vector2(0, 0)
+
+[node name="rat" parent="." instance=ExtResource("2_n1gqn")]
+
+[node name="ElectricRatAnimatedSprite2D" parent="." instance=ExtResource("4_wgjp1")]
+animation = &"side"
+
+[node name="ToxicRatAnimatedSprite2D" parent="." instance=ExtResource("5_our7x")]
+animation = &"side"
+
+[node name="WaterRatAnimatedSprite2D" parent="." instance=ExtResource("6_txwju")]
+animation = &"side"
+
+[node name="WizardRatAnimatedSprite2D" parent="." instance=ExtResource("7_xh5p1")]
+animation = &"side"
