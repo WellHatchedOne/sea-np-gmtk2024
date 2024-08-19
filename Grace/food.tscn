@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://dseqfttisliv6"]
 
 [ext_resource type="Script" path="res://Grace/food.gd" id="1_5c1x1"]
-[ext_resource type="Texture2D" uid="uid://d2vsbd1qugfqm" path="res://assets/cheese.png" id="1_s8b4u"]
+[ext_resource type="Texture2D" uid="uid://ne6wq8u32uxh" path="res://assets/cheese.png" id="1_s8b4u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s1kn8"]
 animations = [{
@@ -10,20 +10,20 @@ animations = [{
 "texture": ExtResource("1_s8b4u")
 }],
 "loop": true,
-"name": &"rest",
+"name": &"default",
 "speed": 5.0
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd8k1"]
 size = Vector2(547, 526)
 
-[node name="Food" type="RigidBody2D"]
+[node name="Food" type="Area2D"]
+scale = Vector2(0.05, 0.05)
 script = ExtResource("1_5c1x1")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_s1kn8")
-animation = &"rest"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 light_mask = 8
