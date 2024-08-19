@@ -2,18 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-
-uid="uid://bc67ravtrkcdn"
-
-path="res://.godot/imported/Carrot_Idle-1.png-b51ae2c6e809b29a05406c5d3a3a3be7.ctex"
+uid="uid://1rirr2biwm7r"
+path="res://.godot/imported/Fire_Projectile-1.png-f6b7344b196ec9bab3c96f92167e3f8c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/enemies/carrot/Carrot_Idle-1.png"
-dest_files=["res://.godot/imported/Carrot_Idle-1.png-b51ae2c6e809b29a05406c5d3a3a3be7.ctex"]
+source_file="res://assets/bullets/Fire_Projectile-1.png"
+dest_files=["res://.godot/imported/Fire_Projectile-1.png-f6b7344b196ec9bab3c96f92167e3f8c.ctex"]
 
 [params]
 
