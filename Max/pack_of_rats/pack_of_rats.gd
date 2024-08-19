@@ -14,13 +14,10 @@ var ratnumber = 0
 func _input(event):
 	if event.is_action_pressed("change_color"):
 		spawn_spiral_rat()
-	if event.is_action_pressed("pause"):
-		print("asd")
 
 func get_input() -> void:
 	var input_direction := Input.get_vector("move_left", "move_right", "move_up", "move_down")
 	self.velocity = input_direction * speed;
-
 	
 			
 func _physics_process(delta) -> void:
@@ -106,7 +103,3 @@ func spawn_rat(new_position:Vector2):
 
 func update_collision_radius(new_radius):
 	pack_collision_circle.shape.radius = new_radius
-
-func on_pause_button_pressed():
-	get_tree().paused = true
-	#get_tree()("res://ui/menus/pauseMenu/pauseMenu.tscn"))
