@@ -85,6 +85,7 @@ func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, spee
 		return true
 
 # GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack)
+var last_state = null
 func animateRat(swarmVelocity:Vector2):
 	var globalRatVelocity:Vector2 = swarmVelocity + velocity
 	if globalRatVelocity.length() > 0:
@@ -97,20 +98,26 @@ func animateRat(swarmVelocity:Vector2):
 		animated_sprite_2d.flip_v = false
 		animated_sprite_2d.flip_h = globalRatVelocity.x < 0
 		if globalRatVelocity.x < 0:
+			last_state = "sideA"
 			animated_sprite_2d.rotation = (deg_to_rad(90))
-			set_rotation(deg_to_rad(-90))
+			self.rotation = (deg_to_rad(-90))
 		else:
+			last_state = "sideB"
 			animated_sprite_2d.rotation = deg_to_rad(-90)
-			set_rotation(deg_to_rad(90))
+			self.rotation = (deg_to_rad(90))
 	elif globalRatVelocity.y != 0:
 		if globalRatVelocity.y > 0:
 			animated_sprite_2d.animation = "down"
+			last_state = "down"
 			animated_sprite_2d.rotation = (deg_to_rad(180))
-			set_rotation(deg_to_rad(180))
+			self.rotation = (deg_to_rad(180))
 		else:
 			animated_sprite_2d.animation = "up"
+			last_state = "up"
 			animated_sprite_2d.rotation = (deg_to_rad(0))
-			set_rotation(deg_to_rad(0))
+			self.rotation = (deg_to_rad(0))
+	print(last_state)
+	
 
 func execute_move():
 	pass

@@ -34,7 +34,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 8.0
+"speed": 16.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -72,6 +72,7 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_jy6cj"]
+radius = 6.70391
 
 [node name="rat" type="CharacterBody2D" groups=["BITER", "FRIENDLY"]]
 scale = Vector2(0.25, 0.25)
@@ -82,8 +83,8 @@ script = ExtResource("1_00nxb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
-animation = &"down"
-frame_progress = 0.909291
+animation = &"up"
+offset = Vector2(160, 160)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(3.58, 3.58)
@@ -96,5 +97,7 @@ script = ExtResource("9_2svmp")
 [node name="BiteAttacker" parent="." instance=ExtResource("10_5utx7")]
 position = Vector2(1, -55)
 disable_mode = 1
+Damage = 100
 
 [node name="BulletHitboxComponent" parent="." instance=ExtResource("15_flnnw")]
+visible = false
