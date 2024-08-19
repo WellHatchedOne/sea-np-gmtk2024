@@ -4,6 +4,9 @@ class_name Rat
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 const DISTANCE_FROM_PACK_TO_STOP_MOVING = 500
+const DISTANCE_FROM_PACK_TO_START_MOVING = 50
+enum RatState {FOLLOWING, SITTING}
+var currentRatState = RatState.FOLLOWING
 var startingPosition:Vector2
 var delay:float = 0
 var currentTimeOffset:float = 0
@@ -52,7 +55,12 @@ func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float
 	return desiredPosition
 
 func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, speed:float, delta:float):
-	if(position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+	if (position.distance_to(Vector2.ZERO) < DISTANCE_FROM_PACK_TO_START_MOVING):
+		currentRatState = RatState.FOLLOWING
+
+	if(currentRatState == RatState.SITTING || 
+		position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+		currentRatState = RatState.SITTING
 		# Make the rats stay stil if they are too far away (technically, they have to move to oppose the pack)
 		velocity = -1 * swarmVelocity
 		move_and_slide()
