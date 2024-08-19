@@ -13,7 +13,7 @@ func _ready():
 func music():
 	var music = AudioStreamPlayer.new()
 	add_child(music)
-	const default_music = preload("res://assets/Music/tune0.wav")
+	const default_music = preload("res://assets/Music/wtf_is_this.wav")
 
 	music.stream = default_music
 	music.play()
