@@ -26,7 +26,7 @@ var paddings = Vector4i(
 
 var tilemapAtlasId := 0
 
-@export var default_spawn_percent: float = 0.025
+@export var default_spawn_percent: float = 0.25
 
 # END CONSTANTS
 
@@ -46,6 +46,8 @@ const FOOD = preload("res://Grace/food.tscn")
 #const LIGHTNING_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
 #const BULLET_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
 
+var already_spawned_entities_map: Dictionary = {}
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	#assert(tilemap != null, "Make sure you set the tilemap before add_child")
@@ -58,6 +60,11 @@ func _ready():
 	setSpawnPoints()
 	
 	setup_timers()
+	
+	# Irrelevant if this is slow, it's building the game and runs once before the player has agency
+	for x in range(dungeonWidth):
+		for y in range(dungeonHeight):
+			already_spawned_entities_map[Vector2i(x,y)] = 0
 
 func setSpawnPoints():
 	var roomArray = root_node.get_leaves()
@@ -145,6 +152,28 @@ func _draw():
 	for path in paths:
 		renderRoomConnection(path)
 
+# We should keep track of where things spawn so that we don't accidentally spawn things right next to each other
+
+func handleRandomEnemySpawning(tile_index: Vector2i):
+	var level_position = Vector2(tile_index.x*tile_size, tile_index.y*tile_size)
+	
+	if already_spawned_entities_map[tile_index] is Object:
+		return
+	elif already_spawned_entities_map[tile_index] != 0:
+		return
+	else:
+		try_to_spawn_entity(ENEMY, tile_index, level_position, 0.1)
+
+func handleRandomPickupsSpawning(tile_index: Vector2i):
+	var level_position = Vector2(tile_index.x*tile_size, tile_index.y*tile_size)
+	
+	if already_spawned_entities_map[tile_index] is Object:
+		return
+	elif already_spawned_entities_map[tile_index] != 0:
+		return
+	else:
+		try_to_spawn_entity(FOOD, tile_index, level_position, 0.1)
+
 func renderFloor(leaf: Branch, padding: Vector4i):
 	for x in range(leaf.size.x):
 		for y in range(leaf.size.y):
@@ -152,12 +181,15 @@ func renderFloor(leaf: Branch, padding: Vector4i):
 			var xposition = x + leaf.position.x
 			var yposition = y + leaf.position.y
 			var currPosition = Vector2i(xposition, yposition)
+			var levelPosition = Vector2i(tile_size*xposition, tile_size*yposition)
+			'''IF TILE IS FLOOR'''
 			if not leaf.isNotFloorTile(x, y, padding):
 				# 1 is the atlas ID
 				# 0,8 is the tile location in the atlas
 				setRandomFloorTile(xposition, yposition)
-				spawn_entity(ENEMY, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
-				spawn_entity(FOOD, Vector2i(tile_size*position.x, tile_size*position.y), default_spawn_percent)
+				handleRandomEnemySpawning(currPosition)
+				handleRandomPickupsSpawning(currPosition)
+				
 			elif not leaf.isNotFloorTile(x, y + 1, padding):
 				# Render top wall
 				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapTopAlt)
@@ -298,12 +330,25 @@ func renderRoomConnection(path):
 				$LevelTileMap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), tilemapAtlasId, $LevelTileMap.tileMapFloorVector)
 				#$LevelTileMap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), tilemapAtlasId, $LevelTileMap.tileMapFloorVector)
 
-func spawn_entity(entity_file_path, spawn_position: Vector2i, spawn_percent: float = 1):
+const spawn_overlap_protection_padding = 1
+func try_to_spawn_entity(entity_file_path, tile_index: Vector2i, level_position: Vector2, spawn_percent: float = 1):
 	if !(rng.randf_range(0,1) <= spawn_percent):
 		return
+	
 	var new_entity = entity_file_path.instantiate()
-	new_entity.position = spawn_position
+	new_entity.position = level_position
+	
+	# Apply a padding around newly spawned entities so that entities aren't clumped together
+	already_spawned_entities_map[tile_index] = new_entity
+	for x in range(-spawn_overlap_protection_padding, spawn_overlap_protection_padding+1):
+		for y in range(-spawn_overlap_protection_padding, spawn_overlap_protection_padding+1):
+			if x == 0 && y == 0:
+				continue
+			already_spawned_entities_map[Vector2i(x,y) + tile_index] = -1
+
 	self.add_child(new_entity)
+	
+	# Apply groups to entities
 	classify_entity(new_entity)
 
 
