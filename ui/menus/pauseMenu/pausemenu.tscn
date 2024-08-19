@@ -1,21 +1,26 @@
-[gd_scene load_steps=2 format=3 uid="uid://c5suyq0v5gay7"]
+[gd_scene load_steps=3 format=3 uid="uid://c5suyq0v5gay7"]
 
 [ext_resource type="Texture2D" uid="uid://cxuo3ueoauep2" path="res://ui/menus/mainMenu/MainMenuBackground_placeholder.png" id="1_ni7f1"]
+[ext_resource type="Script" path="res://ui/menus/pauseMenu/pausemenu.gd" id="1_ojl1d"]
 
 [node name="Pausemenu" type="Control"]
+top_level = true
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_ojl1d")
 
 [node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("1_ni7f1")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -57,10 +62,11 @@ offset_bottom = 395.0
 expand_mode = 3
 
 [node name="ButtonHolder" type="HBoxContainer" parent="."]
+layout_mode = 0
 offset_left = 564.0
 offset_top = 328.0
 offset_right = 732.0
-offset_bottom = 429.0
+offset_bottom = 464.0
 alignment = 1
 
 [node name="MainMenuButtons" type="VBoxContainer" parent="ButtonHolder"]
@@ -75,10 +81,16 @@ text = "Resume 50 Rats"
 layout_mode = 2
 text = "Ratabase of Rats"
 
-[node name="Options" type="Button" parent="ButtonHolder/MainMenuButtons"]
-layout_mode = 2
-text = "Options for 50 Rats"
-
 [node name="Quit" type="Button" parent="ButtonHolder/MainMenuButtons"]
 layout_mode = 2
 text = "Quit 50 Rats"
+
+[connection signal="mouse_entered" from="ButtonHolder/MainMenuButtons/Resume" to="." method="_on_resume_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonHolder/MainMenuButtons/Resume" to="." method="_on_resume_mouse_exited"]
+[connection signal="pressed" from="ButtonHolder/MainMenuButtons/Resume" to="." method="_on_resume_pressed"]
+[connection signal="mouse_entered" from="ButtonHolder/MainMenuButtons/Ratabase" to="." method="_on_ratabase_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonHolder/MainMenuButtons/Ratabase" to="." method="_on_ratabase_mouse_exited"]
+[connection signal="pressed" from="ButtonHolder/MainMenuButtons/Ratabase" to="." method="_on_ratabase_pressed"]
+[connection signal="mouse_entered" from="ButtonHolder/MainMenuButtons/Quit" to="." method="_on_quit_mouse_entered"]
+[connection signal="mouse_exited" from="ButtonHolder/MainMenuButtons/Quit" to="." method="_on_quit_mouse_exited"]
+[connection signal="pressed" from="ButtonHolder/MainMenuButtons/Quit" to="." method="_on_quit_pressed"]
