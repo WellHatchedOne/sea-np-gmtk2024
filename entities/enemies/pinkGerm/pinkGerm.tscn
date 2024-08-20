@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://cow1mqw4fgcej"]
+[gd_scene load_steps=20 format=3 uid="uid://cow1mqw4fgcej"]
 
 [ext_resource type="Texture2D" uid="uid://dqkwn1t2v6sob" path="res://assets/enemies/pinkGerm/pinkGerm-hurt-1.png" id="1_e1fby"]
 [ext_resource type="Texture2D" uid="uid://bppewysuij457" path="res://assets/enemies/pinkGerm/pinkGerm-attack-1.png" id="1_i71bb"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://bnkyijh3nbwb3" path="res://assets/enemies/pinkGerm/pinkGerm-death-4.png" id="8_4wbam"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="15_h0raf"]
 [ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="16_locar"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="17_6w4dm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -105,3 +106,5 @@ shape = SubResource("CapsuleShape2D_kf1lu")
 
 [node name="ShootAtTargetComponent" parent="CharacterBody2D" instance=ExtResource("16_locar")]
 vision_radius = 1000.0
+
+[node name="KillRatOnContactComponent" parent="CharacterBody2D" instance=ExtResource("17_6w4dm")]

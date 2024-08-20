@@ -57,7 +57,7 @@ func launch(speed, direction, should_start):
 
 func _physics_process(delta):
 	if start_traveling:
-		position += (direction*speed)*delta
+		position += (direction*speed)
 		
 func _on_body_entered(body):
 	#print(body)
