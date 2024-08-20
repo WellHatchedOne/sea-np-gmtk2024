@@ -1,10 +1,48 @@
-[gd_scene load_steps=5 format=3 uid="uid://uvgdynm14wdy"]
+[gd_scene load_steps=9 format=3 uid="uid://uvgdynm14wdy"]
 
 [ext_resource type="Script" path="res://ui/huds/hud/hud.gd" id="1_xh6qk"]
 [ext_resource type="Script" path="res://ui/huds/hud/Label.gd" id="2_virew"]
 [ext_resource type="Script" path="res://ui/huds/hud/ProgressBar.gd" id="3_qn4ey"]
+[ext_resource type="Script" path="res://ui/huds/hud/Label2.gd" id="4_451xq"]
 
 [sub_resource type="Theme" id="Theme_h8jny"]
+
+[sub_resource type="Animation" id="Animation_886rf"]
+resource_name = "new_animation"
+length = 3.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.9, 2, 3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(1, 0, 0, 1), Color(0.886275, 1, 0, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_iti5q"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q3mq3"]
+_data = {
+"RESET": SubResource("Animation_iti5q"),
+"new_animation": SubResource("Animation_886rf")
+}
 
 [node name="Hud" type="CanvasLayer"]
 script = ExtResource("1_xh6qk")
@@ -77,3 +115,19 @@ offset_right = 459.0
 offset_bottom = 50.0
 theme_override_font_sizes/font_size = 22
 text = "Rat Cluster Cool Down"
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 479.0
+offset_top = 21.0
+offset_right = 918.0
+offset_bottom = 104.0
+theme_override_font_sizes/font_size = 45
+text = "!FIND THE CAT!"
+script = ExtResource("4_451xq")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Label2"]
+libraries = {
+"": SubResource("AnimationLibrary_q3mq3")
+}
+autoplay = "new_animation"
