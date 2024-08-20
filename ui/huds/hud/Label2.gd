@@ -6,7 +6,6 @@ var score = 5
 var red
 var blue 
 var green
-var track = false
 func _ready():
 	#$pack_of_rats.connect("ratsignal",self, "on_ratsignal")
 	#print(owner.Player.ratnumber)
@@ -19,12 +18,25 @@ func _process(delta):
 	score = owner.Player.ratnumber
 	#print(score)
 	
-	if score > 49:
+	if score >= getPlayerTarget():
 		_activate()
-		track = true
+	else:
+		_deactivate()
 
 		
 func _activate():
 	text ="!FIND THE CAT!"
-	print("activate")
 	animation_player.play()
+	
+func _deactivate():
+	text = ""
+	animation_player.stop()
+
+func  getPlayerTarget() -> float:
+	return getLevelNode().getPlayerTarget()
+
+func getPlayerLevel() -> float:
+	return getLevelNode().playerLevel
+
+func getLevelNode() -> Level:
+	return get_parent().get_parent().get_parent().get_node("Level")
