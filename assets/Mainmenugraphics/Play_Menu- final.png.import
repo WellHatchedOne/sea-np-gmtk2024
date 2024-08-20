@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c5hloug6oj6bo"
-path="res://.godot/imported/OG_rat_sit-1.png-deca32bba2a0bab60fe58f12a7cac842.ctex"
+uid="uid://d4iu1gxwg6l5q"
+path="res://.godot/imported/Play_Menu- final.png-c0a2c938c6fc1e42d83db25999497193.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Rat/base_rat/OG_rat_sit-1.png"
-dest_files=["res://.godot/imported/OG_rat_sit-1.png-deca32bba2a0bab60fe58f12a7cac842.ctex"]
+source_file="res://assets/Mainmenugraphics/Play_Menu- final.png"
+dest_files=["res://.godot/imported/Play_Menu- final.png-c0a2c938c6fc1e42d83db25999497193.ctex"]
 
 [params]
 
