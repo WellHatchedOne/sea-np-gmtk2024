@@ -89,15 +89,15 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf1lu"]
-radius = 17.0
-height = 54.0
+radius = 27.0
+height = 86.0
 
 [node name="Carrot" type="CharacterBody2D"]
 script = ExtResource("1_c6kyv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(0.107814, -1.42109e-14)
-scale = Vector2(0.0253091, 0.0254384)
+position = Vector2(-1, -6)
+scale = Vector2(0.043765, 0.0439886)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"attack"
 
@@ -110,3 +110,4 @@ shape = SubResource("CapsuleShape2D_kf1lu")
 enemy_radius = 100.0
 
 [node name="KillRatOnContactComponent" parent="." instance=ExtResource("19_sr63p")]
+position = Vector2(0, 1)

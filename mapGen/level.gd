@@ -50,12 +50,15 @@ const FLOWER = preload("res://Entities/Enemies/Flower/Flower.tscn")
 const PINKGERM = preload("res://Entities/Enemies/greenGerm/greenGerm.tscn")
 const PICO = preload("res://Entities/Enemies/Pico/Pico.tscn")
 const CAT = preload("res://Entities/Enemies/Pico/Pico.tscn")
+const EXTERMINATOR = preload("res://Entities/Enemies/Exterminator/Exterminator.tscn")
 const ELECTRIC_PICKUP = preload("res://Max/components/specific_rat_abilities/ElectricUpgradeComponent.tscn")
 const FIRE_PICKUP = preload("res://Max/components/specific_rat_abilities/FireUpgradeComponent.tscn")
 const PSYCHIC_PICKUP = preload("res://Max/components/specific_rat_abilities/PsychicUpgradeComponent.tscn")
 const TOXIC_PICKUP = preload("res://Max/components/specific_rat_abilities/ToxicUpgradeComponent.tscn")
 const WATER_PICKUP = preload("res://Max/components/specific_rat_abilities/WaterUpgradeComponent.tscn")
 const WIZARD_PICKUP = preload("res://Max/components/specific_rat_abilities/WizardUpgradeComponent.tscn")
+
+
 
 const BITE_ATTACK_TIMER = preload("res://Events/Timers/biteAttackTimer.tscn")
 const FOOD = preload("res://Grace/food.tscn")
@@ -205,10 +208,12 @@ func handleRandomEnemySpawning(tile_index: Vector2i):
 			if RandEnemy > 4 and RandEnemy < 7:
 				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.02)
 		if tilemapAtlasId == 1:
-			if RandEnemy < 5:
+			if RandEnemy < 3:
 				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.05)
-			if RandEnemy > 5 :
+			if RandEnemy > 3 and RandEnemy < 6 :
 				try_to_spawn_entity(CARROT, tile_index, level_position, 0.05)
+			if RandEnemy > 6 :
+				try_to_spawn_entity(EXTERMINATOR, tile_index, level_position, 0.05)
 		if tilemapAtlasId == 2:
 			if RandEnemy < 2:
 				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.01)

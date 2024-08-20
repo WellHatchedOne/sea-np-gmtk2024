@@ -1,0 +1,94 @@
+[gd_scene load_steps=16 format=3 uid="uid://b6lpqumr3sn5q"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_kr6yv"]
+[ext_resource type="Texture2D" uid="uid://dgtqsxax30hm5" path="res://Entities/Enemies/Exterminator/Exterminator_Attack-1.png" id="2_p5npn"]
+[ext_resource type="Texture2D" uid="uid://cb5owbx0g2lmb" path="res://Entities/Enemies/Exterminator/Exterminator_Attack-2.png" id="3_0xhvi"]
+[ext_resource type="Texture2D" uid="uid://clie7w1s4nlm5" path="res://Entities/Enemies/Exterminator/Exterminator_Attack-3.png" id="4_lfvew"]
+[ext_resource type="Texture2D" uid="uid://r7dg6myg561n" path="res://Entities/Enemies/Exterminator/Exterminator_Death-1.png" id="5_y6k71"]
+[ext_resource type="Texture2D" uid="uid://cy10lrducauyw" path="res://Entities/Enemies/Exterminator/Exterminator_Death-2.png" id="6_6twdp"]
+[ext_resource type="Texture2D" uid="uid://bkx37xxe1uhbp" path="res://Entities/Enemies/Exterminator/Exterminator_Idle-2.png" id="7_5ayk7"]
+[ext_resource type="Texture2D" uid="uid://hd2kfr5a6rj4" path="res://Entities/Enemies/Exterminator/Exterminator_Idle-1.png" id="8_cka06"]
+[ext_resource type="Texture2D" uid="uid://e04lbgr24adg" path="res://assets/bullets/Toxic-rat-projectile.png" id="12_hsu5w"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="20_yvbnw"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="21_c85vp"]
+[ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="22_ndrlh"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="23_ueslw"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_p5npn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_0xhvi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_lfvew")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_y6k71")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_6twdp")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_5ayk7")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("8_cka06")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_5ayk7")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ai868"]
+size = Vector2(113, 174.5)
+
+[node name="Exterminator" type="CharacterBody2D"]
+collision_layer = 128
+collision_mask = 5
+script = ExtResource("1_kr6yv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.999992, -7.62939e-06)
+scale = Vector2(0.075617, 0.075617)
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, 3.75)
+shape = SubResource("RectangleShape2D_ai868")
+
+[node name="HealthComponent" parent="." instance=ExtResource("20_yvbnw")]
+
+[node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_c85vp")]
+visible = false
+enemy_radius = 200.0
+
+[node name="ShootAtTargetComponent" parent="." instance=ExtResource("22_ndrlh")]
+visible = false
+bullet_speed = 10.0
+texture_for_bullet = ExtResource("12_hsu5w")
+
+[node name="KillRatOnContactComponent" parent="." instance=ExtResource("23_ueslw")]
+visible = false

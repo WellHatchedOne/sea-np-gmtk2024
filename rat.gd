@@ -130,7 +130,7 @@ func setRateState():
 	if (currentRatState == RatState.RETURNING && position.distance_to(defaultPosition) < DISTANCE_FROM_PACK_TO_BE_MARKED_AS_RETURNED):
 		currentRatState = RatState.FOLLOWING
 
-	if (currentRatState == RatState.FOLLOWING && position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+	if ((currentRatState == RatState.FOLLOWING || currentRatState == RatState.RETURNING) && position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
 		currentRatState = RatState.SITTING
 
 func sitStill(swarmVelocity:Vector2):
