@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://tcfwnvil5de1"]
+[gd_scene load_steps=26 format=3 uid="uid://tcfwnvil5de1"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Pico/Pico.gd" id="1_4t8sv"]
 [ext_resource type="Texture2D" uid="uid://b674xqnf6ei5y" path="res://assets/enemies/pico/AOE/Cat_Boss_AOE_attack-2.png" id="2_oxb5y"]
@@ -20,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://86mwepmxdx3p" path="res://assets/enemies/pico/Cat_Boss_Damage-2.png" id="18_b2m56"]
 [ext_resource type="Texture2D" uid="uid://dxhxqyfr7vpip" path="res://assets/enemies/pico/Cat_Boss_Damage-3.png" id="19_tf6wr"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="20_bybmv"]
+[ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="20_h2j8u"]
 [ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="21_3a5bf"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="23_vc1fd"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -153,3 +155,11 @@ initial_health = 1000.0
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_3a5bf")]
 position = Vector2(-2, 0)
 enemy_radius = 300.0
+
+[node name="HealthComponent2" parent="." instance=ExtResource("20_bybmv")]
+
+[node name="KillRatOnContactComponent" parent="." instance=ExtResource("23_vc1fd")]
+
+[node name="ShootAtTargetComponent" parent="." instance=ExtResource("20_h2j8u")]
+position = Vector2(6, -1)
+scale = Vector2(0.313012, 0.313012)
