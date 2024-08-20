@@ -1,6 +1,7 @@
 extends Node2D
 class_name HealthComponent
 
+const FOOD = preload("res://Grace/food.tscn")
 @export var initial_health: float = 100
 var collision_shape: CollisionShape2D = null
 
@@ -16,7 +17,12 @@ func _ready():
 func take_damage(damage: float):
 	initial_health -= damage
 	if initial_health <= 0:
+		var new_food_drop = FOOD.instantiate()
+		new_food_drop.position = get_parent()
+		get_parent().get_parent().add_child(new_food_drop)
+		
 		get_parent().queue_free()
+		
 
 func increase_health(number: float):
 	initial_health += number
