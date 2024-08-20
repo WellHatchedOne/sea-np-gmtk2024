@@ -46,9 +46,28 @@ func setClusterPosition(newClusterPosition:Vector2):
 
 # Moves the rat for this frame relative to the swarm
 func ratMove(swarmVelocity:Vector2, speed:float, delta:float, isRatClustered: bool):
+	clusterOrUnclusterRat(isRatClustered)
+
 	var desiredGlobalPosition:Vector2 = getRatDesiredGlobalPosition(swarmVelocity, speed, delta)
 	var shouldAnimateTurn = moveAndSlideRat(desiredGlobalPosition, swarmVelocity, speed, delta)
 	animateRat(swarmVelocity, shouldAnimateTurn)
+
+# This function clusters or un clusters the rat
+# If it's our first time clustering this this rat,
+# we set the state to "returning" so that the rat
+# will move to its new position before resuming normal operation
+func clusterOrUnclusterRat(isRatClustered:bool):
+	if(isRatClustered):
+		if defaultPosition != clusterPosition:
+			# First time we are clustering, so the rat needs to move to the new clustered position
+			# So we just set the state to "returning"
+			defaultPosition = clusterPosition
+			currentRatState = RatState.RETURNING
+	else:
+		if defaultPosition != startingPosition:
+			# First time we are returning to starting position, so the rat need to move to the new clusted position
+			defaultPosition = startingPosition
+			currentRatState = RatState.RETURNING
 
 func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 	# Push this frame's velocity onto our queue of time and position offsets
