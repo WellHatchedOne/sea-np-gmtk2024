@@ -45,6 +45,21 @@ _data = {
 "new_animation": SubResource("Animation_886rf")
 }
 
+[sub_resource type="Animation" id="Animation_sfhrk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.258824, 1, 1)]
+}
+
 [sub_resource type="Animation" id="Animation_tjxsc"]
 resource_name = "new_animation"
 length = 5.0
@@ -59,21 +74,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
 "values": [Color(1, 0.258824, 0, 1), Color(0, 0.258824, 1, 1), Color(0.768627, 0.635294, 1, 1), Color(0.768627, 0.635294, 0, 1), Color(0.00784314, 0.635294, 0, 1)]
-}
-
-[sub_resource type="Animation" id="Animation_sfhrk"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath(".:modulate")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Color(0, 0.258824, 1, 1)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_6dpnk"]
