@@ -53,6 +53,12 @@ func _physics_process(delta):
 		position += direction*speed
 		
 func _on_body_entered(body):
-	print(body)
 	if body is TileMap:
 		self.queue_free()
+	
+	if body is Rat:
+		body._on_hit_by_bullet()
+
+# Since new bullet hitbox is a child of the bullet
+func _on_area_2d_body_entered(body):
+	self._on_body_entered(body)
