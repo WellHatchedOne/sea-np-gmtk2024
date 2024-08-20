@@ -1,0 +1,106 @@
+[gd_scene load_steps=19 format=3 uid="uid://cdounj1v2o60b"]
+
+[ext_resource type="Script" path="res://ui/menus/deathMenu/deathmenu.gd" id="1_k6ut1"]
+[ext_resource type="Texture2D" uid="uid://b725aodwf1yej" path="res://assets/deathMenuGraphics/Breakdance_Rat-13.png" id="2_81yka"]
+[ext_resource type="Texture2D" uid="uid://dp64n5r83weds" path="res://assets/deathMenuGraphics/Breakdance_Rat-1.png" id="2_h0ppa"]
+[ext_resource type="Texture2D" uid="uid://dwykw2i3sn5fl" path="res://assets/deathMenuGraphics/Breakdance_Rat-14.png" id="3_gstpe"]
+[ext_resource type="PackedScene" uid="uid://bdj2qkwnbgugk" path="res://Dungeonmusic1.tscn" id="3_s88a1"]
+[ext_resource type="Texture2D" uid="uid://ff2htyg5uop1" path="res://assets/deathMenuGraphics/Breakdance_Rat-2.png" id="3_uumqw"]
+[ext_resource type="AudioStream" uid="uid://cmejbn1fumy3b" path="res://assets/Music/piano_shit.wav" id="4_cxhs0"]
+[ext_resource type="Texture2D" uid="uid://1ndnkp8ce0ux" path="res://assets/deathMenuGraphics/Breakdance_Rat-3.png" id="4_e2dvo"]
+[ext_resource type="Texture2D" uid="uid://x14catgtx7m6" path="res://assets/deathMenuGraphics/Breakdance_Rat-4.png" id="5_j0q6j"]
+[ext_resource type="Texture2D" uid="uid://d0flxmcrm0d0j" path="res://assets/deathMenuGraphics/Breakdance_Rat-5.png" id="6_ho41p"]
+[ext_resource type="Texture2D" uid="uid://dnasm4iukdcnm" path="res://assets/deathMenuGraphics/Breakdance_Rat-6.png" id="7_r3eeb"]
+[ext_resource type="Texture2D" uid="uid://bkgft5lrgydmd" path="res://assets/deathMenuGraphics/Breakdance_Rat-7.png" id="8_84fim"]
+[ext_resource type="Texture2D" uid="uid://dy408aedm8lii" path="res://assets/deathMenuGraphics/Breakdance_Rat-8.png" id="9_jrkd6"]
+[ext_resource type="Texture2D" uid="uid://723yx15lpcqe" path="res://assets/deathMenuGraphics/Breakdance_Rat-9.png" id="10_lut5r"]
+[ext_resource type="Texture2D" uid="uid://bev3sj72a68i6" path="res://assets/deathMenuGraphics/Breakdance_Rat-10.png" id="11_b5ccn"]
+[ext_resource type="Texture2D" uid="uid://bftrywty528ql" path="res://assets/deathMenuGraphics/Breakdance_Rat-11.png" id="12_mwulg"]
+[ext_resource type="Texture2D" uid="uid://8dkge6jw1ttd" path="res://assets/deathMenuGraphics/Breakdance_Rat-12.png" id="13_w0c1s"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_cnltc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_81yka")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_gstpe")
+}],
+"loop": true,
+"name": &"endAnimation",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h0ppa")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_uumqw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_e2dvo")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_j0q6j")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_ho41p")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_r3eeb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_84fim")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_jrkd6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_lut5r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_b5ccn")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_mwulg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_w0c1s")
+}],
+"loop": true,
+"name": &"startAnimation",
+"speed": 5.0
+}]
+
+[node name="Deathmenu" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_k6ut1")
+
+[node name="DancingRatAnimation" type="AnimatedSprite2D" parent="."]
+position = Vector2(553, 322)
+scale = Vector2(0.304813, 0.304813)
+sprite_frames = SubResource("SpriteFrames_cnltc")
+animation = &"startAnimation"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="DeathScreenMusic" parent="." instance=ExtResource("3_s88a1")]
+stream = ExtResource("4_cxhs0")
+autoplay = true
+
+[node name="TryAgain" type="Button" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 395.0
+offset_top = 487.0
+offset_right = 736.0
+offset_bottom = 552.0
+
+[connection signal="animation_finished" from="DancingRatAnimation" to="." method="_on_dancing_rat_animation_animation_finished"]
+[connection signal="animation_looped" from="DancingRatAnimation" to="." method="_on_dancing_rat_animation_animation_looped"]
+[connection signal="pressed" from="TryAgain" to="." method="_on_try_again_pressed"]

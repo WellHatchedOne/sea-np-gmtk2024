@@ -184,7 +184,7 @@ func killRat(rat: Rat):
 		showEndGameScreen()
 
 func showEndGameScreen():
-	get_tree().quit()
+	get_tree().change_scene_to_file("res://ui/menus/deathMenu/deathmenu.tscn")
 
 func setNewAlphaRat():
 	alpha_rat = getClosestRatToCenter()
