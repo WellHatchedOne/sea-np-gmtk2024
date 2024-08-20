@@ -4,7 +4,7 @@ class_name Dungeon
 const LEVEL = preload("res://mapGen/level.tscn")
 var levelPointer : Level = null
 var debug = true
-var currentLevel = 0
+var currentLevel = 1
 
 func _ready():
 	load_new_level(currentLevel)
@@ -29,7 +29,7 @@ func _input(event):
 		load_new_level(2)
 
 func load_next_level():
-	load_new_level(currentLevel + 1)
+	load_new_level((currentLevel + 1) % 3)
 
 func load_new_level(levelNum : int):
 	currentLevel = levelNum
