@@ -19,6 +19,7 @@ const default_tune = preload("res://assets/Music/spit-36265.mp3")
 #globals do not change
 var target
 var true_parent
+var generated_area_2d
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -30,6 +31,12 @@ func _ready():
 	fire_rate_timer.wait_time = fire_rate
 
 	vision_circle_shape.shape.radius = vision_radius
+	
+	var temp_bullet = BULLET.instantiate()
+	add_child(temp_bullet)
+	temp_bullet.visible = false
+	generated_area_2d = temp_bullet.create_new_collision_from_image()
+	temp_bullet.queue_free()
 
 func play_music():
 	var music = AudioStreamPlayer.new()
@@ -40,13 +47,13 @@ func play_music():
 	
 
 func shoot_at_target():
-	var new_bullet: Bullet = BULLET.instantiate()
-	# Added call_deferred to queue the action since there are also collision checks
-	self.call_deferred("add_child", new_bullet)
+	var new_bullet = BULLET.instantiate()
+	owner.add_child(new_bullet)
+	new_bullet.update_sprite(new_bullet.sprite_2d.texture)
+	new_bullet.area_2d = generated_area_2d
 	var travel_direction = true_parent.position.direction_to(target.position)
-	
 	new_bullet.start(self.position)
-	new_bullet.launch(bullet_speed, travel_direction, true)
+	new_bullet.launch(self.bullet_speed, travel_direction, true)
 
 	play_music()
 
