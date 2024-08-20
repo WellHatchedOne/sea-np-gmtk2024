@@ -1,8 +1,10 @@
-[gd_scene load_steps=10 format=3 uid="uid://n6dyu1f44o7"]
+[gd_scene load_steps=12 format=3 uid="uid://n6dyu1f44o7"]
 
+[ext_resource type="Script" path="res://cutscenes/OpeningCutscene.gd" id="1_yf2hw"]
 [ext_resource type="Texture2D" uid="uid://bb45a36lvi5ma" path="res://cutscenes/assets/Shrunk rat image.png" id="2_ty7lq"]
 [ext_resource type="Texture2D" uid="uid://b5y2wg1hld7p2" path="res://cutscenes/assets/pOWER-DISCOVERY-SCENE.png" id="3_l246a"]
 [ext_resource type="Texture2D" uid="uid://8frll1wktsjo" path="res://cutscenes/assets/GainPowerSpriteSheet.png" id="3_sxiqr"]
+[ext_resource type="AudioStream" uid="uid://odjwx5eugfc8" path="res://assets/Music/tune0.wav" id="5_iq61a"]
 
 [sub_resource type="Animation" id="Animation_f1ff1"]
 resource_name = "OpeningCutscene"
@@ -232,11 +234,13 @@ animations = [{
 }]
 
 [node name="OpeningCutscene" type="Node2D"]
+script = ExtResource("1_yf2hw")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_wf7bm")
 }
+autoplay = "OpeningCutscene"
 
 [node name="Scenes" type="Node2D" parent="."]
 
@@ -262,3 +266,17 @@ speed_scale = 0.75
 position = Vector2(155, 154)
 scale = Vector2(0.05, 0.05)
 texture = ExtResource("3_l246a")
+
+[node name="Button" type="Button" parent="."]
+offset_left = 109.0
+offset_top = 181.0
+offset_right = 212.0
+offset_bottom = 212.0
+text = "Start Escape"
+metadata/_edit_use_anchors_ = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_iq61a")
+autoplay = true
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

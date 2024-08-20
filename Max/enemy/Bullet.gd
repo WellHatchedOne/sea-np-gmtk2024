@@ -53,5 +53,6 @@ func _physics_process(delta):
 		position += direction*speed
 		
 func _on_body_entered(body):
+	print(body)
 	if body is TileMap:
-		queue_free()
+		self.queue_free()

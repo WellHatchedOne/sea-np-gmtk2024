@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bqo31kjnrxh0i"]
+[gd_scene load_steps=23 format=3 uid="uid://bqo31kjnrxh0i"]
 
 [ext_resource type="Texture2D" uid="uid://hi226asbrch6" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-1.png" id="1_psnoa"]
 [ext_resource type="Texture2D" uid="uid://dvln3p4wt33s1" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-2.png" id="2_k8eix"]
@@ -19,6 +19,7 @@
 [ext_resource type="Texture2D" uid="uid://brdm1qox3m64" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-4.png" id="17_u35fs"]
 [ext_resource type="Texture2D" uid="uid://j0pq7lpbbfut" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-5.png" id="18_mfh53"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="19_mtjs7"]
+[ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="20_db2wm"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -101,14 +102,19 @@ animations = [{
 radius = 365.0
 height = 1488.0
 
-[node name="CheetoGerm" type="RigidBody2D"]
+[node name="CheetoGerm" type="Node2D"]
+scale = Vector2(0.03, 0.03)
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="CharacterBody2D"]
 position = Vector2(-101, -102)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"death"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CharacterBody2D"]
 shape = SubResource("CapsuleShape2D_kf1lu")
 
-[node name="HealthComponent" parent="." instance=ExtResource("19_mtjs7")]
+[node name="HealthComponent" parent="CharacterBody2D" instance=ExtResource("19_mtjs7")]
+
+[node name="ShootAtTargetComponent" parent="CharacterBody2D" instance=ExtResource("20_db2wm")]

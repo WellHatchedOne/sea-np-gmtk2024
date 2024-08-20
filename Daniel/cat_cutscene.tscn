@@ -1,0 +1,105 @@
+[gd_scene load_steps=10 format=3 uid="uid://wjwx43lu1bf5"]
+
+[ext_resource type="Texture2D" uid="uid://3nxqdk5wnc3r" path="res://assets/Cutscenes/Pico_Cutscene-1.png" id="1_2ueij"]
+[ext_resource type="Script" path="res://Daniel/cat_cutscene.gd" id="1_2001k"]
+[ext_resource type="Texture2D" uid="uid://k07vgqruqudj" path="res://assets/Cutscenes/Pico_Cutscene-2.png" id="2_b6k7p"]
+[ext_resource type="Texture2D" uid="uid://dbtr5kruu6b24" path="res://assets/Cutscenes/Pico_Cutscene-3.png" id="3_vpb6o"]
+[ext_resource type="AudioStream" uid="uid://buqu5m0yo8xf5" path="res://assets/Cutscenes/roar.mp3" id="5_ondd7"]
+[ext_resource type="AudioStream" uid="uid://d3j12j6xxjjug" path="res://assets/Cutscenes/cat-89108.mp3" id="6_0it1b"]
+
+[sub_resource type="Animation" id="Animation_axk7s"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D2:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 2.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-397, 326), Vector2(661, 326)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = false
+tracks/1/path = NodePath("Sprite2D3:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(2),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(490, 252)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Sprite2D3:modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(2.6, 3.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_dl3rs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ii48l"]
+_data = {
+"RESET": SubResource("Animation_dl3rs"),
+"new_animation": SubResource("Animation_axk7s")
+}
+
+[node name="CatCutscene" type="Node2D"]
+script = ExtResource("1_2001k")
+
+[node name="AnimationPlayercat" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ii48l")
+}
+autoplay = "new_animation"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(681, 307)
+scale = Vector2(0.643066, 0.643066)
+texture = ExtResource("1_2ueij")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(490.355, 326)
+scale = Vector2(0.717529, 0.717529)
+texture = ExtResource("2_b6k7p")
+
+[node name="Sprite2D3" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(490, 252)
+scale = Vector2(0.704102, 0.704102)
+texture = ExtResource("3_vpb6o")
+
+[node name="Catroar" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ondd7")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 3.0
+
+[node name="catmeow" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_0it1b")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

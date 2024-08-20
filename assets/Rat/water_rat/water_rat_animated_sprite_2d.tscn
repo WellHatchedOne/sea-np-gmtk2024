@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://cvucmjpdd2ata"]
+[gd_scene load_steps=15 format=3 uid="uid://cvucmjpdd2ata"]
 
 [ext_resource type="Texture2D" uid="uid://dxaw0v2hcx6b1" path="res://assets/Rat/water_rat/water_rat_down1.png" id="1_oy7n4"]
 [ext_resource type="Texture2D" uid="uid://csvjuqfn6kk6j" path="res://assets/Rat/water_rat/water_rat_down2.png" id="2_metq5"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://pbf0s7ve6ktx" path="res://assets/Rat/water_rat/water_rat_up2.png" id="10_rghch"]
 [ext_resource type="Texture2D" uid="uid://b5gg3i010lwe7" path="res://assets/Rat/water_rat/water_rat_up3.png" id="11_1rovb"]
 [ext_resource type="Texture2D" uid="uid://icmwleke4qa6" path="res://assets/Rat/water_rat/water_rat_up4.png" id="12_cnevk"]
+[ext_resource type="Texture2D" uid="uid://c8bv710l56jyb" path="res://assets/RatAbilities/Water_potion.png" id="13_ugl35"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -71,3 +72,6 @@ animations = [{
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
 animation = &"up"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("13_ugl35")

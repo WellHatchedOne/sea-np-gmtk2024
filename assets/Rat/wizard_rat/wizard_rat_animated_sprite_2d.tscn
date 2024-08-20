@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bi6hx7uud88ah"]
+[gd_scene load_steps=15 format=3 uid="uid://bi6hx7uud88ah"]
 
 [ext_resource type="Texture2D" uid="uid://dspeel2xymyai" path="res://assets/Rat/wizard_rat/Wizard_Rat_Side-1.png" id="1_duyo0"]
 [ext_resource type="Texture2D" uid="uid://m48wk8st7t0f" path="res://assets/Rat/wizard_rat/Wizard_Rat_Down-1.png" id="1_md3m6"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bpvsre54rmgy7" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-2.png" id="6_t0imb"]
 [ext_resource type="Texture2D" uid="uid://ctijjjqjqq8g1" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-3.png" id="7_kj8kn"]
 [ext_resource type="Texture2D" uid="uid://du56utep6lkeg" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-4.png" id="8_na2hm"]
+[ext_resource type="Texture2D" uid="uid://nlnqe7oo5c3y" path="res://assets/RatAbilities/Wizard_potion.png" id="13_1578u"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -70,4 +71,7 @@ animations = [{
 [node name="WizardRatAnimatedSprite2D" type="AnimatedSprite2D"]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
-animation = &"down"
+animation = &"up"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("13_1578u")
