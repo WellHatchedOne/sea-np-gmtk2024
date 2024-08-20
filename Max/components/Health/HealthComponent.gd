@@ -23,8 +23,18 @@ func take_damage(damage: float):
 		var new_food_drop = FOOD.instantiate()
 		new_food_drop.position = get_parent().position
 		get_parent().get_parent().add_child(new_food_drop)
-		
+		if get_parent() is Pico:
+			go_to_next_level()
 		get_parent().queue_free()
+
+func go_to_next_level():
+	var dungeon := findDungeonNode()
+	if(dungeon == null):
+		return
+	dungeon.load_next_level()
+
+func findDungeonNode() -> Dungeon:
+	return get_parent().get_parent().get_parent()
 		
 func increase_health(number: float):
 	initial_health += number
