@@ -188,7 +188,7 @@ libraries = {
 autoplay = "new_animation"
 
 [node name="Timer" type="Timer" parent="Control/Label3"]
-wait_time = 9.716
+wait_time = 5.0
 one_shot = true
 
 [connection signal="timeout" from="Control/Label3/Timer" to="Control/Label3" method="_on_timer_timeout"]
