@@ -89,6 +89,7 @@ texture = ExtResource("13_nk618")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_uq1dg")]
 visible = false
+bullet_speed = 15.0
 bullet_texture = ExtResource("16_iym4l")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
