@@ -86,10 +86,9 @@ var pass50 = false
 func _process(delta):
 	score = get_parent().get_node("PackOfRats").ratnumber
 	
-	if pass50 == false and score == 50: 
+	if pass50 == false and score >= 50 + 20 * tilemapAtlasId:
 		pass50 =true
 		_spawncat()
-		
 
 func _spawncat():
 	var new_cat  = CAT.instantiate()

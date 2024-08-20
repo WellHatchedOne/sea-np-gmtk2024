@@ -5,6 +5,9 @@ const BULLET = preload("res://Max/enemy/Bullet.tscn")
 const PACK_OF_RATS = preload("res://Max/pack_of_rats/pack_of_rats.tscn")
 @export var vision_radius: float = 200
 @export var bullet_speed: float = 6
+@onready var animated_sprite_2d = $"../AnimatedSprite2D"
+
+@export var texture_for_bullet: Texture = null
 
 const default_tune = preload("res://assets/Music/spit-36265.mp3")
 
@@ -49,13 +52,24 @@ func play_music():
 func shoot_at_target():
 	var new_bullet = BULLET.instantiate()
 	owner.add_child(new_bullet)
-	new_bullet.update_sprite(new_bullet.sprite_2d.texture)
+	if texture_for_bullet != null:
+		new_bullet.update_sprite(texture_for_bullet)
+	else:
+		new_bullet.update_sprite(new_bullet.sprite_2d.texture)
 	new_bullet.area_2d = generated_area_2d
 	var travel_direction = true_parent.position.direction_to(target.position)
 	new_bullet.start(self.position)
 	new_bullet.launch(self.bullet_speed, travel_direction, true)
 
 	play_music()
+	
+	play_animation()
+
+func play_animation():
+	animated_sprite_2d.play("attack")
+	
+func stop_animation():
+	animated_sprite_2d.play("idle")
 
 func _fire_rate_event():
 	shoot_at_target()
@@ -68,7 +82,11 @@ func _on_body_entered(body):
 		shoot_at_target()
 		fire_rate_timer.start()
 		
+		play_animation()
+		
 func _on_body_exited(body):
 	if body is PackOfRats:
 		target = null
 		fire_rate_timer.stop()
+		stop_animation()
+		

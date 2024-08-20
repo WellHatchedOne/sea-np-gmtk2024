@@ -12,6 +12,7 @@ func _ready():
 	
 	
 	
+	
 func _process(delta):
 	score = owner.Player.ratnumber
 	text = str(score) + "/50 RATS"

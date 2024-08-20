@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://dg7n24ps1sdch"]
+[gd_scene load_steps=18 format=3 uid="uid://dg7n24ps1sdch"]
 
 [ext_resource type="Texture2D" uid="uid://cou4c8eo0cgi7" path="res://assets/Rat/electric_rat/Electric_Down-1.png" id="1_0ypqf"]
 [ext_resource type="Texture2D" uid="uid://cxofxhqp6uo8k" path="res://assets/Rat/electric_rat/Electric_Down-2.png" id="2_trgvv"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://c2qw7rbfcpug1" path="res://assets/Rat/electric_rat/Electrical_Up-4.png" id="12_7loor"]
 [ext_resource type="Texture2D" uid="uid://cexmy2hfypscv" path="res://assets/RatAbilities/Electric_potion.png" id="13_nk618"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_uq1dg"]
+[ext_resource type="Texture2D" uid="uid://ou0u258gsuvj" path="res://assets/bullets/Electric-rat-projectile.png" id="16_iym4l"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -87,6 +88,7 @@ animation = &"up"
 texture = ExtResource("13_nk618")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_uq1dg")]
+bullet_texture = ExtResource("16_iym4l")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-690, -1050)

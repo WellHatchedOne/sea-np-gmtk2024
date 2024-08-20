@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://c6r2h84r5vvuu"]
+[gd_scene load_steps=19 format=3 uid="uid://c6r2h84r5vvuu"]
 
 [ext_resource type="Texture2D" uid="uid://buseq4rt7gc0i" path="res://assets/Rat/toxic_rat/Toxic_Down-1.png" id="1_7t50p"]
 [ext_resource type="Texture2D" uid="uid://dgk1n7uwveew4" path="res://assets/Rat/toxic_rat/Toxic_Down-2.png" id="2_bfe53"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dryaxu2qvl103" path="res://assets/Rat/toxic_rat/Toxic_Up-4.png" id="12_7kkut"]
 [ext_resource type="Texture2D" uid="uid://c8w33jxgpc01c" path="res://assets/RatAbilities/Toxic_potion.png" id="13_adpvn"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_tuy5m"]
+[ext_resource type="Texture2D" uid="uid://e04lbgr24adg" path="res://assets/bullets/Toxic-rat-projectile.png" id="16_dj2f5"]
 [ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="16_tb586"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
@@ -89,6 +90,7 @@ texture = ExtResource("13_adpvn")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_tuy5m")]
 bullet_speed = 720.0
+bullet_texture = ExtResource("16_dj2f5")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-7.62939e-06, 810)

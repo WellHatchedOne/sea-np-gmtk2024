@@ -1,11 +1,13 @@
 extends Node2D
 
+class_name Dungeon
 const LEVEL = preload("res://mapGen/level.tscn")
 var levelPointer : Level = null
 var debug = true
+var currentLevel = 0
 
 func _ready():
-	load_new_level(0)
+	load_new_level(currentLevel)
 	music()
 
 
@@ -26,7 +28,11 @@ func _input(event):
 	if event.is_action_pressed("Load Level 3"):
 		load_new_level(2)
 
+func load_next_level():
+	load_new_level(currentLevel + 1)
+
 func load_new_level(levelNum : int):
+	currentLevel = levelNum
 	if levelPointer != null:
 		print("Level child found")
 		remove_child(levelPointer) # remove reference
