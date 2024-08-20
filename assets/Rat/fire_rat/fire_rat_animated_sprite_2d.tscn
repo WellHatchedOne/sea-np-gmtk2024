@@ -94,10 +94,12 @@ bullet_texture = ExtResource("16_cmhhy")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(680, -330)
+fire_rate = 0.4
 
 [node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_xpigi")]
 visible = false
 position = Vector2(370, -1480)
+fire_rate = 0.4
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
 wait_time = 0.5

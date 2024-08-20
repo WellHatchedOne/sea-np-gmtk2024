@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://bv5h5h37opgxq"]
+
+[gd_scene load_steps=3 format=3 uid="uid://bv5h5h37opgxq"]
 
 [ext_resource type="Texture2D" uid="uid://cttylhorevinm" path="res://assets/HUD/Credits-1.png" id="1_oxhtx"]
+[ext_resource type="AudioStream" uid="uid://cmejbn1fumy3b" path="res://assets/Music/piano_shit.wav" id="2_nyind"]
+
 
 [node name="Credits" type="Control"]
 layout_mode = 3
@@ -10,3 +13,9 @@ anchors_preset = 0
 position = Vector2(577.111, 323.5)
 scale = Vector2(0.599074, 0.599074)
 texture = ExtResource("1_oxhtx")
+
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_nyind")
+autoplay = true
+

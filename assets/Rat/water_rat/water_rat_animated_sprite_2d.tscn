@@ -92,6 +92,8 @@ bullet_texture = ExtResource("16_xwhh5")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-7.62939e-06, -1380)
+fire_rate = 0.55
+bullet_speed = 5.5
 
 [editable path="RatAbilityController"]
 [editable path="RatAbilityController/BulletDestination"]
