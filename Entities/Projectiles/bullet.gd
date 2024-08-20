@@ -1,6 +1,5 @@
 extends Node
-class_name Bullet
-
+class_name Bullet_other
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
