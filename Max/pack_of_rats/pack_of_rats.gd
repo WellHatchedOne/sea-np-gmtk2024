@@ -27,12 +27,15 @@ func get_input() -> void:
 func _physics_process(delta) -> void:
 	get_input()
 	move_and_slide()
-	move_rats(delta)
+	move_rats(delta, areRatsClustered())
 	
-func move_rats(delta):
+func move_rats(delta, areRatsClustered:bool):
 	for rat in all_rats:
 		rat.enable_collision()
-		rat.ratMove(velocity, speed, delta)
+		rat.ratMove(velocity, speed, delta, areRatsClustered)
+
+func areRatsClustered() -> bool:
+	return Input.is_action_pressed("cluster_rats")
 
 func _ready():
 	spawn_spiral_rat(false)
@@ -41,7 +44,7 @@ func spawn_spiral_rat(should_be_child=true):
 	var spiralCoordinates:Vector2 = get_spiral_coordinates_from_poisition(ratnumber)
 	var ratPosition = getRatPosistionFromSpiralCoordinates(spiralCoordinates, RAT_EXPANDED_DISTANCE, RAT_EXPANDED_DISTANCE)
 	var clusterPosition = getRatPosistionFromSpiralCoordinates(spiralCoordinates, RAT_CLUSTERED_DISTANCE, RAT_CLUSTERED_DISTANCE)
-	spawn_rat(ratPosition, clusterPosition, should_be_child, )
+	spawn_rat(ratPosition, clusterPosition, should_be_child)
 
 func get_spiral_coordinates_from_poisition(position) -> Vector2:
 	# di and dj are vectors for the current segment

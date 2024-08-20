@@ -8,7 +8,9 @@ const DISTANCE_FROM_PACK_TO_START_RETURING = 150
 const DISTANCE_FROM_PACK_TO_BE_MARKED_AS_RETURNED = 5
 enum RatState {FOLLOWING, SITTING, RETURNING}
 var currentRatState = RatState.FOLLOWING
+var defaultPosition:Vector2
 var startingPosition:Vector2
+var clusterPosition:Vector2
 var delay:float = 0
 var currentTimeOffset:float = 0
 var timeOffsetQueue:Array[float] = []
@@ -21,6 +23,7 @@ var ratType = "basic"
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	startingPosition = position
+	defaultPosition = startingPosition
 	defaultRatOffset = animated_sprite_2d.offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -38,8 +41,11 @@ func enable_collision():
 func set_delay(newDelay:float):
 	delay = newDelay
 
+func setClusterPosition(newClusterPosition:Vector2):
+	clusterPosition = newClusterPosition
+
 # Moves the rat for this frame relative to the swarm
-func ratMove(swarmVelocity:Vector2, speed:float, delta:float):
+func ratMove(swarmVelocity:Vector2, speed:float, delta:float, isRatClustered: bool):
 	var desiredGlobalPosition:Vector2 = getRatDesiredGlobalPosition(swarmVelocity, speed, delta)
 	var shouldAnimateTurn = moveAndSlideRat(desiredGlobalPosition, swarmVelocity, speed, delta)
 	animateRat(swarmVelocity, shouldAnimateTurn)
@@ -68,12 +74,12 @@ func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, spee
 			sitStill(swarmVelocity)
 			return false
 		RatState.RETURNING:
-			return moveToPosition(startingPosition, speed, delta)
+			return moveToPosition(defaultPosition, speed, delta)
 		RatState.FOLLOWING:
 			var desiredGlobalVelocity:Vector2 = desiredGlobalPosition
 			# If still, move rats to starting position
 			if(swarmVelocity == Vector2.ZERO && desiredGlobalVelocity == Vector2.ZERO):
-				return moveToPosition(startingPosition, speed, delta)
+				return moveToPosition(defaultPosition, speed, delta)
 			else:
 				velocity = desiredGlobalVelocity - swarmVelocity
 				move_and_slide()
@@ -85,7 +91,7 @@ func setRateState():
 	if (currentRatState == RatState.SITTING && position.distance_to(Vector2.ZERO) < DISTANCE_FROM_PACK_TO_START_RETURING):
 		currentRatState = RatState.RETURNING
 
-	if (currentRatState == RatState.RETURNING && position.distance_to(startingPosition) < DISTANCE_FROM_PACK_TO_BE_MARKED_AS_RETURNED):
+	if (currentRatState == RatState.RETURNING && position.distance_to(defaultPosition) < DISTANCE_FROM_PACK_TO_BE_MARKED_AS_RETURNED):
 		currentRatState = RatState.FOLLOWING
 
 	if (currentRatState == RatState.FOLLOWING && position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
@@ -99,14 +105,14 @@ func sitStill(swarmVelocity:Vector2):
 
 # Returns true if trurn should be animated, false if not
 func moveToPosition(desiredPosition:Vector2, speed:float, delta:float) -> bool:
-	var vectorToDesiredPosition = startingPosition - position
+	var vectorToDesiredPosition = desiredPosition - position
 	velocity = vectorToDesiredPosition.normalized() * speed
 	if vectorToDesiredPosition.length() > 5:
 		move_and_slide()
 		return true
 	else:
 		# Move back to starting position when rat and frame isn't moving
-		position = position.move_toward(startingPosition, speed * delta)
+		position = position.move_toward(desiredPosition, speed * delta)
 		return false
 
 # GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack)
