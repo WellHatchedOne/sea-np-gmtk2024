@@ -17,19 +17,16 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="TextureReact" type="TextureRect" parent="PausePopup"]
-layout_mode = 0
 offset_right = 1280.0
 offset_bottom = 720.0
 texture = ExtResource("2_awsrq")
 
 [node name="MarginContainer" type="MarginContainer" parent="PausePopup"]
-layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="HoverIconResume" type="TextureRect" parent="PausePopup"]
 visible = false
-layout_mode = 0
 offset_left = 520.0
 offset_top = 328.0
 offset_right = 565.0
@@ -38,7 +35,6 @@ expand_mode = 3
 
 [node name="HoverIconQuit" type="TextureRect" parent="PausePopup"]
 visible = false
-layout_mode = 0
 offset_left = 520.0
 offset_top = 400.0
 offset_right = 565.0
@@ -47,7 +43,6 @@ expand_mode = 3
 
 [node name="HoverIconRatabase" type="TextureRect" parent="PausePopup"]
 visible = false
-layout_mode = 0
 offset_left = 520.0
 offset_top = 365.0
 offset_right = 565.0
@@ -55,7 +50,6 @@ offset_bottom = 395.0
 expand_mode = 3
 
 [node name="ButtonHolder" type="HBoxContainer" parent="PausePopup"]
-layout_mode = 0
 offset_left = 564.0
 offset_top = 328.0
 offset_right = 732.0
