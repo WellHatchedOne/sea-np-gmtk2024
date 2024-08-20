@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://dqpxbwjydjsp3"]
+[gd_scene load_steps=18 format=3 uid="uid://dqpxbwjydjsp3"]
 
 [ext_resource type="Texture2D" uid="uid://bdeysjv5b2dqi" path="res://assets/Rat/fire_rat/Fire_Rat_Down-1.png" id="1_h1dga"]
 [ext_resource type="Texture2D" uid="uid://dstxi1to8abo1" path="res://assets/Rat/fire_rat/Fire_Rat_Down-2.png" id="2_g8qfq"]
@@ -8,12 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://x4jo6nm2ktk6" path="res://assets/Rat/fire_rat/fire_rat_side2.png" id="6_17cee"]
 [ext_resource type="Texture2D" uid="uid://dtdo73hb62h7k" path="res://assets/Rat/fire_rat/fire_rat_side3.png" id="7_oydcs"]
 [ext_resource type="Texture2D" uid="uid://bdu5cbw8vvdy2" path="res://assets/Rat/fire_rat/fire_rat_side4.png" id="8_crguy"]
-[ext_resource type="Texture2D" uid="uid://c3hccj5uje4wi" path="res://assets/Rat/fire_rat/Fire_Rat_Sitting.png" id="9_2d2hp"]
+[ext_resource type="Texture2D" uid="uid://caluc15ii0jeg" path="res://assets/Rat/fire_rat/Fire_Rat_Sitting.png" id="9_2d2hp"]
 [ext_resource type="Texture2D" uid="uid://cymp8ate6aat5" path="res://assets/Rat/fire_rat/fire_rat_up1.png" id="9_hofw2"]
 [ext_resource type="Texture2D" uid="uid://i3mkbbfpo6mv" path="res://assets/Rat/fire_rat/fire_rat_up2.png" id="10_g4l31"]
 [ext_resource type="Texture2D" uid="uid://d0mip84d8m35i" path="res://assets/Rat/fire_rat/fire_rat_up3.png" id="11_tsqq0"]
 [ext_resource type="Texture2D" uid="uid://dvi3rn0vqp67q" path="res://assets/Rat/fire_rat/fire_rat_up4.png" id="12_eh1vu"]
 [ext_resource type="Texture2D" uid="uid://bei2tmhinkgoo" path="res://assets/RatAbilities/Fire_potion.png" id="13_c7p2n"]
+[ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_1gpjg"]
+[ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="16_xpigi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -85,3 +87,25 @@ animation = &"sitting"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("13_c7p2n")
+
+[node name="RatAbilityController" parent="." instance=ExtResource("15_1gpjg")]
+bullet_speed = 720.0
+
+[node name="BulletOrigin" parent="RatAbilityController" index="0"]
+visible = true
+
+[node name="BulletDestination" parent="RatAbilityController" index="1"]
+visible = true
+position = Vector2(680, -330)
+bullet_speed = 650.0
+
+[node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_xpigi")]
+position = Vector2(370, -1480)
+bullet_speed = 650.0
+
+[node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
+wait_time = 0.5
+
+[editable path="RatAbilityController"]
+[editable path="RatAbilityController/BulletDestination"]
+[editable path="RatAbilityController/BulletDestination2"]

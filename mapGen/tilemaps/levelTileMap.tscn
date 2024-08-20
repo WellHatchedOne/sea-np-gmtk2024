@@ -6,4 +6,11 @@
 [node name="LevelTileMap" type="TileMap"]
 tile_set = ExtResource("1_w46rg")
 format = 2
+layer_0/name = "BaseLayer"
+layer_1/name = "HorizontalPathWalls"
+layer_1/tile_data = PackedInt32Array()
+layer_2/name = "VerticalPathWalls"
+layer_2/tile_data = PackedInt32Array()
+layer_3/name = "Cosmetics"
+layer_3/tile_data = PackedInt32Array()
 script = ExtResource("2_7xh5x")

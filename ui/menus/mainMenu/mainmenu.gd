@@ -2,13 +2,15 @@ extends Control
 
 
 
-func _on_play_pressed():
+func _on_button_pressed():
 	get_tree().change_scene_to_file("res://cutscenes/OpeningCutscene.tscn")
 
-func _on_options_pressed():
+
+func _on_options_1_pressed():
 	get_tree().change_scene_to_file("res://ui/menus/optionsMenu/optionsMenu.tscn")
-	
-func _on_exit_pressed():
+	print("pressed")
+
+func _on_exit_1_pressed():
 	get_tree().quit()
 
 
@@ -32,3 +34,6 @@ func _on_options_mouse_entered():
 
 func _on_options_mouse_exited():
 	$HoverIconOptions.visible = false
+
+
+
