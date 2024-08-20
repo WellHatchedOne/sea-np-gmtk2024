@@ -29,6 +29,9 @@ func _ready():
 func getStartingPosition() -> Vector2:
 	return startingPosition
 
+func getRatState() -> RatState:
+	return currentRatState
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -71,12 +74,17 @@ func clusterOrUnclusterRat(isRatClustered:bool):
 			# First time we are clustering, so the rat needs to move to the new clustered position
 			# So we just set the state to "returning"
 			defaultPosition = clusterPosition
-			currentRatState = RatState.RETURNING
+			returnRatToDefaultPositionIfNotSitting()
 	else:
 		if defaultPosition != startingPosition:
 			# First time we are returning to starting position, so the rat need to move to the new clusted position
 			defaultPosition = startingPosition
-			currentRatState = RatState.RETURNING
+			returnRatToDefaultPositionIfNotSitting()
+
+# Makes the rat return to the default position if it's not currently siting
+func returnRatToDefaultPositionIfNotSitting():
+	if currentRatState != RatState.SITTING:
+		currentRatState = RatState.RETURNING
 
 func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float) -> Vector2:
 	# Push this frame's velocity onto our queue of time and position offsets
@@ -156,6 +164,7 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 		animated_sprite_2d.animation = "sitting"
 		animated_sprite_2d.rotation = (deg_to_rad(0))
 		self.rotation = (deg_to_rad(0))
+		animated_sprite_2d.offset = defaultRatOffset
 
 	if !shouldAnimateTurn:
 		return
