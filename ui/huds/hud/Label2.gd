@@ -19,9 +19,10 @@ func _process(delta):
 	score = owner.Player.ratnumber
 	#print(score)
 	
-	if score > 50:
+	if score > 49:
 		_activate()
 		track = true
+
 		
 func _activate():
 	text ="!FIND THE CAT!"
