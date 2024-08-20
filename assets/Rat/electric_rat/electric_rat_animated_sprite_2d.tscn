@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dg7n24ps1sdch"]
+[gd_scene load_steps=19 format=3 uid="uid://dg7n24ps1sdch"]
 
 [ext_resource type="Texture2D" uid="uid://cou4c8eo0cgi7" path="res://assets/Rat/electric_rat/Electric_Down-1.png" id="1_0ypqf"]
 [ext_resource type="Texture2D" uid="uid://cxofxhqp6uo8k" path="res://assets/Rat/electric_rat/Electric_Down-2.png" id="2_trgvv"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://cexmy2hfypscv" path="res://assets/RatAbilities/Electric_potion.png" id="13_nk618"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_uq1dg"]
 [ext_resource type="Texture2D" uid="uid://ou0u258gsuvj" path="res://assets/bullets/Electric-rat-projectile.png" id="16_iym4l"]
+[ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="17_vlhpl"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -92,9 +93,13 @@ visible = false
 bullet_speed = 15.0
 bullet_texture = ExtResource("16_iym4l")
 
+[node name="BulletOrigin" parent="RatAbilityController" index="0"]
+position = Vector2(10, 0)
+
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
-position = Vector2(-690, -1050)
+position = Vector2(440, -1060)
 fire_rate = 0.6
+bullet_speed = 15.0
 
 [node name="ColorRect" parent="RatAbilityController/BulletDestination" index="0"]
 visible = true
@@ -102,5 +107,18 @@ visible = true
 [node name="BulletSprite" parent="RatAbilityController/BulletDestination" index="1"]
 visible = true
 
+[node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("17_vlhpl")]
+visible = false
+position = Vector2(-690, -1050)
+fire_rate = 0.6
+bullet_speed = 15.0
+
+[node name="Area2D" parent="RatAbilityController/BulletDestination2" index="2"]
+visible = false
+
+[node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
+wait_time = 0.5
+
 [editable path="RatAbilityController"]
 [editable path="RatAbilityController/BulletDestination"]
+[editable path="RatAbilityController/BulletDestination2"]

@@ -90,21 +90,34 @@ animation = &"sitting"
 texture = ExtResource("13_c7p2n")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_1gpjg")]
+visible = false
+bullet_speed = 10.0
 bullet_texture = ExtResource("16_cmhhy")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
-position = Vector2(680, -330)
+position = Vector2(960, 580)
 fire_rate = 0.4
 bullet_speed = 10.0
 
 [node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_xpigi")]
 visible = false
-position = Vector2(370, -1480)
+position = Vector2(-1190, 590)
 fire_rate = 0.4
+bullet_speed = 10.0
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
+wait_time = 0.5
+
+[node name="BulletDestination3" parent="RatAbilityController" instance=ExtResource("16_xpigi")]
+visible = false
+position = Vector2(-180, -1690)
+fire_rate = 0.3
+bullet_speed = 10.0
+
+[node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination3"]
 wait_time = 0.5
 
 [editable path="RatAbilityController"]
 [editable path="RatAbilityController/BulletDestination"]
 [editable path="RatAbilityController/BulletDestination2"]
+[editable path="RatAbilityController/BulletDestination3"]
