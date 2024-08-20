@@ -12,12 +12,15 @@ var delay:float = 0
 var currentTimeOffset:float = 0
 var timeOffsetQueue:Array[float] = []
 var positionOffSetQueue:Array[Vector2] = []
+var defaultRatOffset = Vector2.ZERO
+var sideRatOffset = Vector2.ZERO
 
 var ratType = "basic"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	startingPosition = position
+	defaultRatOffset = animated_sprite_2d.offset
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -92,13 +95,15 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 	if globalRatVelocity.length() > 0:
 		animated_sprite_2d.play()
 	else:
-		animated_sprite_2d.stop()
+		animated_sprite_2d.pause()
 
 	if !shouldAnimateTurn:
 		return
 
 	if globalRatVelocity.x != 0:
 		animated_sprite_2d.animation = "side"
+		animated_sprite_2d.offset = sideRatOffset
+		print("settinge siderat offset = " + str(sideRatOffset))
 		animated_sprite_2d.flip_v = false
 		animated_sprite_2d.flip_h = globalRatVelocity.x < 0
 		if globalRatVelocity.x < 0:
@@ -110,6 +115,9 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 			animated_sprite_2d.rotation = deg_to_rad(-90)
 			self.rotation = (deg_to_rad(90))
 	elif globalRatVelocity.y != 0:
+		animated_sprite_2d.flip_v = false
+		animated_sprite_2d.flip_h = false
+		animated_sprite_2d.offset = defaultRatOffset
 		if globalRatVelocity.y > 0:
 			animated_sprite_2d.animation = "down"
 			last_state = "down"
