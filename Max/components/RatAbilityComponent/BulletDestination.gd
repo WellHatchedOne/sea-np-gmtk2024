@@ -48,7 +48,10 @@ func fire():
 	var new_bullet = BULLET.instantiate()
 	get_parent().get_parent().add_child(new_bullet)
 	new_bullet.isEnemyBullet = false
-	new_bullet.update_sprite(bullet_sprite.texture)
+	if get_parent().bullet_texture == null:
+		new_bullet.update_sprite(bullet_sprite.texture)
+	else:
+		new_bullet.update_sprite(get_parent().bullet_texture)
 	new_bullet.area_2d = generated_area_2d
 	var travel_direction = bullet_origin.position.direction_to(self.position)
 	new_bullet.start(bullet_origin.position)

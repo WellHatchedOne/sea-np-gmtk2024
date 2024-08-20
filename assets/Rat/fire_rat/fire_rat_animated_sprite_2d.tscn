@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dqpxbwjydjsp3"]
+[gd_scene load_steps=19 format=3 uid="uid://dqpxbwjydjsp3"]
 
 [ext_resource type="Texture2D" uid="uid://bdeysjv5b2dqi" path="res://assets/Rat/fire_rat/Fire_Rat_Down-1.png" id="1_h1dga"]
 [ext_resource type="Texture2D" uid="uid://dstxi1to8abo1" path="res://assets/Rat/fire_rat/Fire_Rat_Down-2.png" id="2_g8qfq"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://dvi3rn0vqp67q" path="res://assets/Rat/fire_rat/fire_rat_up4.png" id="12_eh1vu"]
 [ext_resource type="Texture2D" uid="uid://bei2tmhinkgoo" path="res://assets/RatAbilities/Fire_potion.png" id="13_c7p2n"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_1gpjg"]
+[ext_resource type="Texture2D" uid="uid://5g5jphkbuv7x" path="res://assets/bullets/Fire_Projectile_60px.png" id="16_cmhhy"]
 [ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="16_xpigi"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
@@ -89,6 +90,7 @@ animation = &"sitting"
 texture = ExtResource("13_c7p2n")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_1gpjg")]
+bullet_texture = ExtResource("16_cmhhy")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(680, -330)
