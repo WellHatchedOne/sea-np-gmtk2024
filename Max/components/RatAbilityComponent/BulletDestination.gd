@@ -44,7 +44,7 @@ func _fire_rate_timer():
 
 func fire():
 	var new_bullet = BULLET.instantiate()
-	bullet_origin.add_child(new_bullet)
+	owner.add_child(new_bullet)
 	new_bullet.update_sprite(bullet_sprite.texture)
 	new_bullet.area_2d = generated_area_2d
 	var travel_direction = bullet_origin.position.direction_to(self.position)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b32e7nkyfmr3k"]
+[gd_scene load_steps=20 format=3 uid="uid://b32e7nkyfmr3k"]
 
 [ext_resource type="Script" path="res://rat.gd" id="1_00nxb"]
 [ext_resource type="Texture2D" uid="uid://3rlb5dps5bck" path="res://assets/Rat/base_rat/base_rat_down1.png" id="2_sn3oa"]
@@ -12,6 +12,7 @@
 [ext_resource type="Script" path="res://modifiers/Damageable.gd" id="9_2svmp"]
 [ext_resource type="PackedScene" uid="uid://dvhvt4iv1h3ii" path="res://modifiers/biteAttacker.tscn" id="10_5utx7"]
 [ext_resource type="Texture2D" uid="uid://kmp52xyoquud" path="res://assets/Rat/base_rat/base_rat_up1.png" id="10_6wxns"]
+[ext_resource type="Texture2D" uid="uid://dxegpdwqx4ext" path="res://assets/Rat/base_rat/OG_rat_sit-1.png" id="10_amxk5"]
 [ext_resource type="Texture2D" uid="uid://hmimbs3ynw0d" path="res://assets/Rat/base_rat/base_rat_up2.png" id="11_ucp6u"]
 [ext_resource type="Texture2D" uid="uid://cgxrh7evopryo" path="res://assets/Rat/base_rat/base_rat_up3.png" id="12_8akjo"]
 [ext_resource type="Texture2D" uid="uid://bww6dwi0digwf" path="res://assets/Rat/base_rat/base_rat_up4.png" id="13_furcd"]
@@ -34,7 +35,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 16.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -52,6 +53,14 @@ animations = [{
 "loop": true,
 "name": &"side",
 "speed": 10.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_amxk5")
+}],
+"loop": true,
+"name": &"sitting",
+"speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -83,7 +92,7 @@ script = ExtResource("1_00nxb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
-animation = &"up"
+animation = &"sitting"
 offset = Vector2(160, 160)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

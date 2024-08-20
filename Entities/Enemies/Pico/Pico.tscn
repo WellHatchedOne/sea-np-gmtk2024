@@ -1,0 +1,154 @@
+[gd_scene load_steps=24 format=3 uid="uid://tcfwnvil5de1"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_r80nt"]
+[ext_resource type="Texture2D" uid="uid://b674xqnf6ei5y" path="res://assets/enemies/pico/AOE/Cat_Boss_AOE_attack-2.png" id="2_oxb5y"]
+[ext_resource type="Texture2D" uid="uid://bmhty8mjgss83" path="res://assets/enemies/pico/AOE/Cat_Boss_AOE_attack-3.png" id="3_8ys4t"]
+[ext_resource type="Texture2D" uid="uid://50j7ia66fisl" path="res://assets/enemies/pico/Cat_Boss_Attack-1.png" id="4_eaaq1"]
+[ext_resource type="Texture2D" uid="uid://c351qcyjn6wln" path="res://assets/enemies/pico/Cat_Boss_Attack-2.png" id="5_0gmso"]
+[ext_resource type="Texture2D" uid="uid://ceh4rfnrtq5v2" path="res://assets/enemies/pico/Cat_Boss_Attack-3.png" id="6_s3pxp"]
+[ext_resource type="Texture2D" uid="uid://d23dpgkxrtgqj" path="res://assets/enemies/pico/Ranged/Cat_Boss_Ranged_attack-1.png" id="7_7newt"]
+[ext_resource type="Texture2D" uid="uid://qbs4vnocob3v" path="res://assets/enemies/pico/Cat_Boss_Attack-4.png" id="8_xmpkj"]
+[ext_resource type="Texture2D" uid="uid://moclkjx235a1" path="res://assets/enemies/pico/Cat_Boss_Death-1.png" id="9_lkyyr"]
+[ext_resource type="Texture2D" uid="uid://sr327rkb6myf" path="res://assets/enemies/pico/Cat_Boss_Death-2.png" id="10_r4j3c"]
+[ext_resource type="Texture2D" uid="uid://cck7oj1uo2dom" path="res://assets/enemies/pico/Cat_Boss_Death-3.png" id="11_jw3b3"]
+[ext_resource type="Texture2D" uid="uid://d1msgdm426oyq" path="res://assets/enemies/pico/Cat_Boss_Death-4.png" id="12_ir5ul"]
+[ext_resource type="Texture2D" uid="uid://mru5xu16p77w" path="res://assets/enemies/pico/Cat_Boss_Death-5.png" id="13_t8k2t"]
+[ext_resource type="Texture2D" uid="uid://c0llmaohd84qa" path="res://assets/enemies/pico/Cat_Boss_Death-6.png" id="14_lqarh"]
+[ext_resource type="Texture2D" uid="uid://c5726nsfujyhx" path="res://assets/enemies/pico/Cat_Boss_Death-7.png" id="15_8d8k5"]
+[ext_resource type="Texture2D" uid="uid://b8blshe5vbsbl" path="res://assets/enemies/pico/Cat_Boss_Death-8.png" id="16_1nonw"]
+[ext_resource type="Texture2D" uid="uid://cma4a5ftb0rca" path="res://assets/enemies/pico/Cat_Boss_Damage-1.png" id="17_tk7j6"]
+[ext_resource type="Texture2D" uid="uid://86mwepmxdx3p" path="res://assets/enemies/pico/Cat_Boss_Damage-2.png" id="18_b2m56"]
+[ext_resource type="Texture2D" uid="uid://dxhxqyfr7vpip" path="res://assets/enemies/pico/Cat_Boss_Damage-3.png" id="19_tf6wr"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="20_bybmv"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="21_3a5bf"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_oxb5y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8ys4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8ys4t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_8ys4t")
+}],
+"loop": true,
+"name": &"AOE",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eaaq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0gmso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s3pxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_7newt")
+}],
+"loop": true,
+"name": &"Ranged",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eaaq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0gmso")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_s3pxp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_xmpkj")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_lkyyr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_r4j3c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_jw3b3")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_ir5ul")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_t8k2t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_lqarh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_8d8k5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_1nonw")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("17_tk7j6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("18_b2m56")
+}, {
+"duration": 1.0,
+"texture": ExtResource("19_tf6wr")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eaaq1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_0gmso")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf1lu"]
+radius = 9.0
+height = 26.0
+
+[node name="Pico" type="CharacterBody2D"]
+script = ExtResource("1_r80nt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-1.42109e-14, -1.42109e-14)
+scale = Vector2(0.0254384, 0.0254384)
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"death"
+frame_progress = 0.367458
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 0)
+shape = SubResource("CapsuleShape2D_kf1lu")
+
+[node name="HealthComponent" parent="." instance=ExtResource("20_bybmv")]
+
+[node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_3a5bf")]
+enemy_radius = 100.0
