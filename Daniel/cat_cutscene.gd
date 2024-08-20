@@ -3,6 +3,12 @@ extends Node2D
 
 
 func _ready():
+	pass
+	
+	
+	
+	
+func _startcutscene():
 	$AnimationPlayercat.play()
 	print("Play")
 	$Timer.start()
