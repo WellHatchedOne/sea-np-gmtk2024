@@ -1,9 +1,10 @@
-[gd_scene load_steps=12 format=3 uid="uid://n6dyu1f44o7"]
+[gd_scene load_steps=18 format=3 uid="uid://n6dyu1f44o7"]
 
 [ext_resource type="Script" path="res://cutscenes/OpeningCutscene.gd" id="1_yf2hw"]
 [ext_resource type="Texture2D" uid="uid://bb45a36lvi5ma" path="res://cutscenes/assets/Shrunk rat image.png" id="2_ty7lq"]
-[ext_resource type="Texture2D" uid="uid://b5y2wg1hld7p2" path="res://cutscenes/assets/pOWER-DISCOVERY-SCENE.png" id="3_l246a"]
+[ext_resource type="Texture2D" uid="uid://c1pak30678iwu" path="res://cutscenes/assets/Powers_discovery_scene.png" id="3_nvl55"]
 [ext_resource type="Texture2D" uid="uid://8frll1wktsjo" path="res://cutscenes/assets/GainPowerSpriteSheet.png" id="3_sxiqr"]
+[ext_resource type="Texture2D" uid="uid://dv45q08xrjifx" path="res://cutscenes/assets/RatMovingSpriteSheet.png" id="5_1nslj"]
 [ext_resource type="AudioStream" uid="uid://odjwx5eugfc8" path="res://assets/Music/tune0.wav" id="5_iq61a"]
 
 [sub_resource type="Animation" id="Animation_f1ff1"]
@@ -16,10 +17,10 @@ tracks/0/path = NodePath("Scenes/ShrunkRat:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(2, 4),
+"times": PackedFloat32Array(3, 6),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(255, 51), Vector2(155, 51)]
+"values": [Vector2(1528, -128), Vector2(782, 192.22)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -28,32 +29,32 @@ tracks/1/path = NodePath("Scenes/ShrunkRat:modulate")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(2, 4.1),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(3, 6),
+"transitions": PackedFloat32Array(3.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Scenes/PlaceHolder1:position")
+tracks/2/path = NodePath("Scenes/PowerDiscovery:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(4, 6),
+"times": PackedFloat32Array(6, 9),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-50, 154), Vector2(52, 154)]
+"values": [Vector2(-159, 779), Vector2(154, 516.35)]
 }
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Scenes/PlaceHolder1:modulate")
+tracks/3/path = NodePath("Scenes/PowerDiscovery:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(4, 6),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(6, 9),
+"transitions": PackedFloat32Array(3.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
@@ -64,10 +65,10 @@ tracks/4/path = NodePath("Scenes/GainPower:position")
 tracks/4/interp = 1
 tracks/4/loop_wrap = true
 tracks/4/keys = {
-"times": PackedFloat32Array(0, 2),
+"times": PackedFloat32Array(0, 3),
 "transitions": PackedFloat32Array(1, 1),
 "update": 0,
-"values": [Vector2(-50, 51), Vector2(52, 51)]
+"values": [Vector2(-50, 51), Vector2(210, 194)]
 }
 tracks/5/type = "value"
 tracks/5/imported = false
@@ -76,34 +77,46 @@ tracks/5/path = NodePath("Scenes/GainPower:modulate")
 tracks/5/interp = 1
 tracks/5/loop_wrap = true
 tracks/5/keys = {
-"times": PackedFloat32Array(0, 2),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 3),
+"transitions": PackedFloat32Array(3.5, 1),
 "update": 0,
 "values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
 }
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Scenes/PlaceHolder2:position")
+tracks/6/path = NodePath("Scenes/RatMoving:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
-"times": PackedFloat32Array(6, 8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(9, 12.1, 14, 14.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(255, 153.97), Vector2(155, 154)]
+"values": [Vector2(-4, -111), Vector2(72, 531), Vector2(292, 669), Vector2(617, 515)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Scenes/PlaceHolder2:modulate")
+tracks/7/path = NodePath("Scenes/RatMoving:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
-"times": PackedFloat32Array(6, 8),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(9, 12.1, 13.2, 14, 14.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
 "update": 0,
-"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+"values": [1.31947, 1.2514, -0.161059, -0.710349, 0.0]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Scenes/RatMoving:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(9, 13.2, 14.9),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0.05, 0.05), Vector2(0.191346, 0.191346), Vector2(0.35, 0.35)]
 }
 
 [sub_resource type="Animation" id="Animation_iefap"]
@@ -135,7 +148,7 @@ tracks/1/keys = {
 tracks/2/type = "value"
 tracks/2/imported = false
 tracks/2/enabled = true
-tracks/2/path = NodePath("Scenes/PlaceHolder1:position")
+tracks/2/path = NodePath("Scenes/PowerDiscovery:position")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
@@ -147,7 +160,7 @@ tracks/2/keys = {
 tracks/3/type = "value"
 tracks/3/imported = false
 tracks/3/enabled = true
-tracks/3/path = NodePath("Scenes/PlaceHolder1:modulate")
+tracks/3/path = NodePath("Scenes/PowerDiscovery:modulate")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
@@ -183,26 +196,38 @@ tracks/5/keys = {
 tracks/6/type = "value"
 tracks/6/imported = false
 tracks/6/enabled = true
-tracks/6/path = NodePath("Scenes/PlaceHolder2:position")
+tracks/6/path = NodePath("Scenes/RatMoving:position")
 tracks/6/interp = 1
 tracks/6/loop_wrap = true
 tracks/6/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(155, 154)]
+"values": [Vector2(617, 515)]
 }
 tracks/7/type = "value"
 tracks/7/imported = false
 tracks/7/enabled = true
-tracks/7/path = NodePath("Scenes/PlaceHolder2:modulate")
+tracks/7/path = NodePath("Scenes/RatMoving:rotation")
 tracks/7/interp = 1
 tracks/7/loop_wrap = true
 tracks/7/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Color(1, 1, 1, 1)]
+"values": [0.331613]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Scenes/RatMoving:scale")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0.35, 0.35)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_wf7bm"]
@@ -229,7 +254,43 @@ animations = [{
 "texture": SubResource("AtlasTexture_vqcei")
 }],
 "loop": true,
-"name": &"default",
+"name": &"GainPower",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2cy60"]
+atlas = ExtResource("5_1nslj")
+region = Rect2(91, 0, 1507, 707)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7agm"]
+atlas = ExtResource("5_1nslj")
+region = Rect2(1598, 0, 1507, 707)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_meqio"]
+atlas = ExtResource("5_1nslj")
+region = Rect2(91, 707, 1507, 707)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4h5op"]
+atlas = ExtResource("5_1nslj")
+region = Rect2(1598, 707, 1507, 707)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_f14qj"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2cy60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7agm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_meqio")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4h5op")
+}],
+"loop": true,
+"name": &"RatMoving",
 "speed": 5.0
 }]
 
@@ -246,32 +307,35 @@ autoplay = "OpeningCutscene"
 
 [node name="ShrunkRat" type="Sprite2D" parent="Scenes"]
 position = Vector2(255, 51)
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.360363, 0.187152)
 texture = ExtResource("2_ty7lq")
 
-[node name="PlaceHolder1" type="Sprite2D" parent="Scenes"]
+[node name="PowerDiscovery" type="Sprite2D" parent="Scenes"]
 modulate = Color(1, 1, 1, 0)
 position = Vector2(-50, 156)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("3_l246a")
+scale = Vector2(0.15, 0.128564)
+texture = ExtResource("3_nvl55")
 
 [node name="GainPower" type="AnimatedSprite2D" parent="Scenes"]
 position = Vector2(-50, 51)
-scale = Vector2(0.205, 0.205)
+scale = Vector2(0.844, 0.766832)
 sprite_frames = SubResource("SpriteFrames_14het")
-frame_progress = 0.106845
+animation = &"GainPower"
 speed_scale = 0.75
 
-[node name="PlaceHolder2" type="Sprite2D" parent="Scenes"]
-position = Vector2(155, 154)
-scale = Vector2(0.05, 0.05)
-texture = ExtResource("3_l246a")
+[node name="RatMoving" type="AnimatedSprite2D" parent="Scenes"]
+position = Vector2(617, 515)
+rotation = 0.331613
+scale = Vector2(0.35, 0.35)
+sprite_frames = SubResource("SpriteFrames_f14qj")
+animation = &"RatMoving"
+frame_progress = 0.582536
 
 [node name="Button" type="Button" parent="."]
-offset_left = 109.0
-offset_top = 181.0
-offset_right = 212.0
-offset_bottom = 212.0
+offset_left = 939.0
+offset_top = 504.0
+offset_right = 1042.0
+offset_bottom = 535.0
 text = "Start Escape"
 metadata/_edit_use_anchors_ = true
 
