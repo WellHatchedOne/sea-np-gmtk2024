@@ -12,7 +12,9 @@ func _on_options_1_pressed():
 
 func _on_exit_1_pressed():
 	get_tree().quit()
-
+	
+func _on_credits_pressed():
+	get_tree().change_scene_to_file("res://ui/menus/CreditsMenu/credits.tscn")
 
 func _on_exit_mouse_entered():
 	$HoverIconExit.visible = true
@@ -34,6 +36,9 @@ func _on_options_mouse_entered():
 
 func _on_options_mouse_exited():
 	$HoverIconOptions.visible = false
+
+
+
 
 
 

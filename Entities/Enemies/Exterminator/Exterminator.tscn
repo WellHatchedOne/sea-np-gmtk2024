@@ -68,6 +68,7 @@ size = Vector2(113, 174.5)
 collision_layer = 128
 collision_mask = 5
 script = ExtResource("1_kr6yv")
+vel = 80.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.999992, -7.62939e-06)
@@ -87,7 +88,8 @@ enemy_radius = 200.0
 
 [node name="ShootAtTargetComponent" parent="." instance=ExtResource("22_ndrlh")]
 visible = false
-bullet_speed = 10.0
+vision_radius = 220.0
+bullet_speed = 7.0
 texture_for_bullet = ExtResource("12_hsu5w")
 
 [node name="KillRatOnContactComponent" parent="." instance=ExtResource("23_ueslw")]
