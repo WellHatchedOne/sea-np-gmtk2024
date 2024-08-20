@@ -1,8 +1,7 @@
 extends CharacterBody2D
-class_name CheetoGerm
-
-@onready var move_at_target_component = $MoveAtTargetComponent
+class_name Pico
 @onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var move_at_target_component = $MoveAtTargetComponent
 
 @export var should_move: bool = true
 @export var vel: float = 100

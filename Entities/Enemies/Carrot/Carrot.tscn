@@ -1,6 +1,6 @@
 [gd_scene load_steps=21 format=3 uid="uid://c0vrmwdswvj5u"]
 
-[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_ew6hu"]
+[ext_resource type="Script" path="res://Entities/Enemies/Carrot/Carrot.gd" id="1_c6kyv"]
 [ext_resource type="Texture2D" uid="uid://e310xm1buun3" path="res://assets/enemies/carrot/Carrot_Attack-1.png" id="2_7r272"]
 [ext_resource type="Texture2D" uid="uid://1p7ncr0pytu0" path="res://assets/enemies/carrot/Carrot_Attack-2.png" id="3_84ocr"]
 [ext_resource type="Texture2D" uid="uid://8vir1cb6v1bg" path="res://assets/enemies/carrot/Carrot_Attack-3.png" id="4_x3jcw"]
@@ -92,7 +92,7 @@ radius = 17.0
 height = 54.0
 
 [node name="Carrot" type="CharacterBody2D"]
-script = ExtResource("1_ew6hu")
+script = ExtResource("1_c6kyv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(0.107814, -1.42109e-14)
