@@ -7,6 +7,8 @@ const FOOD = preload("res://Grace/food.tscn")
 var parent_collision: CollisionShape2D = null
 @onready var collision_shape_2d = $CollisionShape2D
 
+const EXTERMINATOR_DEATH_2 = preload("res://Entities/Enemies/Exterminator/Exterminator_Death-2.png")
+
 func _ready():
 	for child in get_parent().get_children():
 		if child is CollisionShape2D:
@@ -25,6 +27,13 @@ func take_damage(damage: float):
 		get_parent().get_parent().add_child(new_food_drop)
 		if get_parent() is Pico:
 			go_to_next_level()
+		elif get_parent() is Exterminator:
+			var death_sprite = Sprite2D.new()
+			death_sprite.texture = EXTERMINATOR_DEATH_2
+			death_sprite.global_position = self.global_position
+			death_sprite.scale.x = 0.05
+			death_sprite.scale.y = 0.05
+			get_parent().get_parent().add_child(death_sprite)
 		get_parent().queue_free()
 
 func go_to_next_level():
