@@ -23,19 +23,18 @@ func _process(delta):
 		_activate()
 		firstplay = false
 		$Timer.start()
-		
-	else:
-		_deactivate()
 
-		
+
 func _activate():
 	text ="YOU WIN"
 	animation_player.play()
+
+func _on_timer_timeout():
+	_deactivate()
 	
 func _deactivate():
-	pass
-	#text = ""
-	#animation_player.stop()
+	text = ""
+	animation_player.stop()
 
 func  getPlayerTarget() -> float:
 	return getLevelNode().getPlayerTarget()
@@ -47,6 +46,4 @@ func getLevelNode() -> Level:
 	return get_parent().get_parent().get_parent().get_node("Level")
 
 
-func _on_timer_timeout():
-	text= "YOU WIN"
-	_deactivate()
+
