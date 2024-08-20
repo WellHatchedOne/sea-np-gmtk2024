@@ -3,8 +3,8 @@ extends Node2D
 
 
 func _ready():
-	pass
-	
+	print("readyplay")
+	_startcutscene()
 	
 	
 	
