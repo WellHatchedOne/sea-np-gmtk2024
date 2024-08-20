@@ -302,6 +302,7 @@ libraries = {
 "": SubResource("AnimationLibrary_wf7bm")
 }
 autoplay = "OpeningCutscene"
+speed_scale = 3.0
 
 [node name="Scenes" type="Node2D" parent="."]
 
