@@ -15,7 +15,7 @@ func _ready():
 	
 func _process(delta):
 	score = owner.Player.ratnumber
-	text = str(score) + "/50 RATS"
+	text = str(score) + "/" + str(getPlayerTarget()) + " RATS"
 	if score < 5 :
 		red = Color(1.0,0.0,0.0,1.0)
 		set("theme_override_colors/font_color",red)
@@ -25,4 +25,12 @@ func _process(delta):
 	if score > 40:
 		green = Color(0, 1, 0, 1)
 		set("theme_override_colors/font_color",green)
-	
+
+func  getPlayerTarget() -> float:
+	return getLevelNode().getPlayerTarget()
+
+func getPlayerLevel() -> float:
+	return getLevelNode().playerLevel
+
+func getLevelNode() -> Level:
+	return get_parent().get_parent().get_parent().get_node("Level")

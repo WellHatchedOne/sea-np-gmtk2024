@@ -4,7 +4,7 @@ class_name BulletDestination
 const BULLET = preload("res://Max/enemy/Bullet.tscn")
 
 @export_range(0,2,0.01) var fire_rate: float = 0.5
-@export_range(0,1000,5) var bullet_speed: float = 5
+@export_range(0,40,0.5) var bullet_speed: float = 5
 @export_range(0,20,0.25) var bullet_lifetime_seconds: float = 3
 @export var bullet_sprite_file: Sprite2D = null
 @onready var bullet_sprite = $BulletSprite

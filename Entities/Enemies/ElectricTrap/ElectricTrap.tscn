@@ -1,11 +1,14 @@
-[gd_scene load_steps=10 format=3 uid="uid://kbcydv2chqvf"]
+[gd_scene load_steps=13 format=3 uid="uid://kbcydv2chqvf"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/ElectricTrap/ElectricTrap.gd" id="1_boyqb"]
 [ext_resource type="Texture2D" uid="uid://bq5sbg6sxakdr" path="res://assets/enemies/electricTrap/Electric_trap_idle1.png" id="2_7cjwg"]
 [ext_resource type="Texture2D" uid="uid://bupnsten4gfi" path="res://assets/enemies/electricTrap/Electric_trap_idle2.png" id="3_coke8"]
 [ext_resource type="Texture2D" uid="uid://bkyf52ld21n65" path="res://assets/enemies/electricTrap/Electric_trap_idle3.png" id="4_dgqxi"]
+[ext_resource type="Texture2D" uid="uid://b0km01de573tx" path="res://assets/enemies/electricTrap/Electric_Trap-1.png" id="5_hspes"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="5_lw4v2"]
 [ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="6_5rweh"]
+[ext_resource type="Texture2D" uid="uid://c3ywdqasv6ypi" path="res://assets/enemies/electricTrap/Electric_Trap-2.png" id="6_jthgl"]
+[ext_resource type="Texture2D" uid="uid://cw2qt3yi6slgy" path="res://assets/enemies/electricTrap/Electric_Trap-3.png" id="7_ejmua"]
 [ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="7_fgt2s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
@@ -19,6 +22,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_dgqxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hspes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jthgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ejmua")
 }],
 "loop": false,
 "name": &"attack",
@@ -33,6 +45,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_dgqxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hspes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jthgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ejmua")
 }],
 "loop": true,
 "name": &"death",
@@ -47,6 +68,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_dgqxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hspes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jthgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ejmua")
 }],
 "loop": true,
 "name": &"hurt",
@@ -61,6 +91,15 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": ExtResource("4_dgqxi")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_hspes")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_jthgl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_ejmua")
 }],
 "loop": true,
 "name": &"idle",
@@ -80,7 +119,7 @@ should_move = false
 position = Vector2(2.38419e-07, 0)
 scale = Vector2(0.0958312, 0.0958312)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
-animation = &"attack"
+animation = &"idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0, 3.5)

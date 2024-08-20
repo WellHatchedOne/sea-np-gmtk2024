@@ -88,10 +88,18 @@ animation = &"up"
 texture = ExtResource("13_nk618")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_uq1dg")]
+visible = false
 bullet_texture = ExtResource("16_iym4l")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-690, -1050)
+fire_rate = 0.6
+
+[node name="ColorRect" parent="RatAbilityController/BulletDestination" index="0"]
+visible = true
+
+[node name="BulletSprite" parent="RatAbilityController/BulletDestination" index="1"]
+visible = true
 
 [editable path="RatAbilityController"]
 [editable path="RatAbilityController/BulletDestination"]

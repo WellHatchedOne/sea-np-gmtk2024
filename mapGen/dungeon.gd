@@ -4,7 +4,9 @@ class_name Dungeon
 const LEVEL = preload("res://mapGen/level.tscn")
 var levelPointer : Level = null
 var debug = true
-var currentLevel = 1
+
+var currentLevel = 0
+
 
 func _ready():
 	load_new_level(currentLevel)
@@ -29,7 +31,7 @@ func _input(event):
 		load_new_level(2)
 
 func load_next_level():
-	load_new_level((currentLevel + 1) % 3)
+	load_new_level(currentLevel + 1)
 
 func load_new_level(levelNum : int):
 	currentLevel = levelNum
@@ -41,7 +43,8 @@ func load_new_level(levelNum : int):
 		print("No Level child found")
 		
 	var level = LEVEL.instantiate()
-	level.tilemapAtlasId = levelNum
+	level.tilemapAtlasId = levelNum % 3
+	level.playerLevel = levelNum + 1
 	get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
 	levelPointer = level
 	print("SpawnPoint: " + str(level.spawnPoint))
