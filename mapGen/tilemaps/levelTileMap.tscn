@@ -6,4 +6,5 @@
 [node name="LevelTileMap" type="TileMap"]
 tile_set = ExtResource("1_w46rg")
 format = 2
+layer_1/tile_data = PackedInt32Array()
 script = ExtResource("2_7xh5x")

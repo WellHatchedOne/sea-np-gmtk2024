@@ -9,7 +9,13 @@ const RAT_CLUSTERED_DISTANCE:float = RAT_EXPANDED_DISTANCE / 3
 const RAT_DELAY_MULTIPLICATIVE_MODIFIER:float = .002
 const RAT_DELAY_RANDOM_MODIFIER:float = .3
 const RAT = preload("res://rat.tscn")
+const MAX_TIME_FOR_RAT_SWARM_MS:int = 1.5 * 1000
+const TIME_OUT_FOR_RAT_SWARM_MS:float = 3 * 1000
 @onready var pack_collision_circle = $CollisionShape2D
+
+var isRatClustred = false
+var lastClusterEndTime = -1
+var currentClusterStartTime = -1
 #signal ratsignal
 var current_radius = 0
 var alpha_rat = Rat
@@ -36,7 +42,46 @@ func move_rats(delta, areRatsClustered:bool):
 		rat.ratMove(velocity, speed, delta, areRatsClustered)
 
 func areRatsClustered() -> bool:
-	return Input.is_action_pressed("cluster_rats")
+	if Input.is_action_just_pressed("cluster_rats"):
+		if lastClusterEndTime < 0 || Time.get_ticks_msec() - lastClusterEndTime > TIME_OUT_FOR_RAT_SWARM_MS:
+			currentClusterStartTime = Time.get_ticks_msec()
+			isRatClustred = true
+		else:
+			isRatClustred = false
+	if Input.is_action_just_released("cluster_rats"):
+		if isRatClustred:
+			isRatClustred = false
+			lastClusterEndTime = Time.get_ticks_msec()
+
+	if isRatClustred:
+		if Time.get_ticks_msec() - currentClusterStartTime > MAX_TIME_FOR_RAT_SWARM_MS:
+			print("end cluster3")
+			isRatClustred = false
+			lastClusterEndTime = Time.get_ticks_msec()
+
+	return isRatClustred
+
+func getRatClusterCooldownPercentage() -> float:
+	# Show cooldown for when we can start again
+	if isRatClustred:
+		if currentClusterStartTime < 0:
+			return 100
+		else:
+			var timeClustered = Time.get_ticks_msec() - currentClusterStartTime
+			if timeClustered > MAX_TIME_FOR_RAT_SWARM_MS:
+				return 0
+			else:
+				var timeLeft:float = MAX_TIME_FOR_RAT_SWARM_MS - timeClustered
+				return timeLeft / MAX_TIME_FOR_RAT_SWARM_MS * 100
+	else:
+		if lastClusterEndTime < 0:
+			return 100
+		else:
+			var timeSinceLastCluster = Time.get_ticks_msec() - lastClusterEndTime
+			if timeSinceLastCluster > TIME_OUT_FOR_RAT_SWARM_MS:
+				return 100
+			else:
+				return timeSinceLastCluster / TIME_OUT_FOR_RAT_SWARM_MS * 100
 
 func killARandomRat():
 	if(Input.is_action_just_pressed("kill_rat")):
@@ -126,12 +171,12 @@ func killRat(rat: Rat):
 		print("Unable to find rat to kill")
 	ratnumber -= 1
 	all_rats.remove_at(index)
-	if (all_rats.size() == 0):
-		showEndGameScreen()
-		return
 	if rat == alpha_rat:
 		setNewAlphaRat()
 	rat.queue_free()
+
+	if (all_rats.size() == 0 || alpha_rat.getRatState() == Rat.RatState.SITTING):
+		showEndGameScreen()
 
 func showEndGameScreen():
 	get_tree().quit()
