@@ -12,7 +12,6 @@ const RAT = preload("res://rat.tscn")
 #signal ratsignal
 var current_radius = 0
 var alpha_rat = Rat
-var rat_children: Array[Rat] = []
 var all_rats: Array[Rat] = []
 var ratnumber = 0
 
@@ -28,6 +27,7 @@ func _physics_process(delta) -> void:
 	get_input()
 	move_and_slide()
 	move_rats(delta, areRatsClustered())
+	killARandomRat()
 	
 func move_rats(delta, areRatsClustered:bool):
 	for rat in all_rats:
@@ -36,6 +36,11 @@ func move_rats(delta, areRatsClustered:bool):
 
 func areRatsClustered() -> bool:
 	return Input.is_action_pressed("cluster_rats")
+
+func killARandomRat():
+	if(Input.is_action_just_pressed("kill_rat")):
+		var ratToKill:Rat = all_rats.pick_random()
+		ratToKill._on_hit_by_bullet()
 
 func _ready():
 	spawn_spiral_rat(false)
@@ -89,7 +94,6 @@ func spawn_rat(new_position:Vector2, clusterPositon:Vector2, should_be_child=tru
 	ratnumber += 1
 	
 	if should_be_child:
-		rat_children.append(new_rat)
 		new_rat.set_delay(get_rat_delay(new_position))
 	else:
 		alpha_rat = new_rat
@@ -114,3 +118,10 @@ func return_basic_rat():
 		if rat.ratType == "basic":
 			return rat
 	return null
+
+func killRat(rat: Rat):
+	var index = all_rats.find(rat)
+	if index < 0:
+		print("Unable to find rat to kill")
+	all_rats.remove_at(index)
+	rat.queue_free()

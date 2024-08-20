@@ -32,7 +32,8 @@ func _process(delta):
 
 # Code should eventually cause a rat to be deleted
 func _on_hit_by_bullet():
-	pass
+	print("rat killed by bullet")
+	get_parent().killRat(self)
 
 func enable_collision():
 	collision_shape_2d.disabled = false
