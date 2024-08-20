@@ -143,6 +143,11 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 	else:
 		animated_sprite_2d.pause()
 
+	if currentRatState == RatState.SITTING:
+		animated_sprite_2d.animation = "sitting"
+		animated_sprite_2d.rotation = (deg_to_rad(0))
+		self.rotation = (deg_to_rad(0))
+
 	if !shouldAnimateTurn:
 		return
 
