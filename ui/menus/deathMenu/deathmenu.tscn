@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dwykw2i3sn5fl" path="res://assets/deathMenuGraphics/Breakdance_Rat-14.png" id="3_gstpe"]
 [ext_resource type="PackedScene" uid="uid://bdj2qkwnbgugk" path="res://Dungeonmusic1.tscn" id="3_s88a1"]
 [ext_resource type="Texture2D" uid="uid://ff2htyg5uop1" path="res://assets/deathMenuGraphics/Breakdance_Rat-2.png" id="3_uumqw"]
-[ext_resource type="AudioStream" path="res://assets/Music/piano_shit.wav" id="4_cxhs0"]
+[ext_resource type="AudioStream" uid="uid://cmejbn1fumy3b" path="res://assets/Music/piano_shit.wav" id="4_cxhs0"]
 [ext_resource type="Texture2D" uid="uid://1ndnkp8ce0ux" path="res://assets/deathMenuGraphics/Breakdance_Rat-3.png" id="4_e2dvo"]
 [ext_resource type="Texture2D" uid="uid://x14catgtx7m6" path="res://assets/deathMenuGraphics/Breakdance_Rat-4.png" id="5_j0q6j"]
 [ext_resource type="Texture2D" uid="uid://d0flxmcrm0d0j" path="res://assets/deathMenuGraphics/Breakdance_Rat-5.png" id="6_ho41p"]
@@ -85,6 +85,7 @@ sprite_frames = SubResource("SpriteFrames_cnltc")
 animation = &"startAnimation"
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
@@ -94,6 +95,7 @@ autoplay = true
 
 [node name="TryAgain" type="Button" parent="."]
 modulate = Color(1, 1, 1, 0)
+layout_mode = 0
 offset_left = 395.0
 offset_top = 487.0
 offset_right = 736.0
