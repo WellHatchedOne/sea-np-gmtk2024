@@ -53,8 +53,8 @@ func fire():
 	else:
 		new_bullet.update_sprite(get_parent().bullet_texture)
 	new_bullet.area_2d = generated_area_2d
-	var travel_direction = bullet_origin.position.direction_to(self.position)
-	new_bullet.start(bullet_origin.position)
+	var travel_direction = bullet_origin.global_position.direction_to(self.global_position)
+	new_bullet.startGlobal(bullet_origin.global_position)
 	new_bullet.launch(self.bullet_speed, travel_direction, true)
 	new_bullet.set_lifetime(self.bullet_lifetime_seconds)
 	
