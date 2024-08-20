@@ -5,7 +5,10 @@
 [node name="HealthComponent" type="Area2D"]
 disable_mode = 2
 collision_layer = 128
-collision_mask = 0
+collision_mask = 64
 script = ExtResource("1_3drb0")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+debug_color = Color(1.75677e-06, 0.449315, 0.0017972, 0.419608)
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
