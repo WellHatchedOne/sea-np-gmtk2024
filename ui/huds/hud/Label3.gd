@@ -6,6 +6,7 @@ var score = 5
 var red
 var blue 
 var green
+var firstplay = true
 func _ready():
 	#$pack_of_rats.connect("ratsignal",self, "on_ratsignal")
 	#print(owner.Player.ratnumber)
@@ -18,19 +19,23 @@ func _process(delta):
 	score = owner.Player.ratnumber
 	#print(score)
 	
-	if score >= getPlayerTarget():
+	if getPlayerLevel() >= 3 and firstplay == true:
 		_activate()
+		firstplay = false
+		$Timer.start()
+		
 	else:
 		_deactivate()
 
 		
 func _activate():
-	text ="!FIND THE CAT!"
+	text ="YOU WIN"
 	animation_player.play()
 	
 func _deactivate():
-	text = ""
-	animation_player.stop()
+	pass
+	#text = ""
+	#animation_player.stop()
 
 func  getPlayerTarget() -> float:
 	return getLevelNode().getPlayerTarget()
@@ -40,3 +45,7 @@ func getPlayerLevel() -> float:
 
 func getLevelNode() -> Level:
 	return get_parent().get_parent().get_parent().get_node("Level")
+
+
+func _on_timer_timeout():
+	_deactivate()

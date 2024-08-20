@@ -4,7 +4,7 @@ class_name BulletDestination
 const BULLET = preload("res://Max/enemy/Bullet.tscn")
 
 @export_range(0,2,0.01) var fire_rate: float = 0.5
-@export_range(0,1000,5) var bullet_speed: float = 5
+@export_range(0,40,0.5) var bullet_speed: float = 5
 @export_range(0,20,0.25) var bullet_lifetime_seconds: float = 3
 @export var bullet_sprite_file: Sprite2D = null
 @onready var bullet_sprite = $BulletSprite
@@ -53,8 +53,8 @@ func fire():
 	else:
 		new_bullet.update_sprite(get_parent().bullet_texture)
 	new_bullet.area_2d = generated_area_2d
-	var travel_direction = bullet_origin.position.direction_to(self.position)
-	new_bullet.start(bullet_origin.position)
+	var travel_direction = bullet_origin.global_position.direction_to(self.global_position)
+	new_bullet.startGlobal(bullet_origin.global_position)
 	new_bullet.launch(self.bullet_speed, travel_direction, true)
 	new_bullet.set_lifetime(self.bullet_lifetime_seconds)
 	
