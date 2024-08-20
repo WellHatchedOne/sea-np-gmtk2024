@@ -17,13 +17,20 @@ func _ready():
 
 # Should tell the parent to play death animation if possible
 func take_damage(damage: float):
+	print("Lost Health! %s" % initial_health)
 	initial_health -= damage
 	if initial_health <= 0:
 		var new_food_drop = FOOD.instantiate()
-		new_food_drop.position = get_parent()
+		new_food_drop.position = get_parent().position
 		get_parent().get_parent().add_child(new_food_drop)
 		
 		get_parent().queue_free()
 		
 func increase_health(number: float):
 	initial_health += number
+
+func _on_area_entered(area):
+	if area.get_parent() is Bullet:
+		if !area.get_parent().isEnemyBullet:
+			print("Taking damage")
+			take_damage(area.get_parent().damage)

@@ -13,7 +13,7 @@ class_name Level
 var DEBUG = false
 
 var tile_size := 64 # pixels
-
+var score = 1
 var dungeonWidth := 90
 var dungeonHeight := 30
 var log2Rooms := 3 # value of 3 -> 2^3 = 8 rooms
@@ -29,6 +29,7 @@ var tilemapAtlasId := 0
 @export var default_spawn_percent: float = 0.25
 
 # END CONSTANTS
+@onready var pack_of_rats = $PackOfRats
 
 var root_node: Branch
 var paths: Array = []
@@ -48,8 +49,13 @@ const ELECTRICTRAP = preload("res://Entities/Enemies/ElectricTrap/ElectricTrap.t
 const FLOWER = preload("res://Entities/Enemies/Flower/Flower.tscn")
 const PINKGERM = preload("res://Entities/Enemies/greenGerm/greenGerm.tscn")
 const PICO = preload("res://Entities/Enemies/Pico/Pico.tscn")
-
-
+const CAT = preload("res://Entities/Enemies/Pico/Pico.tscn")
+const ELECTRIC_PICKUP = preload("res://Max/components/specific_rat_abilities/ElectricUpgradeComponent.tscn")
+const FIRE_PICKUP = preload("res://Max/components/specific_rat_abilities/FireUpgradeComponent.tscn")
+const PSYCHIC_PICKUP = preload("res://Max/components/specific_rat_abilities/PsychicUpgradeComponent.tscn")
+const TOXIC_PICKUP = preload("res://Max/components/specific_rat_abilities/ToxicUpgradeComponent.tscn")
+const WATER_PICKUP = preload("res://Max/components/specific_rat_abilities/WaterUpgradeComponent.tscn")
+const WIZARD_PICKUP = preload("res://Max/components/specific_rat_abilities/WizardUpgradeComponent.tscn")
 
 const BITE_ATTACK_TIMER = preload("res://Events/Timers/biteAttackTimer.tscn")
 const FOOD = preload("res://Grace/food.tscn")
@@ -75,6 +81,20 @@ func _ready():
 	for x in range(dungeonWidth):
 		for y in range(dungeonHeight):
 			already_spawned_entities_map[Vector2i(x,y)] = 0
+
+var pass50 = false
+func _process(delta):
+	score = get_parent().get_node("PackOfRats").ratnumber
+	
+	if pass50 == false and score == 50: 
+		pass50 =true
+		_spawncat()
+		
+
+func _spawncat():
+	var new_cat  = CAT.instantiate()
+	new_cat.position = bossSpawnPoint
+	self.add_child(new_cat)
 
 func setSpawnPoints():
 	var roomArray = root_node.get_leaves()
@@ -209,8 +229,13 @@ func handleRandomPickupsSpawning(tile_index: Vector2i):
 		return
 	elif already_spawned_entities_map[tile_index] != 0:
 		return
-	else:
-		try_to_spawn_entity(FOOD, tile_index, level_position, 0.1)
+
+	if try_to_spawn_entity(FOOD, tile_index, level_position, 0.1): return
+	if try_to_spawn_entity(FIRE_PICKUP, tile_index, level_position, .001): return
+	if try_to_spawn_entity(ELECTRIC_PICKUP, tile_index, level_position, .001): return
+	if try_to_spawn_entity(TOXIC_PICKUP, tile_index, level_position, .001): return
+	if try_to_spawn_entity(WATER_PICKUP, tile_index, level_position, .001): return
+	if try_to_spawn_entity(WIZARD_PICKUP, tile_index, level_position, .001): return
 
 func renderFloor(leaf: Branch, padding: Vector4i):
 	for x in range(leaf.size.x):
@@ -304,9 +329,10 @@ func isPositionCorrectTileAndAlt(pos, tile, alt):
 	return $LevelTileMap.get_cell_atlas_coords(0, pos) == tile && $LevelTileMap.get_cell_alternative_tile(0, pos) == alt
 
 const spawn_overlap_protection_padding = 1
-func try_to_spawn_entity(entity_file_path, tile_index: Vector2i, level_position: Vector2, spawn_percent: float = 1):
+# Returns true if enemy is spawned, false otherwise
+func try_to_spawn_entity(entity_file_path, tile_index: Vector2i, level_position: Vector2, spawn_percent: float = 1) -> bool:
 	if !(rng.randf_range(0,1) <= spawn_percent):
-		return
+		return false
 	
 	var new_entity = entity_file_path.instantiate()
 	new_entity.position = level_position
@@ -323,7 +349,7 @@ func try_to_spawn_entity(entity_file_path, tile_index: Vector2i, level_position:
 	
 	# Apply groups to entities
 	classify_entity(new_entity)
-
+	return true
 
 func _on_biteTimer_timeout():
 	for biter in biters:

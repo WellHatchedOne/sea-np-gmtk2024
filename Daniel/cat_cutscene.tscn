@@ -109,6 +109,7 @@ tracks/4/keys = {
 "update": 0,
 "values": [Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
 }
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ii48l"]
 _data = {
 "RESET": SubResource("Animation_dl3rs"),

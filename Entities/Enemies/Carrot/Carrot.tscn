@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://c0vrmwdswvj5u"]
+[gd_scene load_steps=22 format=3 uid="uid://c0vrmwdswvj5u"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Carrot/Carrot.gd" id="1_c6kyv"]
 [ext_resource type="Texture2D" uid="uid://e310xm1buun3" path="res://assets/enemies/carrot/Carrot_Attack-1.png" id="2_7r272"]
@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://bngax7vcx138q" path="res://assets/enemies/carrot/Carrot_Idle-2.png" id="16_48jti"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="17_u4oq7"]
 [ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="18_g52bh"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="19_sr63p"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -99,7 +100,6 @@ position = Vector2(0.107814, -1.42109e-14)
 scale = Vector2(0.0253091, 0.0254384)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"attack"
-frame_progress = 0.166683
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_kf1lu")
@@ -108,3 +108,5 @@ shape = SubResource("CapsuleShape2D_kf1lu")
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("18_g52bh")]
 enemy_radius = 100.0
+
+[node name="KillRatOnContactComponent" parent="." instance=ExtResource("19_sr63p")]
