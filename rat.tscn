@@ -12,7 +12,7 @@
 [ext_resource type="Script" path="res://modifiers/Damageable.gd" id="9_2svmp"]
 [ext_resource type="PackedScene" uid="uid://dvhvt4iv1h3ii" path="res://modifiers/biteAttacker.tscn" id="10_5utx7"]
 [ext_resource type="Texture2D" uid="uid://kmp52xyoquud" path="res://assets/Rat/base_rat/base_rat_up1.png" id="10_6wxns"]
-[ext_resource type="Texture2D" uid="uid://dxegpdwqx4ext" path="res://assets/Rat/base_rat/OG_rat_sit-1.png" id="10_amxk5"]
+[ext_resource type="Texture2D" uid="uid://cy8h7w541he3o" path="res://assets/Rat/base_rat/OG_rat_sit-1.png" id="10_amxk5"]
 [ext_resource type="Texture2D" uid="uid://hmimbs3ynw0d" path="res://assets/Rat/base_rat/base_rat_up2.png" id="11_ucp6u"]
 [ext_resource type="Texture2D" uid="uid://cgxrh7evopryo" path="res://assets/Rat/base_rat/base_rat_up3.png" id="12_8akjo"]
 [ext_resource type="Texture2D" uid="uid://bww6dwi0digwf" path="res://assets/Rat/base_rat/base_rat_up4.png" id="13_furcd"]
@@ -87,6 +87,7 @@ radius = 6.70391
 scale = Vector2(0.25, 0.25)
 disable_mode = 1
 collision_layer = 4
+collision_mask = 33
 script = ExtResource("1_00nxb")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://kbcydv2chqvf"]
+[gd_scene load_steps=10 format=3 uid="uid://kbcydv2chqvf"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/ElectricTrap/ElectricTrap.gd" id="1_boyqb"]
 [ext_resource type="Texture2D" uid="uid://bq5sbg6sxakdr" path="res://assets/enemies/electricTrap/Electric_trap_idle1.png" id="2_7cjwg"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bkyf52ld21n65" path="res://assets/enemies/electricTrap/Electric_trap_idle3.png" id="4_dgqxi"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="5_lw4v2"]
 [ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="6_5rweh"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="7_fgt2s"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -70,6 +71,8 @@ animations = [{
 size = Vector2(62, 53)
 
 [node name="ElectricTrap" type="CharacterBody2D"]
+collision_layer = 16
+collision_mask = 7
 script = ExtResource("1_boyqb")
 should_move = false
 
@@ -87,3 +90,8 @@ shape = SubResource("RectangleShape2D_kat81")
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("6_5rweh")]
 enemy_radius = 100.0
+
+[node name="KillRatOnContactComponent" parent="." instance=ExtResource("7_fgt2s")]
+
+[editable path="MoveAtTargetComponent"]
+[editable path="KillRatOnContactComponent"]

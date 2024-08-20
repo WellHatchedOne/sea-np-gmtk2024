@@ -22,7 +22,7 @@ func _input(event):
 	if event.is_action_pressed("Dodgeroll") and canattack == true:
 		assert(get_parent() is PackOfRats, "Only rat packs can be opaque")
 		
-		for rat: Rat in get_parent().rat_children:
+		for rat: Rat in get_parent().all_rats:
 			rat.modulate.a = 0.5
 		dodgestart = true
 		canattack = false 
@@ -37,7 +37,7 @@ func _input(event):
 
 func _on_dtimer_timeout():
 	print("go back")
-	for rat: Rat in get_parent().rat_children:
+	for rat: Rat in get_parent().all_rats:
 			rat.modulate.a = 1
 	$DodgeTimer.stop()
 	

@@ -1,11 +1,18 @@
-[gd_scene load_steps=2 format=3 uid="uid://d06i4rugx83se"]
+[gd_scene load_steps=3 format=3 uid="uid://d06i4rugx83se"]
 
 [ext_resource type="Script" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.gd" id="1_3qgm1"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_m13a1"]
+radius = 25.09
 
 [node name="KillRatOnContactComponent" type="Area2D"]
 disable_mode = 2
 collision_layer = 128
 collision_mask = 4
 script = ExtResource("1_3qgm1")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_m13a1")
+debug_color = Color(0.621273, 0.27183, 0.938479, 0.42)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
