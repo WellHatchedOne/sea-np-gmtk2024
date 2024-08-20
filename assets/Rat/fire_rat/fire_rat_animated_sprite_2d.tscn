@@ -95,6 +95,7 @@ bullet_texture = ExtResource("16_cmhhy")
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(680, -330)
 fire_rate = 0.4
+bullet_speed = 10.0
 
 [node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_xpigi")]
 visible = false
