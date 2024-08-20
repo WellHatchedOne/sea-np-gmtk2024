@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://stc4p26ccimp"
-path="res://.godot/imported/Psychic_rat_sitting.png-2efd211bc2b1ccef6671327c12742fba.ctex"
+uid="uid://c8l1i2n7dq4b1"
+path="res://.godot/imported/HUD-2.png-bc477db1af338286418f8b9e66e1e7d5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Rat/psychic_rat/Psychic_rat_sitting.png"
-dest_files=["res://.godot/imported/Psychic_rat_sitting.png-2efd211bc2b1ccef6671327c12742fba.ctex"]
+source_file="res://assets/HUD/HUD-2.png"
+dest_files=["res://.godot/imported/HUD-2.png-bc477db1af338286418f8b9e66e1e7d5.ctex"]
 
 [params]
 

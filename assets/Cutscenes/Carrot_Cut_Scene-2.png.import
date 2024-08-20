@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://stc4p26ccimp"
-path="res://.godot/imported/Psychic_rat_sitting.png-2efd211bc2b1ccef6671327c12742fba.ctex"
+uid="uid://da0sw8dwpds7r"
+path="res://.godot/imported/Carrot_Cut_Scene-2.png-3065e9a65c10c57c00e3ce4e7c299175.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/Rat/psychic_rat/Psychic_rat_sitting.png"
-dest_files=["res://.godot/imported/Psychic_rat_sitting.png-2efd211bc2b1ccef6671327c12742fba.ctex"]
+source_file="res://assets/Cutscenes/Carrot_Cut_Scene-2.png"
+dest_files=["res://.godot/imported/Carrot_Cut_Scene-2.png-3065e9a65c10c57c00e3ce4e7c299175.ctex"]
 
 [params]
 
