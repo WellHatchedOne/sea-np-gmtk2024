@@ -1,9 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://uvgdynm14wdy"]
+[gd_scene load_steps=13 format=3 uid="uid://uvgdynm14wdy"]
 
 [ext_resource type="Script" path="res://ui/huds/hud/hud.gd" id="1_xh6qk"]
 [ext_resource type="Script" path="res://ui/huds/hud/Label.gd" id="2_virew"]
 [ext_resource type="Script" path="res://ui/huds/hud/ProgressBar.gd" id="3_qn4ey"]
 [ext_resource type="Script" path="res://ui/huds/hud/Label2.gd" id="4_451xq"]
+[ext_resource type="Script" path="res://ui/huds/hud/Label3.gd" id="5_46epg"]
 
 [sub_resource type="Theme" id="Theme_h8jny"]
 
@@ -42,6 +43,43 @@ tracks/0/keys = {
 _data = {
 "RESET": SubResource("Animation_iti5q"),
 "new_animation": SubResource("Animation_886rf")
+}
+
+[sub_resource type="Animation" id="Animation_tjxsc"]
+resource_name = "new_animation"
+length = 5.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(-0.1, 1.1, 1.9, 3.1, 5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 0.258824, 0, 1), Color(0, 0.258824, 1, 1), Color(0.768627, 0.635294, 1, 1), Color(0.768627, 0.635294, 0, 1), Color(0.00784314, 0.635294, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_sfhrk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(0, 0.258824, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6dpnk"]
+_data = {
+"RESET": SubResource("Animation_sfhrk"),
+"new_animation": SubResource("Animation_tjxsc")
 }
 
 [node name="Hud" type="CanvasLayer"]
@@ -131,3 +169,26 @@ libraries = {
 "": SubResource("AnimationLibrary_q3mq3")
 }
 autoplay = "new_animation"
+
+[node name="Label3" type="Label" parent="Control"]
+modulate = Color(0, 0.258824, 1, 1)
+layout_mode = 0
+offset_left = 86.0
+offset_top = -410.0
+offset_right = 1035.0
+offset_bottom = -82.0
+theme_override_font_sizes/font_size = 240
+text = "You Win"
+script = ExtResource("5_46epg")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Control/Label3"]
+libraries = {
+"": SubResource("AnimationLibrary_6dpnk")
+}
+autoplay = "new_animation"
+
+[node name="Timer" type="Timer" parent="Control/Label3"]
+wait_time = 9.716
+one_shot = true
+
+[connection signal="timeout" from="Control/Label3/Timer" to="Control/Label3" method="_on_timer_timeout"]
