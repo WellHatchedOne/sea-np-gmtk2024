@@ -168,7 +168,8 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 
 	if !shouldAnimateTurn:
 		return
-
+	
+	var old_state = last_state
 	if globalRatVelocity.x != 0:
 		animated_sprite_2d.animation = "side"
 		animated_sprite_2d.offset = sideRatOffset
@@ -196,7 +197,15 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 			last_state = "up"
 			animated_sprite_2d.rotation = (deg_to_rad(0))
 			self.rotation = (deg_to_rad(0))
-
-
+	if last_state != old_state:
+		print("last state is different than old state")
+		removeBullets()
+	else:
+		print("same")
+func removeBullets():
+	print("remove bullets")
+	for child in get_children():
+		if child is Bullet:
+			child.queue_free()
 func execute_move():
 	pass
