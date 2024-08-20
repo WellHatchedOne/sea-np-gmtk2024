@@ -171,11 +171,16 @@ func killRat(rat: Rat):
 		print("Unable to find rat to kill")
 	ratnumber -= 1
 	all_rats.remove_at(index)
-	if rat == alpha_rat:
-		setNewAlphaRat()
 	rat.queue_free()
 
-	if (all_rats.size() == 0 || alpha_rat.getRatState() == Rat.RatState.SITTING):
+	if (all_rats.size() == 0):
+		showEndGameScreen()
+		return
+
+	if rat == alpha_rat:
+		setNewAlphaRat()
+
+	if (alpha_rat.getRatState() == Rat.RatState.SITTING):
 		showEndGameScreen()
 
 func showEndGameScreen():
