@@ -1,13 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://j8p7h64oj3di"]
+[gd_scene load_steps=4 format=3 uid="uid://j8p7h64oj3di"]
 
 [ext_resource type="Script" path="res://Max/components/RatAbilityComponent/RatAbilityController.gd" id="1_lkr1q"]
 [ext_resource type="PackedScene" uid="uid://6dk0firucnai" path="res://Max/components/RatAbilityComponent/BulletOrigin.tscn" id="2_hrjp0"]
 [ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="3_une1g"]
-[ext_resource type="Texture2D" uid="uid://5g5jphkbuv7x" path="res://assets/bullets/Fire_Projectile_60px.png" id="4_42utj"]
 
 [node name="RatAbilityController" type="Node2D"]
 script = ExtResource("1_lkr1q")
-bullet_speed = 730.0
 
 [node name="BulletOrigin" parent="." instance=ExtResource("2_hrjp0")]
 visible = false
@@ -16,8 +14,14 @@ visible = false
 visible = false
 position = Vector2(0, -148)
 
+[node name="ColorRect" parent="BulletDestination" index="0"]
+visible = false
+
 [node name="BulletSprite" parent="BulletDestination" index="1"]
-texture = ExtResource("4_42utj")
+visible = false
+
+[node name="Area2D" parent="BulletDestination" index="2"]
+visible = false
 
 [node name="Timer" type="Timer" parent="BulletDestination"]
 wait_time = 0.5

@@ -1,6 +1,7 @@
-[gd_scene load_steps=20 format=3 uid="uid://b0y7rbv28eayv"]
+[gd_scene load_steps=21 format=3 uid="uid://b0y7rbv28eayv"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/greenGerm/greenGerm.gd" id="1_0n086"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="2_64wd6"]
 [ext_resource type="Texture2D" uid="uid://bppewysuij457" path="res://assets/enemies/pinkGerm/pinkGerm-attack-1.png" id="2_vfmyy"]
 [ext_resource type="Texture2D" uid="uid://dc5cx62bm0do2" path="res://assets/enemies/pinkGerm/pinkGerm-attack-2.png" id="3_kgv0y"]
 [ext_resource type="Texture2D" uid="uid://bjs0byneriv7m" path="res://assets/enemies/pinkGerm/pinkGerm-attack-3.png" id="4_t2hqv"]
@@ -88,6 +89,8 @@ radius = 27.0185
 
 [node name="greenGerm" type="CharacterBody2D"]
 script = ExtResource("1_0n086")
+
+[node name="KillRatOnContactComponent" parent="." instance=ExtResource("2_64wd6")]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(-7, 11)

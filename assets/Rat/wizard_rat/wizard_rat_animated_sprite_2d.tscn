@@ -12,7 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bpvsre54rmgy7" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-2.png" id="6_t0imb"]
 [ext_resource type="Texture2D" uid="uid://ctijjjqjqq8g1" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-3.png" id="7_kj8kn"]
 [ext_resource type="Texture2D" uid="uid://du56utep6lkeg" path="res://assets/Rat/wizard_rat/Wizard_Rat_Up-4.png" id="8_na2hm"]
-[ext_resource type="Texture2D" uid="uid://c6ktu7f2tgnbc" path="res://assets/Rat/wizard_rat/Wizard_Rat_Sitting.png" id="9_6ieap"]
+[ext_resource type="Texture2D" uid="uid://ceapmrktkhgdm" path="res://assets/Rat/wizard_rat/Wizard_Rat_Sitting.png" id="9_6ieap"]
 [ext_resource type="Texture2D" uid="uid://nlnqe7oo5c3y" path="res://assets/RatAbilities/Wizard_potion.png" id="13_1578u"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_jdj1s"]
 [ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="16_8afa5"]
@@ -88,17 +88,14 @@ animation = &"sitting"
 texture = ExtResource("13_1578u")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_jdj1s")]
-bullet_speed = 720.0
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-7.62939e-06, -620)
-bullet_speed = 650.0
 
 [node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_8afa5")]
 visible = false
 position = Vector2(-960, -1550)
 fire_rate = 0.3
-bullet_speed = 225.0
 bullet_lifetime_seconds = 2.0
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
@@ -107,7 +104,6 @@ wait_time = 0.5
 [node name="BulletDestination3" parent="RatAbilityController" instance=ExtResource("16_8afa5")]
 visible = false
 position = Vector2(980, -1350)
-bullet_speed = 650.0
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination3"]
 wait_time = 0.5
