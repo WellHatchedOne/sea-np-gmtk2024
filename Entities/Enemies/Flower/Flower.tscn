@@ -90,7 +90,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kuq4r"]
-size = Vector2(38, 19)
+size = Vector2(103, 56)
 
 [node name="Flower" type="CharacterBody2D"]
 collision_layer = 4
@@ -99,18 +99,20 @@ script = ExtResource("1_oajou")
 should_move = false
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-2.38419e-07, -2.38419e-07)
-scale = Vector2(0.0254384, 0.0254384)
+scale = Vector2(0.0743728, 0.0743728)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"idle"
 frame_progress = 0.860991
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_kuq4r")
 
 [node name="HealthComponent" parent="." instance=ExtResource("20_hocpf")]
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_0rsog")]
+position = Vector2(1, -2)
 enemy_radius = 100.0
 
 [node name="KillRatOnContactComponent" parent="." instance=ExtResource("17_672qf")]
+position = Vector2(0, 1)
