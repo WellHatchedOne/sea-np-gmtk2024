@@ -26,13 +26,17 @@ func _ready():
 	defaultPosition = startingPosition
 	defaultRatOffset = animated_sprite_2d.offset
 
+func getStartingPosition() -> Vector2:
+	return startingPosition
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
 
 # Code should eventually cause a rat to be deleted
 func _on_hit_by_bullet():
-	pass
+	print("rat killed by bullet")
+	get_parent().killRat(self)
 
 func enable_collision():
 	collision_shape_2d.disabled = false
@@ -40,6 +44,11 @@ func enable_collision():
 # Sets how much of a time delay the rat has from the pack
 func set_delay(newDelay:float):
 	delay = newDelay
+
+func set_new_pack_position(new_starting_position:Vector2, new_cluster_position:Vector2):
+	startingPosition = new_starting_position
+	clusterPosition = new_cluster_position
+	currentRatState = RatState.RETURNING
 
 func setClusterPosition(newClusterPosition:Vector2):
 	clusterPosition = newClusterPosition
@@ -143,6 +152,11 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 	else:
 		animated_sprite_2d.pause()
 
+	if currentRatState == RatState.SITTING:
+		animated_sprite_2d.animation = "sitting"
+		animated_sprite_2d.rotation = (deg_to_rad(0))
+		self.rotation = (deg_to_rad(0))
+
 	if !shouldAnimateTurn:
 		return
 
@@ -173,7 +187,7 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 			last_state = "up"
 			animated_sprite_2d.rotation = (deg_to_rad(0))
 			self.rotation = (deg_to_rad(0))
-	
+
 
 func execute_move():
 	pass

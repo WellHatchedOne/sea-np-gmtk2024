@@ -6,8 +6,9 @@
 radius = 200.0
 
 [node name="ShootAtTargetComponent" type="Area2D"]
-collision_layer = 0
-collision_mask = 2
+disable_mode = 2
+collision_layer = 2
+collision_mask = 71
 script = ExtResource("1_id5wa")
 
 [node name="VisionCircleShape" type="CollisionShape2D" parent="."]
