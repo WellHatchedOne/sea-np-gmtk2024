@@ -1,6 +1,7 @@
 extends CharacterBody2D
 class_name PackOfRats
 
+const MAX_RATS = 50
 @export var speed: float = 400
 const RAT_EXPANDED_DISTANCE:float = 15
 const RAT_CLUSTERED_DISTANCE:float = RAT_EXPANDED_DISTANCE / 3
@@ -46,7 +47,7 @@ func _ready():
 	spawn_spiral_rat(false)
 
 func spawn_spiral_rat(should_be_child=true):
-	var spiralCoordinates:Vector2 = get_spiral_coordinates_from_poisition(ratnumber)
+	var spiralCoordinates:Vector2 = get_spiral_coordinates_from_poisition(ratnumber % MAX_RATS)
 	var ratPosition = getRatPosistionFromSpiralCoordinates(spiralCoordinates, RAT_EXPANDED_DISTANCE, RAT_EXPANDED_DISTANCE)
 	var clusterPosition = getRatPosistionFromSpiralCoordinates(spiralCoordinates, RAT_CLUSTERED_DISTANCE, RAT_CLUSTERED_DISTANCE)
 	spawn_rat(ratPosition, clusterPosition, should_be_child)
@@ -123,5 +124,30 @@ func killRat(rat: Rat):
 	var index = all_rats.find(rat)
 	if index < 0:
 		print("Unable to find rat to kill")
+	ratnumber -= 1
 	all_rats.remove_at(index)
+	if (all_rats.size() == 0):
+		showEndGameScreen()
+		return
+	if rat == alpha_rat:
+		setNewAlphaRat()
 	rat.queue_free()
+
+func showEndGameScreen():
+	get_tree().quit()
+
+func setNewAlphaRat():
+	alpha_rat = getClosestRatToCenter()
+	alpha_rat.set_delay(0)
+	alpha_rat.set_new_pack_position(Vector2.ZERO, Vector2.ZERO)
+
+func getClosestRatToCenter():
+	var bestDistanceToCetner = getRatsDistanceFromCenter(all_rats[0])
+	var closestRat = all_rats[0]
+	for rat in all_rats:
+		if getRatsDistanceFromCenter(rat) < bestDistanceToCetner:
+			closestRat = rat
+	return closestRat
+
+func getRatsDistanceFromCenter(rat:Rat) -> float:
+	return rat.getStartingPosition().length()
