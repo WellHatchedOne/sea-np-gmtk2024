@@ -4,8 +4,9 @@ class_name Rat
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 const DISTANCE_FROM_PACK_TO_STOP_MOVING = 500
-const DISTANCE_FROM_PACK_TO_START_MOVING = 150
-enum RatState {FOLLOWING, SITTING}
+const DISTANCE_FROM_PACK_TO_START_RETURING = 150
+const DISTANCE_FROM_PACK_TO_BE_MARKED_AS_RETURNED = 5
+enum RatState {FOLLOWING, SITTING, RETURNING}
 var currentRatState = RatState.FOLLOWING
 var startingPosition:Vector2
 var delay:float = 0
@@ -61,32 +62,52 @@ func getRatDesiredGlobalPosition(swarmVelocity:Vector2, speed:float, delta:float
 
 # Returns true if trurn should be animated, false if not
 func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, speed:float, delta:float) -> bool:
-	if (position.distance_to(Vector2.ZERO) < DISTANCE_FROM_PACK_TO_START_MOVING):
+	setRateState()
+	match currentRatState:
+		RatState.SITTING:
+			sitStill(swarmVelocity)
+			return false
+		RatState.RETURNING:
+			return moveToPosition(startingPosition, speed, delta)
+		RatState.FOLLOWING:
+			var desiredGlobalVelocity:Vector2 = desiredGlobalPosition
+			# If still, move rats to starting position
+			if(swarmVelocity == Vector2.ZERO && desiredGlobalVelocity == Vector2.ZERO):
+				return moveToPosition(startingPosition, speed, delta)
+			else:
+				velocity = desiredGlobalVelocity - swarmVelocity
+				move_and_slide()
+				return true
+		_:
+			return false
+
+func setRateState():
+	if (currentRatState == RatState.SITTING && position.distance_to(Vector2.ZERO) < DISTANCE_FROM_PACK_TO_START_RETURING):
+		currentRatState = RatState.RETURNING
+
+	if (currentRatState == RatState.RETURNING && position.distance_to(startingPosition) < DISTANCE_FROM_PACK_TO_BE_MARKED_AS_RETURNED):
 		currentRatState = RatState.FOLLOWING
 
-	if(currentRatState == RatState.SITTING || 
-		position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
+	if (currentRatState == RatState.FOLLOWING && position.distance_to(Vector2.ZERO) > DISTANCE_FROM_PACK_TO_STOP_MOVING):
 		currentRatState = RatState.SITTING
-		# Make the rats stay stil if they are too far away (technically, they have to move to oppose the pack)
-		velocity = -1 * swarmVelocity
-		move_and_slide()
-		return false
 
-	var desiredGlobalVelocity:Vector2 = desiredGlobalPosition
-	if(swarmVelocity == Vector2.ZERO && desiredGlobalVelocity == Vector2.ZERO):
-		var vectorToStartingPosition = startingPosition - position
-		velocity = vectorToStartingPosition.normalized() * speed
-		if vectorToStartingPosition.length() > 5:
-			move_and_slide()
-			return true
-		else:
-			# Move back to starting position when rat and frame isn't moving
-			position = position.move_toward(startingPosition, speed * delta)
-			return false
-	else:
-		velocity = desiredGlobalVelocity - swarmVelocity
+func sitStill(swarmVelocity:Vector2):
+	# To remain still, you have to oppose the direcation of the pack
+	velocity = -1 * swarmVelocity
+	move_and_slide()
+	return false
+
+# Returns true if trurn should be animated, false if not
+func moveToPosition(desiredPosition:Vector2, speed:float, delta:float) -> bool:
+	var vectorToDesiredPosition = startingPosition - position
+	velocity = vectorToDesiredPosition.normalized() * speed
+	if vectorToDesiredPosition.length() > 5:
 		move_and_slide()
 		return true
+	else:
+		# Move back to starting position when rat and frame isn't moving
+		position = position.move_toward(startingPosition, speed * delta)
+		return false
 
 # GlobalRatVelocity is the rat's velocity relative to the background (since this.velocity is relative to the pack)
 var last_state = null
