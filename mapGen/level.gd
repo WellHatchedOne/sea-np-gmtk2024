@@ -219,38 +219,38 @@ func renderFloor(leaf: Branch, padding: Vector4i):
 			var yposition = y + leaf.position.y
 			var currPosition = Vector2i(xposition, yposition)
 			var levelPosition = Vector2i(tile_size*xposition, tile_size*yposition)
-			'''IF TILE IS FLOOR'''
-			if not leaf.isNotFloorTile(x, y, padding):
+			if leaf.isFloorTile(x, y, padding):
 				# 1 is the atlas ID
 				# 0,8 is the tile location in the atlas
 				setRandomFloorTile(xposition, yposition)
 				handleRandomEnemySpawning(currPosition)
 				handleRandomPickupsSpawning(currPosition)
 				
-			elif not leaf.isNotFloorTile(x, y + 1, padding):
+			elif leaf.isFloorTile(x, y + 1, padding):
 				# Render top wall
 				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapTopAlt)
-			elif not leaf.isNotFloorTile(x, y - 1, padding):
+			elif leaf.isFloorTile(x, y - 1, padding):
 				# Render bottom wall
 				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapBottomAlt)
-			elif not leaf.isNotFloorTile(x + 1, y, padding):
+			elif leaf.isFloorTile(x + 1, y, padding):
 				# Render left wall
 				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapLeftAlt)
-			elif leaf.isNotFloorTile(x, y, padding) and not leaf.isNotFloorTile(x - 1, y, padding):
+			elif leaf.isFloorTile(x - 1, y, padding):
 				# Render right wall
 				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapRightAlt)
-			elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x + 1, y + 1, padding):
-				# Render top left wall
-				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapTLAlt)
-			elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x - 1, y + 1, padding):
-				# Render top right wall
-				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapTRAlt)
-			elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x + 1, y - 1, padding):
-				# Render bottom left wall
-				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapBLAlt)
-			elif leaf.isNotFloorTile(x, y, padding) and leaf.isNotFloorTile(x + 1, y, padding) and leaf.isNotFloorTile(x - 1, y, padding) and leaf.isNotFloorTile(x, y + 1, padding) and leaf.isNotFloorTile(x, y - 1, padding) and not leaf.isNotFloorTile(x - 1, y - 1, padding):
-				# Render bottom right wall
-				$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapBRAlt)
+			elif leaf.isNotFloorTile(x, y, padding) and leaf.hasNoCardinalAdjacentFloorTile(x, y, padding):
+				if leaf.isFloorTile(x + 1, y + 1, padding):
+					# Render top left wall
+					$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapTLAlt)
+				elif leaf.isFloorTile(x - 1, y + 1, padding):
+					# Render top right wall
+					$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapTRAlt)
+				elif leaf.isFloorTile(x + 1, y - 1, padding):
+					# Render bottom left wall
+					$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapBLAlt)
+				elif leaf.isFloorTile(x - 1, y - 1, padding):
+					# Render bottom right wall
+					$LevelTileMap.set_cell(0, currPosition, tilemapAtlasId, $LevelTileMap.tileMapCornerVector, $LevelTileMap.tileMapBRAlt)
 
 func renderRoomConnection(path):
 	if path['left'].y == path['right'].y:
@@ -265,21 +265,12 @@ func renderRoomConnection(path):
 			var cellDataDown = $LevelTileMap.get_cell_tile_data(0, downPos)
 			
 			# Now check if the tile to above or below is also dead space
-			if cellDataUp == null:
+			if connectionWallShouldOverwriteTile(cellDataUp, upPos):
 				# Render top wall
 				$LevelTileMap.set_cell(0, upPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector)
-			if cellDataDown == null:
+			if connectionWallShouldOverwriteTile(cellDataDown, downPos):
 				# Render bottom wall
 				$LevelTileMap.set_cell(0, downPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapBottomAlt)
-			
-			if cellDataDown != null:
-				if $LevelTileMap.get_cell_atlas_coords(0, downPos) == $LevelTileMap.tileMapWallVector || $LevelTileMap.get_cell_atlas_coords(0, downPos) == $LevelTileMap.tileMapCornerVector:
-					# Render bottom wall
-					$LevelTileMap.set_cell(1, downPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapBottomAlt)
-			if cellDataUp != null:
-				if $LevelTileMap.get_cell_atlas_coords(0, upPos) == $LevelTileMap.tileMapWallVector || $LevelTileMap.get_cell_atlas_coords(0, upPos) == $LevelTileMap.tileMapCornerVector:
-					# Render top wall
-					$LevelTileMap.set_cell(1, upPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector)
 			
 			# This means the connecting path we are about to render is in dead space
 			if cellDataBeforePath == null:
@@ -308,10 +299,8 @@ func renderRoomConnection(path):
 				$LevelTileMap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), tilemapAtlasId, Vector2i(0, 15))
 			else:
 				$LevelTileMap.set_cell(0, Vector2i(path['left'].x+i,path['left'].y), tilemapAtlasId, $LevelTileMap.tileMapFloorVector)
-				# $LevelTileMap.set_cell(1, Vector2i(path['left'].x+i,path['left'].y), tilemapAtlasId, $LevelTileMap.tileMapFloorVector)
 	else:
 		# vertical
-		pass
 		for i in range(path['right'].y - path['left'].y):
 			var pathPos = Vector2i(path['left'].x,path['left'].y+i)
 			var leftPos = Vector2i(path['left'].x - 1,path['left'].y+i)
@@ -322,21 +311,12 @@ func renderRoomConnection(path):
 			var cellDataRight = $LevelTileMap.get_cell_tile_data(0, rightPos)
 			
 			# Now check if the tile to our left or right is also dead space
-			if cellDataLeft == null:
+			if connectionWallShouldOverwriteTile(cellDataLeft, leftPos):
 				# Render left wall
-				$LevelTileMap.set_cell(0, leftPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapLeftAlt)
-			if cellDataRight == null:
+				$LevelTileMap.set_cell(1, leftPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapLeftAlt)
+			if connectionWallShouldOverwriteTile(cellDataRight, rightPos):
 				# Render right wall
-				$LevelTileMap.set_cell(0, rightPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapRightAlt)
-			
-			if cellDataLeft != null:
-				if $LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapWallVector || $LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapCornerVector:
-					# Render left wall
-					$LevelTileMap.set_cell(1, leftPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapLeftAlt)
-			if cellDataRight != null:
-				if $LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapWallVector || $LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapCornerVector:
-					# Render right wall
-					$LevelTileMap.set_cell(1, rightPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapRightAlt)
+				$LevelTileMap.set_cell(1, rightPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapRightAlt)
 			
 			# This means the connecting path we are about to render is in dead space
 			if cellDataBeforePath == null:
@@ -344,28 +324,30 @@ func renderRoomConnection(path):
 			else:
 				# This means we could be breaking down a wall, or just overwriting an existing floor tile
 				# If we're breaking down a wall, also render another wall piece on another layer one to the left or right
-				if ($LevelTileMap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && $LevelTileMap.get_cell_alternative_tile(0, pathPos) == $LevelTileMap.tileMapTopAlt):
-					if ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && $LevelTileMap.get_cell_alternative_tile(0, leftPos) == $LevelTileMap.tileMapTopAlt) || ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapCornerVector):
+				if ($LevelTileMap.get_cell_atlas_coords(0, pathPos) == $LevelTileMap.tileMapWallVector && $LevelTileMap.get_cell_alternative_tile(0, pathPos) == $LevelTileMap.tileMapTopAlt):
+					if ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapWallVector && $LevelTileMap.get_cell_alternative_tile(0, leftPos) == $LevelTileMap.tileMapTopAlt) || ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapCornerVector):
 						# Render left wall
 						$LevelTileMap.set_cell(1, leftPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapLeftAlt)
-					if ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && $LevelTileMap.get_cell_alternative_tile(0, rightPos) == $LevelTileMap.tileMapTopAlt) || ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapCornerVector):
+					if ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapWallVector && $LevelTileMap.get_cell_alternative_tile(0, rightPos) == $LevelTileMap.tileMapTopAlt) || ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapCornerVector):
 						# Render right wall
 						$LevelTileMap.set_cell(1, rightPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapRightAlt)
-				elif ($LevelTileMap.get_cell_atlas_coords(0, pathPos) == Vector2i(0,0) && $LevelTileMap.get_cell_alternative_tile(0, pathPos) == $LevelTileMap.tileMapBottomAlt):
-					if ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == Vector2i(0,0) && $LevelTileMap.get_cell_alternative_tile(0, leftPos) == $LevelTileMap.tileMapBottomAlt) || ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapCornerVector):
+				elif ($LevelTileMap.get_cell_atlas_coords(0, pathPos) == $LevelTileMap.tileMapWallVector && $LevelTileMap.get_cell_alternative_tile(0, pathPos) == $LevelTileMap.tileMapBottomAlt):
+					if ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapWallVector && $LevelTileMap.get_cell_alternative_tile(0, leftPos) == $LevelTileMap.tileMapBottomAlt) || ($LevelTileMap.get_cell_atlas_coords(0, leftPos) == $LevelTileMap.tileMapCornerVector):
 						# Render left wall
 						$LevelTileMap.set_cell(1, leftPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapLeftAlt)
-					if ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == Vector2i(0,0) && $LevelTileMap.get_cell_alternative_tile(0, rightPos) == $LevelTileMap.tileMapBottomAlt) || ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapCornerVector):
+					if ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapWallVector && $LevelTileMap.get_cell_alternative_tile(0, rightPos) == $LevelTileMap.tileMapBottomAlt) || ($LevelTileMap.get_cell_atlas_coords(0, rightPos) == $LevelTileMap.tileMapCornerVector):
 						# Render right wall
 						$LevelTileMap.set_cell(1, rightPos, tilemapAtlasId, $LevelTileMap.tileMapWallVector, $LevelTileMap.tileMapRightAlt)
-
+			
 			# Now draw the path connection tiles
 			if DEBUG:
 				$LevelTileMap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), tilemapAtlasId, Vector2i(0, 11))
 				$LevelTileMap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), tilemapAtlasId, Vector2i(0, 12))
 			else:
 				$LevelTileMap.set_cell(0, Vector2i(path['left'].x,path['left'].y+i), tilemapAtlasId, $LevelTileMap.tileMapFloorVector)
-				#$LevelTileMap.set_cell(1, Vector2i(path['left'].x,path['left'].y+i), tilemapAtlasId, $LevelTileMap.tileMapFloorVector)
+
+func connectionWallShouldOverwriteTile(cellData, pos):
+	return cellData == null || $LevelTileMap.get_cell_atlas_coords(0, pos) == $LevelTileMap.tileMapWallVector || $LevelTileMap.get_cell_atlas_coords(0, pos) == $LevelTileMap.tileMapCornerVector
 
 const spawn_overlap_protection_padding = 1
 func try_to_spawn_entity(entity_file_path, tile_index: Vector2i, level_position: Vector2, spawn_percent: float = 1):
