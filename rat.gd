@@ -29,6 +29,9 @@ func _ready():
 func getStartingPosition() -> Vector2:
 	return startingPosition
 
+func getRatState() -> RatState:
+	return currentRatState
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
