@@ -113,12 +113,9 @@ sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"death"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-scale = Vector2(1, 1)
 shape = SubResource("CapsuleShape2D_kf1lu")
 
 [node name="HealthComponent" parent="." instance=ExtResource("19_mtjs7")]
-scale = Vector2(1, 1)
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("22_qipkq")]
-scale = Vector2(1, 1)
 enemy_radius = 100.0

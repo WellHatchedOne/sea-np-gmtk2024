@@ -34,7 +34,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 16.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -83,7 +83,7 @@ script = ExtResource("1_00nxb")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
-animation = &"up"
+animation = &"down"
 offset = Vector2(160, 160)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
