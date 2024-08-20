@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cvucmjpdd2ata"]
+[gd_scene load_steps=18 format=3 uid="uid://cvucmjpdd2ata"]
 
 [ext_resource type="Texture2D" uid="uid://dxaw0v2hcx6b1" path="res://assets/Rat/water_rat/water_rat_down1.png" id="1_oy7n4"]
 [ext_resource type="Texture2D" uid="uid://csvjuqfn6kk6j" path="res://assets/Rat/water_rat/water_rat_down2.png" id="2_metq5"]
@@ -15,6 +15,7 @@
 [ext_resource type="Texture2D" uid="uid://icmwleke4qa6" path="res://assets/Rat/water_rat/water_rat_up4.png" id="12_cnevk"]
 [ext_resource type="Texture2D" uid="uid://c8bv710l56jyb" path="res://assets/RatAbilities/Water_potion.png" id="13_ugl35"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_xlxp8"]
+[ext_resource type="Texture2D" uid="uid://cfy0ntlgvqd4i" path="res://assets/bullets/Water-rat-projectile.png" id="16_xwhh5"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -87,6 +88,7 @@ animation = &"sitting"
 texture = ExtResource("13_ugl35")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_xlxp8")]
+bullet_texture = ExtResource("16_xwhh5")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-7.62939e-06, -1380)

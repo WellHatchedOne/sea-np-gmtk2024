@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bi6hx7uud88ah"]
+[gd_scene load_steps=19 format=3 uid="uid://bi6hx7uud88ah"]
 
 [ext_resource type="Texture2D" uid="uid://dspeel2xymyai" path="res://assets/Rat/wizard_rat/Wizard_Rat_Side-1.png" id="1_duyo0"]
 [ext_resource type="Texture2D" uid="uid://m48wk8st7t0f" path="res://assets/Rat/wizard_rat/Wizard_Rat_Down-1.png" id="1_md3m6"]
@@ -16,6 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://nlnqe7oo5c3y" path="res://assets/RatAbilities/Wizard_potion.png" id="13_1578u"]
 [ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_jdj1s"]
 [ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="16_8afa5"]
+[ext_resource type="Texture2D" uid="uid://lf3k3rhbna2a" path="res://assets/bullets/Wizard-rat-projectile.png" id="16_hgog7"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -88,6 +89,7 @@ animation = &"sitting"
 texture = ExtResource("13_1578u")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_jdj1s")]
+bullet_texture = ExtResource("16_hgog7")
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
 position = Vector2(-7.62939e-06, -620)
