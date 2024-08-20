@@ -90,9 +90,12 @@ var pass50 = false
 func _process(delta):
 	score = get_parent().get_node("PackOfRats").ratnumber
 	
-	if pass50 == false and score >= 50 + 20 * playerLevel:
+	if pass50 == false and score >= getPlayerTarget():
 		pass50 =true
 		_spawncat()
+
+func getPlayerTarget() -> int:
+	return 50 + 20 * (playerLevel - 1)
 
 func _spawncat():
 	var new_cat  = CAT.instantiate()
