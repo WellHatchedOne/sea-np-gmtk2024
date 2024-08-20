@@ -9,6 +9,9 @@ class_name Bosscutscenetrigger
 
 func _ready():
 	triggerradius.shape.radius = trigger_radius
+	
+	print("ready")
 
 func _on_body_entered(body):
 	cat_cutscene._startcutscene()
+	print("entered body")

@@ -163,7 +163,7 @@ func _draw():
 		renderRoomConnection(path)
 
 # We should keep track of where things spawn so that we don't accidentally spawn things right next to each other
-
+#self.bossSpawnPoint is a vector2
 func handleRandomEnemySpawning(tile_index: Vector2i):
 	var level_position = Vector2(tile_index.x*tile_size, tile_index.y*tile_size)
 	
@@ -179,27 +179,27 @@ func handleRandomEnemySpawning(tile_index: Vector2i):
 		var RandEnemy = rng.randf_range(0, 10)
 		if tilemapAtlasId == 0:
 			if RandEnemy < 4:
-				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.1)
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.01)
 			if RandEnemy > 4 and RandEnemy < 7:
-				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.1)
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.01)
 			if RandEnemy > 4 and RandEnemy < 7:
-				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.1)
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.01)
 		if tilemapAtlasId == 1:
 			if RandEnemy < 5:
-				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.1)
+				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.05)
 			if RandEnemy > 5 :
-				try_to_spawn_entity(CARROT, tile_index, level_position, 0.1)
+				try_to_spawn_entity(CARROT, tile_index, level_position, 0.05)
 		if tilemapAtlasId == 2:
 			if RandEnemy < 2:
-				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.1)
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.01)
 			if RandEnemy > 2 and RandEnemy < 4:
-				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.1)
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.01)
 			if RandEnemy > 4 and RandEnemy < 6:
-				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.1)
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.01)
 			if RandEnemy > 6 and RandEnemy < 8:
-				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.1)
+				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.01)
 			if RandEnemy > 8 :
-				try_to_spawn_entity(CARROT, tile_index, level_position, 0.1)
+				try_to_spawn_entity(CARROT, tile_index, level_position, 0.01)
 
 func handleRandomPickupsSpawning(tile_index: Vector2i):
 	var level_position = Vector2(tile_index.x*tile_size, tile_index.y*tile_size)

@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://x4jo6nm2ktk6" path="res://assets/Rat/fire_rat/fire_rat_side2.png" id="6_17cee"]
 [ext_resource type="Texture2D" uid="uid://dtdo73hb62h7k" path="res://assets/Rat/fire_rat/fire_rat_side3.png" id="7_oydcs"]
 [ext_resource type="Texture2D" uid="uid://bdu5cbw8vvdy2" path="res://assets/Rat/fire_rat/fire_rat_side4.png" id="8_crguy"]
-[ext_resource type="Texture2D" uid="uid://c3hccj5uje4wi" path="res://assets/Rat/fire_rat/Fire_Rat_Sitting.png" id="9_2d2hp"]
+[ext_resource type="Texture2D" uid="uid://bqg3fshdc1sky" path="res://assets/Rat/fire_rat/Fire_Rat_Sitting.png" id="9_2d2hp"]
 [ext_resource type="Texture2D" uid="uid://cymp8ate6aat5" path="res://assets/Rat/fire_rat/fire_rat_up1.png" id="9_hofw2"]
 [ext_resource type="Texture2D" uid="uid://i3mkbbfpo6mv" path="res://assets/Rat/fire_rat/fire_rat_up2.png" id="10_g4l31"]
 [ext_resource type="Texture2D" uid="uid://d0mip84d8m35i" path="res://assets/Rat/fire_rat/fire_rat_up3.png" id="11_tsqq0"]
