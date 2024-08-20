@@ -29,7 +29,7 @@ func create_new_collision_from_image() -> Area2D:
 		var collision_polygon = CollisionPolygon2D.new()
 		collision_polygon.polygon = poly
 		collision_polygon.position -= sprite_2d.texture.get_size()/2
-		area_2d.add_child(collision_polygon)
+		area_2d.call_deferred("add_child", collision_polygon)
 	return area_2d
 
 func set_lifetime(seconds_to_disappear):
@@ -57,7 +57,7 @@ func launch(speed, direction, should_start):
 
 func _physics_process(delta):
 	if start_traveling:
-		position += direction*speed
+		position += (direction*speed)*delta
 		
 func _on_body_entered(body):
 	if body is TileMap:

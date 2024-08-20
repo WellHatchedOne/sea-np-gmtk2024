@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://crxgadefwlryw"]
+
+[ext_resource type="Script" path="res://Max/components/RatUpgradeComponent.gd" id="1_tsh2g"]
+[ext_resource type="PackedScene" uid="uid://bi6hx7uud88ah" path="res://assets/Rat/wizard_rat/wizard_rat_animated_sprite_2d.tscn" id="2_de2ha"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5uruv"]
+radius = 5.0
+
+[node name="WizardAbilityPickup" type="Area2D"]
+disable_mode = 2
+collision_layer = 32
+collision_mask = 4
+script = ExtResource("1_tsh2g")
+new_sprite = ExtResource("2_de2ha")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5.6, 5.68)
+shape = SubResource("CircleShape2D_5uruv")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 20.0
+color = Color(0, 1, 0.129412, 1)
+
+[node name="PickupSprite2D" type="Sprite2D" parent="."]

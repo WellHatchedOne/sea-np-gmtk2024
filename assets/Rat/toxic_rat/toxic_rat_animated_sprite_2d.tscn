@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://c6r2h84r5vvuu"]
+[gd_scene load_steps=18 format=3 uid="uid://c6r2h84r5vvuu"]
 
 [ext_resource type="Texture2D" uid="uid://buseq4rt7gc0i" path="res://assets/Rat/toxic_rat/Toxic_Down-1.png" id="1_7t50p"]
 [ext_resource type="Texture2D" uid="uid://dgk1n7uwveew4" path="res://assets/Rat/toxic_rat/Toxic_Down-2.png" id="2_bfe53"]
@@ -8,12 +8,14 @@
 [ext_resource type="Texture2D" uid="uid://rvo1b8focvg5" path="res://assets/Rat/toxic_rat/Toxic_Side-2.png" id="6_u3qw7"]
 [ext_resource type="Texture2D" uid="uid://c0edohp4o1tim" path="res://assets/Rat/toxic_rat/Toxic_Side-3.png" id="7_480ho"]
 [ext_resource type="Texture2D" uid="uid://bso1bn1kxwmpy" path="res://assets/Rat/toxic_rat/Toxic_Side-4.png" id="8_ft6r1"]
-[ext_resource type="Texture2D" uid="uid://d1b1ebdgjweek" path="res://assets/Rat/toxic_rat/Toxic_rat_sitting.png" id="9_2pfx1"]
+[ext_resource type="Texture2D" uid="uid://8qcxtcnsmirm" path="res://assets/Rat/toxic_rat/Toxic_rat_sitting.png" id="9_2pfx1"]
 [ext_resource type="Texture2D" uid="uid://cgxdc457bbkf3" path="res://assets/Rat/toxic_rat/Toxic_Up-1.png" id="9_hsymn"]
 [ext_resource type="Texture2D" uid="uid://ceq0lc44yndtv" path="res://assets/Rat/toxic_rat/Toxic_Up-2.png" id="10_qf1f5"]
 [ext_resource type="Texture2D" uid="uid://co7d0crm0a6dx" path="res://assets/Rat/toxic_rat/Toxic_Up-3.png" id="11_7b8uq"]
 [ext_resource type="Texture2D" uid="uid://dryaxu2qvl103" path="res://assets/Rat/toxic_rat/Toxic_Up-4.png" id="12_7kkut"]
 [ext_resource type="Texture2D" uid="uid://c8w33jxgpc01c" path="res://assets/RatAbilities/Toxic_potion.png" id="13_adpvn"]
+[ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_tuy5m"]
+[ext_resource type="PackedScene" uid="uid://chow8ybeccsgg" path="res://Max/components/RatAbilityComponent/BulletDestination.tscn" id="16_tb586"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -84,3 +86,29 @@ animation = &"sitting"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("13_adpvn")
+
+[node name="RatAbilityController" parent="." instance=ExtResource("15_tuy5m")]
+bullet_speed = 720.0
+
+[node name="BulletDestination" parent="RatAbilityController" index="1"]
+position = Vector2(-7.62939e-06, 810)
+bullet_speed = 650.0
+
+[node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_tb586")]
+visible = false
+position = Vector2(-1620, 30)
+bullet_speed = 650.0
+
+[node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
+wait_time = 0.5
+
+[node name="BulletDestination3" parent="RatAbilityController" instance=ExtResource("16_tb586")]
+visible = false
+position = Vector2(1590, -20.0001)
+bullet_speed = 650.0
+
+[node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination3"]
+wait_time = 0.5
+
+[editable path="RatAbilityController"]
+[editable path="RatAbilityController/BulletDestination"]
