@@ -40,7 +40,17 @@ var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 
 var biters: Array = []
 
+#list of enemies that can be spawned 
 const ENEMY = preload("res://Entities/Enemies/dummyEnemy.tscn")
+const CARROT = preload("res://Entities/Enemies/Carrot/Carrot.tscn")
+const CHEETO = preload("res://Entities/Enemies/cheetoGerm/cheetoGerm.tscn")
+const ELECTRICTRAP = preload("res://Entities/Enemies/ElectricTrap/ElectricTrap.tscn")
+const FLOWER = preload("res://Entities/Enemies/Flower/Flower.tscn")
+const PINKGERM = preload("res://Entities/Enemies/greenGerm/greenGerm.tscn")
+const PICO = preload("res://Entities/Enemies/Pico/Pico.tscn")
+
+
+
 const BITE_ATTACK_TIMER = preload("res://Events/Timers/biteAttackTimer.tscn")
 const FOOD = preload("res://Grace/food.tscn")
 #const LIGHTNING_ATTACK_TIMER = preload("res://Entities/Enemies/meleeAttacker.tscn")
@@ -162,7 +172,34 @@ func handleRandomEnemySpawning(tile_index: Vector2i):
 	elif already_spawned_entities_map[tile_index] != 0:
 		return
 	else:
-		try_to_spawn_entity(ENEMY, tile_index, level_position, 0.1)
+		#tilemapAtlasId is the INT
+		#0 is the lab
+		#1 is the farm
+		#2 is the sewer
+		var RandEnemy = rng.randf_range(0, 10)
+		if tilemapAtlasId == 0:
+			if RandEnemy < 4:
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.1)
+			if RandEnemy > 4 and RandEnemy < 7:
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.1)
+			if RandEnemy > 4 and RandEnemy < 7:
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.1)
+		if tilemapAtlasId == 1:
+			if RandEnemy < 5:
+				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.1)
+			if RandEnemy > 5 :
+				try_to_spawn_entity(CARROT, tile_index, level_position, 0.1)
+		if tilemapAtlasId == 2:
+			if RandEnemy < 2:
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.1)
+			if RandEnemy > 2 and RandEnemy < 4:
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.1)
+			if RandEnemy > 4 and RandEnemy < 6:
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.1)
+			if RandEnemy > 6 and RandEnemy < 8:
+				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.1)
+			if RandEnemy > 8 :
+				try_to_spawn_entity(CARROT, tile_index, level_position, 0.1)
 
 func handleRandomPickupsSpawning(tile_index: Vector2i):
 	var level_position = Vector2(tile_index.x*tile_size, tile_index.y*tile_size)
