@@ -1,0 +1,110 @@
+[gd_scene load_steps=19 format=3 uid="uid://dmvyjjek0r5ko"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_4oog0"]
+[ext_resource type="Texture2D" uid="uid://dtvacfi85wruq" path="res://assets/enemies/flower/Flower_Attack-1.png" id="2_ecvyp"]
+[ext_resource type="Texture2D" uid="uid://t0wxcylcww1b" path="res://assets/enemies/flower/Flower_Attack-2.png" id="3_knxhs"]
+[ext_resource type="Texture2D" uid="uid://bytc8cii6taoy" path="res://assets/enemies/flower/Flower_Attack-3.png" id="4_klvv1"]
+[ext_resource type="Texture2D" uid="uid://b1tyt6pb5w3mj" path="res://assets/enemies/flower/Flower_Attack-4.png" id="5_42g8x"]
+[ext_resource type="Texture2D" uid="uid://rxb8fxln2oid" path="res://assets/enemies/flower/Flower_Attack-5.png" id="6_tynsk"]
+[ext_resource type="Texture2D" uid="uid://cuf8g4cdt7yi4" path="res://assets/enemies/flower/Flower_Death-1.png" id="7_akfr0"]
+[ext_resource type="Texture2D" uid="uid://dsv3yeccghvq6" path="res://assets/enemies/flower/Flower_Death-2.png" id="8_a3r4r"]
+[ext_resource type="Texture2D" uid="uid://b0xlpe8vfu2da" path="res://assets/enemies/flower/Flower_Death-3.png" id="9_b1iof"]
+[ext_resource type="Texture2D" uid="uid://bgnu5bmg0kgdb" path="res://assets/enemies/flower/Flower_Death-4.png" id="10_53lg7"]
+[ext_resource type="Texture2D" uid="uid://cxbgangnvilfk" path="res://assets/enemies/flower/Flower_Death-5.png" id="11_uc5ev"]
+[ext_resource type="Texture2D" uid="uid://bhs577n2h3mcf" path="res://assets/enemies/flower/Flower_Death-6.png" id="12_b6068"]
+[ext_resource type="Texture2D" uid="uid://djeaf60yse7nb" path="res://assets/enemies/flower/Flower_Idle-1.png" id="13_i0jua"]
+[ext_resource type="Texture2D" uid="uid://1j5bfonosuyn" path="res://assets/enemies/flower/Flower_Idle-2.png" id="14_830m0"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="20_hocpf"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="21_0rsog"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_ecvyp")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_knxhs")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_klvv1")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_42g8x")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_tynsk")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_akfr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a3r4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b1iof")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_53lg7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_uc5ev")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_b6068")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_akfr0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_a3r4r")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_b1iof")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_i0jua")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_830m0")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuq4r"]
+size = Vector2(38, 19)
+
+[node name="Flower" type="CharacterBody2D"]
+script = ExtResource("1_4oog0")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(0.0254384, 0.0254384)
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"idle"
+frame_progress = 0.860991
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_kuq4r")
+
+[node name="HealthComponent" parent="." instance=ExtResource("20_hocpf")]
+
+[node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_0rsog")]
+enemy_radius = 100.0

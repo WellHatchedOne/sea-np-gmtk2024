@@ -1,0 +1,110 @@
+[gd_scene load_steps=21 format=3 uid="uid://c0vrmwdswvj5u"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_ew6hu"]
+[ext_resource type="Texture2D" uid="uid://e310xm1buun3" path="res://assets/enemies/carrot/Carrot_Attack-1.png" id="2_7r272"]
+[ext_resource type="Texture2D" uid="uid://1p7ncr0pytu0" path="res://assets/enemies/carrot/Carrot_Attack-2.png" id="3_84ocr"]
+[ext_resource type="Texture2D" uid="uid://8vir1cb6v1bg" path="res://assets/enemies/carrot/Carrot_Attack-3.png" id="4_x3jcw"]
+[ext_resource type="Texture2D" uid="uid://bni1vbie7ewjx" path="res://assets/enemies/carrot/Carrot_Death-1.png" id="5_yjaew"]
+[ext_resource type="Texture2D" uid="uid://dgqsoe5u8vgm4" path="res://assets/enemies/carrot/Carrot_Death-2.png" id="6_yl60h"]
+[ext_resource type="Texture2D" uid="uid://bdbpfcfm7ykam" path="res://assets/enemies/carrot/Carrot_Death-3.png" id="7_h1jti"]
+[ext_resource type="Texture2D" uid="uid://hcondaeqb1k0" path="res://assets/enemies/carrot/Carrot_Death-4.png" id="8_b24fu"]
+[ext_resource type="Texture2D" uid="uid://c6eeuy86o5e6w" path="res://assets/enemies/carrot/Carrot_Death-5.png" id="9_2exf6"]
+[ext_resource type="Texture2D" uid="uid://wlacgoxug8hw" path="res://assets/enemies/carrot/Carrot_Death-6.png" id="10_ev68n"]
+[ext_resource type="Texture2D" uid="uid://1cqrcwfsxhco" path="res://assets/enemies/carrot/Carrot_Damage_1.png" id="11_5ga8c"]
+[ext_resource type="Texture2D" uid="uid://dpggn8m0mg6p2" path="res://assets/enemies/carrot/Carrot_Damage_2.png" id="12_klkpc"]
+[ext_resource type="Texture2D" uid="uid://f6kethawfepf" path="res://assets/enemies/carrot/Carrot_damage_3.png" id="13_if3c4"]
+[ext_resource type="Texture2D" uid="uid://bupsucmu34vq5" path="res://assets/enemies/carrot/Carrot_Damage_4.png" id="14_rmxxq"]
+[ext_resource type="Texture2D" uid="uid://bc67ravtrkcdn" path="res://assets/enemies/carrot/Carrot_Idle-1.png" id="15_dfmkk"]
+[ext_resource type="Texture2D" uid="uid://bngax7vcx138q" path="res://assets/enemies/carrot/Carrot_Idle-2.png" id="16_48jti"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="17_u4oq7"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="18_g52bh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7r272")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_84ocr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_x3jcw")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_yjaew")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_yl60h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_h1jti")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_b24fu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_2exf6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ev68n")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("11_5ga8c")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_klkpc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_if3c4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_rmxxq")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_dfmkk")
+}, {
+"duration": 1.0,
+"texture": ExtResource("16_48jti")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf1lu"]
+radius = 17.0
+height = 54.0
+
+[node name="Carrot" type="CharacterBody2D"]
+script = ExtResource("1_ew6hu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0.107814, -1.42109e-14)
+scale = Vector2(0.0253091, 0.0254384)
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"attack"
+frame_progress = 0.166683
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CapsuleShape2D_kf1lu")
+
+[node name="HealthComponent" parent="." instance=ExtResource("17_u4oq7")]
+
+[node name="MoveAtTargetComponent" parent="." instance=ExtResource("18_g52bh")]
+enemy_radius = 100.0

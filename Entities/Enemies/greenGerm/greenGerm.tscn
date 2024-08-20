@@ -1,0 +1,103 @@
+[gd_scene load_steps=20 format=3 uid="uid://b0y7rbv28eayv"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_4jstu"]
+[ext_resource type="Texture2D" uid="uid://bppewysuij457" path="res://assets/enemies/pinkGerm/pinkGerm-attack-1.png" id="2_vfmyy"]
+[ext_resource type="Texture2D" uid="uid://dc5cx62bm0do2" path="res://assets/enemies/pinkGerm/pinkGerm-attack-2.png" id="3_kgv0y"]
+[ext_resource type="Texture2D" uid="uid://bjs0byneriv7m" path="res://assets/enemies/pinkGerm/pinkGerm-attack-3.png" id="4_t2hqv"]
+[ext_resource type="Texture2D" uid="uid://5dysgbjhedhk" path="res://assets/enemies/pinkGerm/pinkGerm-attack-4.png" id="5_ja5r5"]
+[ext_resource type="Texture2D" uid="uid://c2ki53hk31ohc" path="res://assets/enemies/pinkGerm/pinkGerm-death-1.png" id="6_t6o3n"]
+[ext_resource type="Texture2D" uid="uid://bu7s7hladl0my" path="res://assets/enemies/pinkGerm/pinkGerm-death-2.png" id="7_dp8ih"]
+[ext_resource type="Texture2D" uid="uid://pwy3qamtoj6f" path="res://assets/enemies/pinkGerm/pinkGerm-death-3.png" id="8_1v2tm"]
+[ext_resource type="Texture2D" uid="uid://bnkyijh3nbwb3" path="res://assets/enemies/pinkGerm/pinkGerm-death-4.png" id="9_euonj"]
+[ext_resource type="Texture2D" uid="uid://dqkwn1t2v6sob" path="res://assets/enemies/pinkGerm/pinkGerm-hurt-1.png" id="10_yhl1v"]
+[ext_resource type="Texture2D" uid="uid://dc5gr4xlpoioj" path="res://assets/enemies/pinkGerm/pinkGerm-hurt-2.png" id="11_lgf44"]
+[ext_resource type="Texture2D" uid="uid://l2a7lxv8kalg" path="res://assets/enemies/pinkGerm/pinkGerm-hurt-3.png" id="12_116hy"]
+[ext_resource type="Texture2D" uid="uid://ft6hpcklfho" path="res://assets/enemies/pinkGerm/pinkGerm-idle-1.png" id="13_s1n1u"]
+[ext_resource type="Texture2D" uid="uid://ce6lmyv3adwm1" path="res://assets/enemies/pinkGerm/pinkGerm-idle-2.png" id="14_2cxgw"]
+[ext_resource type="Texture2D" uid="uid://bi2x5rpdrq0of" path="res://assets/enemies/pinkGerm/pinkGerm-idle-3.png" id="15_dqf2j"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="20_5t6ki"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="21_gg5yn"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_vfmyy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_kgv0y")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_t2hqv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_ja5r5")
+}],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_t6o3n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dp8ih")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_1v2tm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_euonj")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("10_yhl1v")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_lgf44")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_116hy")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("13_s1n1u")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_2cxgw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_dqf2j")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85im2"]
+
+[node name="greenGerm" type="CharacterBody2D"]
+script = ExtResource("1_4jstu")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, 3)
+scale = Vector2(0.0254384, 0.0254384)
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_85im2")
+
+[node name="HealthComponent" parent="." instance=ExtResource("20_5t6ki")]
+
+[node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_gg5yn")]
+enemy_radius = 100.0

@@ -2,7 +2,8 @@ extends CharacterBody2D
 class_name PackOfRats
 
 @export var speed: float = 400
-@export var ratWidthDist = 15
+const RAT_EXPANDED_DISTANCE:float = 15
+const RAT_CLUSTERED_DISTANCE:float = RAT_EXPANDED_DISTANCE / 3
 @export var ratHeightDist = 15
 const RAT_DELAY_MULTIPLICATIVE_MODIFIER:float = .002
 const RAT_DELAY_RANDOM_MODIFIER:float = .3
@@ -26,19 +27,24 @@ func get_input() -> void:
 func _physics_process(delta) -> void:
 	get_input()
 	move_and_slide()
-	move_rats(delta)
+	move_rats(delta, areRatsClustered())
 	
-func move_rats(delta):
+func move_rats(delta, areRatsClustered:bool):
 	for rat in all_rats:
 		rat.enable_collision()
-		rat.ratMove(velocity, speed, delta)
+		rat.ratMove(velocity, speed, delta, areRatsClustered)
+
+func areRatsClustered() -> bool:
+	return Input.is_action_pressed("cluster_rats")
 
 func _ready():
 	spawn_spiral_rat(false)
 
 func spawn_spiral_rat(should_be_child=true):
 	var spiralCoordinates:Vector2 = get_spiral_coordinates_from_poisition(ratnumber)
-	spawn_rat(getRatPosistionFromSpiralCoordinates(spiralCoordinates), should_be_child)
+	var ratPosition = getRatPosistionFromSpiralCoordinates(spiralCoordinates, RAT_EXPANDED_DISTANCE, RAT_EXPANDED_DISTANCE)
+	var clusterPosition = getRatPosistionFromSpiralCoordinates(spiralCoordinates, RAT_CLUSTERED_DISTANCE, RAT_CLUSTERED_DISTANCE)
+	spawn_rat(ratPosition, clusterPosition, should_be_child)
 
 func get_spiral_coordinates_from_poisition(position) -> Vector2:
 	# di and dj are vectors for the current segment
@@ -68,16 +74,17 @@ func get_spiral_coordinates_from_poisition(position) -> Vector2:
 
 	return Vector2(i, j)
 
-func getRatPosistionFromSpiralCoordinates(spiralPosition:Vector2) -> Vector2:
+func getRatPosistionFromSpiralCoordinates(spiralPosition:Vector2, ratWidthDist:float, ratHeightDist) -> Vector2:
 	var x = spiralPosition.x * ratWidthDist + randf_range(-1 * ratWidthDist / 2, ratWidthDist / 2)
 	var y = spiralPosition.y * ratHeightDist + randf_range(-1 * ratHeightDist / 2, ratHeightDist / 2)
 	return Vector2(x, y)
 
-func spawn_rat(new_position:Vector2, should_be_child=true):
+func spawn_rat(new_position:Vector2, clusterPositon:Vector2, should_be_child=true):
 	print("spawn rat")
 	var new_rat:Rat = RAT.instantiate()
 	var radius_from_parent_origin = Vector2(0,0).distance_to(new_position)
 	new_rat.position = new_position
+	new_rat.setClusterPosition(clusterPositon)
 	
 	ratnumber += 1
 	
@@ -92,10 +99,6 @@ func spawn_rat(new_position:Vector2, should_be_child=true):
 	
 	all_rats.append(new_rat)
 	self.add_child(new_rat)
-	
-	#emit_signal("ratsignal")
-	#get_parent().classify_entity(new_rat)
-	#emit_signal("ratsignal")
 
 # This function determines the rat delay as function of far it is from the center of the pack
 func get_rat_delay(position:Vector2) -> float:
