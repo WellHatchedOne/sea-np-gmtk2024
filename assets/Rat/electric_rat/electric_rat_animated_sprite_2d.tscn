@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dg7n24ps1sdch"]
+[gd_scene load_steps=15 format=3 uid="uid://dg7n24ps1sdch"]
 
 [ext_resource type="Texture2D" uid="uid://cou4c8eo0cgi7" path="res://assets/Rat/electric_rat/Electric_Down-1.png" id="1_0ypqf"]
 [ext_resource type="Texture2D" uid="uid://cxofxhqp6uo8k" path="res://assets/Rat/electric_rat/Electric_Down-2.png" id="2_trgvv"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://cy4t50x6bswak" path="res://assets/Rat/electric_rat/Electrical_Up-2.png" id="10_popjd"]
 [ext_resource type="Texture2D" uid="uid://dtqot3tmq06xs" path="res://assets/Rat/electric_rat/Electrical_Up-3.png" id="11_v6vdj"]
 [ext_resource type="Texture2D" uid="uid://c2qw7rbfcpug1" path="res://assets/Rat/electric_rat/Electrical_Up-4.png" id="12_7loor"]
+[ext_resource type="Texture2D" uid="uid://cexmy2hfypscv" path="res://assets/RatAbilities/Electric_potion.png" id="13_nk618"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -71,3 +72,6 @@ animations = [{
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
 animation = &"up"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("13_nk618")

@@ -2,7 +2,7 @@ extends Area2D
 class_name ShootAtTargetComponent
 
 const BULLET = preload("res://Max/enemy/Bullet.tscn")
-@export var target: Node = null
+const PACK_OF_RATS = preload("res://Max/pack_of_rats/pack_of_rats.tscn")
 @export var vision_radius: float = 200
 @export var bullet_speed: float = 6
 
@@ -16,14 +16,22 @@ const default_tune = preload("res://assets/Music/spit-36265.mp3")
 @onready var vision_circle_shape = $VisionCircleShape
 @onready var fire_rate_timer = $FireRateTimer
 
+#globals do not change
+var target
+var true_parent
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
+	true_parent = get_parent().get_parent()
+	
+	# Jank don't look
+	var scale_fix = Vector2(1,1) / true_parent.scale
+	self.scale = scale_fix
+	
+	vision_circle_shape.disabled = false
 	
 	fire_rate_timer.timeout.connect(_fire_rate_event)
 	fire_rate_timer.wait_time = fire_rate
-	
-	if (target == null):
-		target = owner.find_child("PackOfRats")
 
 	vision_circle_shape.shape.radius = vision_radius
 
@@ -39,7 +47,7 @@ func shoot_at_target():
 	var new_bullet: Bullet = BULLET.instantiate()
 	# Added call_deferred to queue the action since there are also collision checks
 	self.call_deferred("add_child", new_bullet)
-	var travel_direction = get_parent().position.direction_to(target.position)
+	var travel_direction = true_parent.position.direction_to(target.position)
 	
 	new_bullet.start(self.position)
 	new_bullet.launch(bullet_speed, travel_direction, true)
@@ -53,6 +61,7 @@ func _fire_rate_event():
 
 func _on_body_entered(body):
 	if body is PackOfRats:
+		print("found rats!")
 		target = body
 		shoot_at_target()
 		fire_rate_timer.start()
