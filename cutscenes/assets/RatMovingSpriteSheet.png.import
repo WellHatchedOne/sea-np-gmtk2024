@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b5y2wg1hld7p2"
-path="res://.godot/imported/pOWER-DISCOVERY-SCENE.png-ce761cc64224b16393dce3ab61ed8860.ctex"
+uid="uid://dv45q08xrjifx"
+path="res://.godot/imported/RatMovingSpriteSheet.png-a23855d2c02be4769e3306b1dcd1ee02.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://cutscenes/assets/pOWER-DISCOVERY-SCENE.png"
-dest_files=["res://.godot/imported/pOWER-DISCOVERY-SCENE.png-ce761cc64224b16393dce3ab61ed8860.ctex"]
+source_file="res://cutscenes/assets/RatMovingSpriteSheet.png"
+dest_files=["res://.godot/imported/RatMovingSpriteSheet.png-a23855d2c02be4769e3306b1dcd1ee02.ctex"]
 
 [params]
 
