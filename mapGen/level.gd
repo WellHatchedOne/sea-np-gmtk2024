@@ -162,6 +162,7 @@ func _draw():
 	for path in paths:
 		renderRoomConnection(path)
 
+
 # We should keep track of where things spawn so that we don't accidentally spawn things right next to each other
 #self.bossSpawnPoint is a vector2
 func handleRandomEnemySpawning(tile_index: Vector2i):
