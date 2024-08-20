@@ -4,7 +4,7 @@ class_name Rat
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 const DISTANCE_FROM_PACK_TO_STOP_MOVING = 500
-const DISTANCE_FROM_PACK_TO_START_MOVING = 50
+const DISTANCE_FROM_PACK_TO_START_MOVING = 150
 enum RatState {FOLLOWING, SITTING}
 var currentRatState = RatState.FOLLOWING
 var startingPosition:Vector2
@@ -72,7 +72,7 @@ func moveAndSlideRat(desiredGlobalPosition: Vector2, swarmVelocity:Vector2, spee
 		move_and_slide()
 		return false
 
-	var desiredGlobalVelocity:Vector2 = (desiredGlobalPosition).normalized() * speed
+	var desiredGlobalVelocity:Vector2 = desiredGlobalPosition
 	if(swarmVelocity == Vector2.ZERO && desiredGlobalVelocity == Vector2.ZERO):
 		var vectorToStartingPosition = startingPosition - position
 		velocity = vectorToStartingPosition.normalized() * speed
@@ -127,7 +127,6 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 			last_state = "up"
 			animated_sprite_2d.rotation = (deg_to_rad(0))
 			self.rotation = (deg_to_rad(0))
-	print(last_state)
 	
 
 func execute_move():
