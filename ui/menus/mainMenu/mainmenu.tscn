@@ -25,9 +25,8 @@ expand_mode = 1
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_top = -2.0
 offset_right = 40.0
-offset_bottom = 38.0
+offset_bottom = 40.0
 
 [node name="HoverIconPlay" type="TextureRect" parent="."]
 unique_name_in_owner = true
