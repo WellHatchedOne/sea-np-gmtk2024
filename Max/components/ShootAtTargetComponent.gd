@@ -22,11 +22,7 @@ var true_parent
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	true_parent = get_parent().get_parent()
-	
-	# Jank don't look
-	var scale_fix = Vector2(1,1) / true_parent.scale
-	self.scale = scale_fix
+	true_parent = get_parent()
 	
 	vision_circle_shape.disabled = false
 	
@@ -61,7 +57,6 @@ func _fire_rate_event():
 
 func _on_body_entered(body):
 	if body is PackOfRats:
-		print("found rats!")
 		target = body
 		shoot_at_target()
 		fire_rate_timer.start()
