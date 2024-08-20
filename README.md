@@ -5,6 +5,9 @@
 - Rats = 3
 - Food = 4
 - Enemies = 5
+- Ability Pickups = 6
+- Bullets = 7
+- Components (unless special) 8
 
 ## Basics:
 1. Clone this repo into '.../Godot/Projects' directory
