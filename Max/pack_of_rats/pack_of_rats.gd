@@ -104,3 +104,10 @@ func get_rat_delay(position:Vector2) -> float:
 
 func update_collision_radius(new_radius):
 	pack_collision_circle.shape.radius = new_radius
+
+'''Returns the first basic rat we can find, if not, then returns null'''
+func return_basic_rat():
+	for rat in all_rats:
+		if rat.ratType == "basic":
+			return rat
+	return null

@@ -1,7 +1,7 @@
 extends CharacterBody2D
 class_name Rat
 
-@onready var animated_sprite_2d = $AnimatedSprite2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var collision_shape_2d = $CollisionShape2D
 const DISTANCE_FROM_PACK_TO_STOP_MOVING = 500
 const DISTANCE_FROM_PACK_TO_START_MOVING = 50
@@ -12,6 +12,8 @@ var delay:float = 0
 var currentTimeOffset:float = 0
 var timeOffsetQueue:Array[float] = []
 var positionOffSetQueue:Array[Vector2] = []
+
+var ratType = "basic"
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
