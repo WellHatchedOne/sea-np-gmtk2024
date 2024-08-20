@@ -19,7 +19,7 @@ func _process(delta):
 	score = owner.Player.ratnumber
 	#print(score)
 	
-	if getPlayerLevel() >= 3 and firstplay == true:
+	if getPlayerLevel() >= 4 and firstplay == true:
 		_activate()
 		firstplay = false
 		$Timer.start()
@@ -48,4 +48,5 @@ func getLevelNode() -> Level:
 
 
 func _on_timer_timeout():
+	text= "YOU WIN"
 	_deactivate()
