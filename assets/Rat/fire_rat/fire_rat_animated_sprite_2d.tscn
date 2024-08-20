@@ -31,7 +31,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -48,7 +48,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -65,14 +65,14 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="FireRatAnimatedSprite2D" type="AnimatedSprite2D"]
 position = Vector2(16, 12)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
-animation = &"side"
+animation = &"up"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("13_c7p2n")

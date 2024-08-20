@@ -31,7 +31,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"down",
-"speed": 5.0
+"speed": 8.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -48,7 +48,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"side",
-"speed": 5.0
+"speed": 10.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -65,7 +65,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"up",
-"speed": 5.0
+"speed": 10.0
 }]
 
 [node name="WaterRatAnimatedSprite2D" type="AnimatedSprite2D"]
