@@ -1,10 +1,10 @@
 # COLLISION LAYERS REFERENCE (ADJUST TO FIT, DO NOT CHANGE THIS)
 ### This is the layer that these entities should live on. The mask layer is what a given entity can see, so adjust accordingly
-Walls = 1
-Pack of Rats = 2
-Rats = 3
-Food = 4
-Enemies = 5
+- Walls = 1
+- Pack of Rats = 2
+- Rats = 3
+- Food = 4
+- Enemies = 5
 
 ## Basics:
 1. Clone this repo into '.../Godot/Projects' directory

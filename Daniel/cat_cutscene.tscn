@@ -7,6 +7,22 @@
 [ext_resource type="AudioStream" uid="uid://buqu5m0yo8xf5" path="res://assets/Cutscenes/roar.mp3" id="5_ondd7"]
 [ext_resource type="AudioStream" uid="uid://d3j12j6xxjjug" path="res://assets/Cutscenes/cat-89108.mp3" id="6_0it1b"]
 
+
+[sub_resource type="Animation" id="Animation_dl3rs"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D3:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
 [sub_resource type="Animation" id="Animation_axk7s"]
 resource_name = "new_animation"
 length = 5.0
