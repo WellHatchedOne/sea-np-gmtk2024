@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bqo31kjnrxh0i"]
+[gd_scene load_steps=26 format=3 uid="uid://bqo31kjnrxh0i"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_5q1hl"]
 [ext_resource type="Texture2D" uid="uid://hi226asbrch6" path="res://assets/enemies/cheetoGerm/cheetoGerm-attack-1.png" id="1_psnoa"]
@@ -20,7 +20,9 @@
 [ext_resource type="Texture2D" uid="uid://brdm1qox3m64" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-4.png" id="17_u35fs"]
 [ext_resource type="Texture2D" uid="uid://j0pq7lpbbfut" path="res://assets/enemies/cheetoGerm/cheetoGerm-idle-5.png" id="18_mfh53"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="19_mtjs7"]
+[ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="22_6usbw"]
 [ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="22_qipkq"]
+[ext_resource type="PackedScene" uid="uid://d06i4rugx83se" path="res://Max/components/KillRatOnContact/KillRatOnContactComponent.tscn" id="23_0yvuk"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -104,6 +106,7 @@ radius = 37.0
 height = 102.0
 
 [node name="CheetoGerm" type="CharacterBody2D"]
+collision_mask = 5
 script = ExtResource("1_5q1hl")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
@@ -119,3 +122,7 @@ shape = SubResource("CapsuleShape2D_kf1lu")
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("22_qipkq")]
 enemy_radius = 200.0
+
+[node name="ShootAtTargetComponent" parent="." instance=ExtResource("22_6usbw")]
+
+[node name="KillRatOnContactComponent" parent="." instance=ExtResource("23_0yvuk")]

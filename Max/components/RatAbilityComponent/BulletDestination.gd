@@ -4,7 +4,7 @@ class_name BulletDestination
 const BULLET = preload("res://Max/enemy/Bullet.tscn")
 
 @export_range(0,2,0.01) var fire_rate: float = 0.5
-@export_range(0,10,0.1) var bullet_speed: float = 5
+@export_range(0,1000,5) var bullet_speed: float = 5
 @export_range(0,20,0.25) var bullet_lifetime_seconds: float = 3
 @export var bullet_sprite_file: Sprite2D = null
 @onready var bullet_sprite = $BulletSprite
@@ -15,7 +15,8 @@ var new_bullet_shape
 
 var generated_area_2d = null
 
-@onready var timer = $Timer
+# @onready var timer = $Timer
+var timer
 @onready var bullet_origin = $"../BulletOrigin"
 
 func _ready():
@@ -29,6 +30,7 @@ func _ready():
 	generated_area_2d = temp_bullet.create_new_collision_from_image()
 	temp_bullet.queue_free()
 	
+	timer = self.get_node("Timer")
 	timer.timeout.connect(_fire_rate_timer)
 	timer.wait_time = fire_rate
 	
@@ -44,7 +46,8 @@ func _fire_rate_timer():
 
 func fire():
 	var new_bullet = BULLET.instantiate()
-	owner.add_child(new_bullet)
+	get_parent().get_parent().add_child(new_bullet)
+	new_bullet.isEnemyBullet = false
 	new_bullet.update_sprite(bullet_sprite.texture)
 	new_bullet.area_2d = generated_area_2d
 	var travel_direction = bullet_origin.position.direction_to(self.position)

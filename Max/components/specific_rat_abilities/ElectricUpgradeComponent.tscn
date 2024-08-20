@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=3 uid="uid://omr3hikurnis"]
+
+[ext_resource type="Script" path="res://Max/components/RatUpgradeComponent.gd" id="1_d5skb"]
+[ext_resource type="PackedScene" uid="uid://dg7n24ps1sdch" path="res://assets/Rat/electric_rat/electric_rat_animated_sprite_2d.tscn" id="2_j5u8x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pvmto"]
+radius = 5.0
+
+[node name="RatUpgradeComponent" type="Area2D"]
+disable_mode = 2
+collision_layer = 128
+collision_mask = 4
+script = ExtResource("1_d5skb")
+new_sprite = ExtResource("2_j5u8x")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(5.6, 5.68)
+shape = SubResource("CircleShape2D_pvmto")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+visible = false
+offset_left = -19.0
+offset_top = -20.0
+offset_right = 21.0
+offset_bottom = 20.0
+color = Color(0, 1, 0.129412, 1)
+
+[node name="PickupSprite2D" type="Sprite2D" parent="."]
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
