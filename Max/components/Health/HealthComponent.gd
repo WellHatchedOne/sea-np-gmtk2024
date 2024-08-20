@@ -42,5 +42,5 @@ func increase_health(number: float):
 func _on_area_entered(area):
 	if area.get_parent() is Bullet:
 		if !area.get_parent().isEnemyBullet:
-			print("Taking damage")
 			take_damage(area.get_parent().damage)
+			area.get_parent().queue_free()
