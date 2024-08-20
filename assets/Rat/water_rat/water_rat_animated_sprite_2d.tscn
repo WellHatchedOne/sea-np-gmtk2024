@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://cvucmjpdd2ata"]
+[gd_scene load_steps=17 format=3 uid="uid://cvucmjpdd2ata"]
 
 [ext_resource type="Texture2D" uid="uid://dxaw0v2hcx6b1" path="res://assets/Rat/water_rat/water_rat_down1.png" id="1_oy7n4"]
 [ext_resource type="Texture2D" uid="uid://csvjuqfn6kk6j" path="res://assets/Rat/water_rat/water_rat_down2.png" id="2_metq5"]
@@ -8,12 +8,13 @@
 [ext_resource type="Texture2D" uid="uid://iagvk52wekkg" path="res://assets/Rat/water_rat/water_rat_side2.png" id="6_ekfsp"]
 [ext_resource type="Texture2D" uid="uid://svyu6qrb27ek" path="res://assets/Rat/water_rat/water_rat_side3.png" id="7_cx4k8"]
 [ext_resource type="Texture2D" uid="uid://451p32s268ey" path="res://assets/Rat/water_rat/water_rat_side4.png" id="8_j06yt"]
-[ext_resource type="Texture2D" uid="uid://dq3u1uyduxh41" path="res://assets/Rat/water_rat/Water_Rat_Sitting.png" id="9_5jgjt"]
+[ext_resource type="Texture2D" uid="uid://cwena721uu3go" path="res://assets/Rat/water_rat/Water_Rat_Sitting.png" id="9_5jgjt"]
 [ext_resource type="Texture2D" uid="uid://cifodrcywqld5" path="res://assets/Rat/water_rat/water_rat_up1.png" id="9_rd47b"]
 [ext_resource type="Texture2D" uid="uid://pbf0s7ve6ktx" path="res://assets/Rat/water_rat/water_rat_up2.png" id="10_rghch"]
 [ext_resource type="Texture2D" uid="uid://b5gg3i010lwe7" path="res://assets/Rat/water_rat/water_rat_up3.png" id="11_1rovb"]
 [ext_resource type="Texture2D" uid="uid://icmwleke4qa6" path="res://assets/Rat/water_rat/water_rat_up4.png" id="12_cnevk"]
 [ext_resource type="Texture2D" uid="uid://c8bv710l56jyb" path="res://assets/RatAbilities/Water_potion.png" id="13_ugl35"]
+[ext_resource type="PackedScene" uid="uid://j8p7h64oj3di" path="res://Max/components/RatAbilityComponent/RatAbilityController.tscn" id="15_xlxp8"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -84,3 +85,13 @@ animation = &"sitting"
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("13_ugl35")
+
+[node name="RatAbilityController" parent="." instance=ExtResource("15_xlxp8")]
+bullet_speed = 720.0
+
+[node name="BulletDestination" parent="RatAbilityController" index="1"]
+position = Vector2(-7.62939e-06, -1380)
+bullet_speed = 650.0
+
+[editable path="RatAbilityController"]
+[editable path="RatAbilityController/BulletDestination"]

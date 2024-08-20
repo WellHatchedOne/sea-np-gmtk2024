@@ -3,10 +3,9 @@ class_name RatAbilityController
 
 const BULLET = preload("res://Max/enemy/Bullet.tscn")
 @export_range(0,2,0.01) var fire_rate: float = 0.5
-@export_range(0,10,0.1) var bullet_speed: float = 5
+@export_range(0,1000,5) var bullet_speed: float = 5
 @export_range(0,20,0.25) var bullet_lifetime_seconds: float = 3
 @export var debug: bool = true
-@onready var timer = $Timer
 
 var bullet_direction_array: Array[BulletDestination] = []
 @onready var bullet_origin = $BulletOrigin

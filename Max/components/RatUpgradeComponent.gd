@@ -1,4 +1,5 @@
 extends Area2D
+class_name RatUpgradeComponent
 
 @export var new_sprite: PackedScene = null
 @onready var pickup_sprite_2d = $PickupSprite2D
@@ -23,11 +24,18 @@ func upgrade_rat(rat: Rat):
 	var new_sprite_instance: AnimatedSprite2D = new_sprite.instantiate()
 	add_child(new_sprite_instance)
 	rat.animated_sprite_2d.sprite_frames = new_sprite_instance.sprite_frames
+	
+	if rat.has_node("RatAbilityController"):
+		rat.get_node("RatAbilityController").queue_free()
+		
+	var needed_controller = new_sprite_instance.get_node("RatAbilityController").duplicate()
+	#new_sprite_instance.remove_child(needed_controller)
+	new_sprite_instance.call_deferred("remove_child", new_sprite_instance)
+	#rat.call_deferred("add_child", new_sprite_instance)
+	rat.add_child(needed_controller)
 	rat.ratType = new_sprite_instance.name
-	new_sprite_instance.queue_free()
+	#new_sprite_instance.queue_free()
 	
-	
-
 func _on_body_entered(body):
 	if body is Rat:
 		upgrade_rat(body)
