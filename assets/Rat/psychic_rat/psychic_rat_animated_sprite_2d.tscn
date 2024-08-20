@@ -1,0 +1,78 @@
+[gd_scene load_steps=15 format=3 uid="uid://b0f2867pcim1h"]
+
+[ext_resource type="Texture2D" uid="uid://bdeysjv5b2dqi" path="res://assets/Rat/fire_rat/Fire_Rat_Down-1.png" id="1_70o3s"]
+[ext_resource type="Texture2D" uid="uid://dstxi1to8abo1" path="res://assets/Rat/fire_rat/Fire_Rat_Down-2.png" id="2_twtvv"]
+[ext_resource type="Texture2D" uid="uid://c5hdco2rue07x" path="res://assets/Rat/fire_rat/Fire_Rat_Down-3.png" id="3_f23xx"]
+[ext_resource type="Texture2D" uid="uid://1q6jff524j4s" path="res://assets/Rat/fire_rat/Fire_Rat_Down-4.png" id="4_5f71q"]
+[ext_resource type="Texture2D" uid="uid://cjfbre4qjdvc7" path="res://assets/Rat/fire_rat/fire_rat_side1.png" id="5_0gsck"]
+[ext_resource type="Texture2D" uid="uid://x4jo6nm2ktk6" path="res://assets/Rat/fire_rat/fire_rat_side2.png" id="6_y0dus"]
+[ext_resource type="Texture2D" uid="uid://dtdo73hb62h7k" path="res://assets/Rat/fire_rat/fire_rat_side3.png" id="7_atu6n"]
+[ext_resource type="Texture2D" uid="uid://bdu5cbw8vvdy2" path="res://assets/Rat/fire_rat/fire_rat_side4.png" id="8_h630f"]
+[ext_resource type="Texture2D" uid="uid://cymp8ate6aat5" path="res://assets/Rat/fire_rat/fire_rat_up1.png" id="9_i4xll"]
+[ext_resource type="Texture2D" uid="uid://i3mkbbfpo6mv" path="res://assets/Rat/fire_rat/fire_rat_up2.png" id="10_vrltm"]
+[ext_resource type="Texture2D" uid="uid://d0mip84d8m35i" path="res://assets/Rat/fire_rat/fire_rat_up3.png" id="11_5ydtr"]
+[ext_resource type="Texture2D" uid="uid://dvi3rn0vqp67q" path="res://assets/Rat/fire_rat/fire_rat_up4.png" id="12_7q7n4"]
+[ext_resource type="Texture2D" uid="uid://bei2tmhinkgoo" path="res://assets/RatAbilities/Fire_potion.png" id="13_noytv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_70o3s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_twtvv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_f23xx")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_5f71q")
+}],
+"loop": true,
+"name": &"down",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_0gsck")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_y0dus")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_atu6n")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_h630f")
+}],
+"loop": true,
+"name": &"side",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("9_i4xll")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_vrltm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_5ydtr")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_7q7n4")
+}],
+"loop": true,
+"name": &"up",
+"speed": 5.0
+}]
+
+[node name="PsychicRatAnimatedSprite2D" type="AnimatedSprite2D"]
+position = Vector2(16, 12)
+scale = Vector2(0.1, 0.1)
+sprite_frames = SubResource("SpriteFrames_pedtu")
+animation = &"side"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("13_noytv")
