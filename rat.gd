@@ -29,6 +29,9 @@ func _ready():
 func getStartingPosition() -> Vector2:
 	return startingPosition
 
+func getRatState() -> RatState:
+	return currentRatState
+
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
@@ -156,6 +159,7 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 		animated_sprite_2d.animation = "sitting"
 		animated_sprite_2d.rotation = (deg_to_rad(0))
 		self.rotation = (deg_to_rad(0))
+		animated_sprite_2d.offset = defaultRatOffset
 
 	if !shouldAnimateTurn:
 		return
