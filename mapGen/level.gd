@@ -25,6 +25,7 @@ var paddings = Vector4i(
 )
 
 var tilemapAtlasId := 0
+var playerLevel := 0
 
 @export var default_spawn_percent: float = 0.25
 
@@ -89,7 +90,7 @@ var pass50 = false
 func _process(delta):
 	score = get_parent().get_node("PackOfRats").ratnumber
 	
-	if pass50 == false and score >= 50 + 20 * tilemapAtlasId:
+	if pass50 == false and score >= 50 + 20 * playerLevel:
 		pass50 =true
 		_spawncat()
 
@@ -202,29 +203,29 @@ func handleRandomEnemySpawning(tile_index: Vector2i):
 		var RandEnemy = rng.randf_range(0, 10)
 		if tilemapAtlasId == 0:
 			if RandEnemy < 4:
-				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.02)
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.02 * playerLevel)
 			if RandEnemy > 4 and RandEnemy < 7:
-				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.02)
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.02 * playerLevel)
 			if RandEnemy > 4 and RandEnemy < 7:
-				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.02)
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.02 * playerLevel)
 		if tilemapAtlasId == 1:
 			if RandEnemy < 3:
-				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.05)
+				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.05 * (playerLevel - 1))
 			if RandEnemy > 3 and RandEnemy < 6 :
-				try_to_spawn_entity(CARROT, tile_index, level_position, 0.05)
+				try_to_spawn_entity(CARROT, tile_index, level_position, 0.05 * (playerLevel - 1))
 			if RandEnemy > 6 :
-				try_to_spawn_entity(EXTERMINATOR, tile_index, level_position, 0.05)
+				try_to_spawn_entity(EXTERMINATOR, tile_index, level_position, 0.05 * (playerLevel - 1))
 		if tilemapAtlasId == 2:
 			if RandEnemy < 2:
-				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.01)
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.01 * (playerLevel - 2))
 			if RandEnemy > 2 and RandEnemy < 4:
-				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.01)
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.01 * (playerLevel - 2))
 			if RandEnemy > 4 and RandEnemy < 6:
-				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.01)
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.01 * (playerLevel - 2))
 			if RandEnemy > 6 and RandEnemy < 8:
-				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.01)
+				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.01 * (playerLevel - 2))
 			if RandEnemy > 8 :
-				try_to_spawn_entity(CARROT, tile_index, level_position, 0.01)
+				try_to_spawn_entity(CARROT, tile_index, level_position, 0.01 * (playerLevel - 2))
 
 func handleRandomPickupsSpawning(tile_index: Vector2i):
 	var level_position = Vector2(tile_index.x*tile_size, tile_index.y*tile_size)
