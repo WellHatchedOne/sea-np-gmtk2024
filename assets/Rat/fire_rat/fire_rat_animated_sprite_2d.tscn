@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://dqpxbwjydjsp3"]
+[gd_scene load_steps=15 format=3 uid="uid://dqpxbwjydjsp3"]
 
 [ext_resource type="Texture2D" uid="uid://bdeysjv5b2dqi" path="res://assets/Rat/fire_rat/Fire_Rat_Down-1.png" id="1_h1dga"]
 [ext_resource type="Texture2D" uid="uid://dstxi1to8abo1" path="res://assets/Rat/fire_rat/Fire_Rat_Down-2.png" id="2_g8qfq"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://i3mkbbfpo6mv" path="res://assets/Rat/fire_rat/fire_rat_up2.png" id="10_g4l31"]
 [ext_resource type="Texture2D" uid="uid://d0mip84d8m35i" path="res://assets/Rat/fire_rat/fire_rat_up3.png" id="11_tsqq0"]
 [ext_resource type="Texture2D" uid="uid://dvi3rn0vqp67q" path="res://assets/Rat/fire_rat/fire_rat_up4.png" id="12_eh1vu"]
+[ext_resource type="Texture2D" uid="uid://bei2tmhinkgoo" path="res://assets/RatAbilities/Fire_potion.png" id="13_c7p2n"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_pedtu"]
 animations = [{
@@ -72,3 +73,6 @@ position = Vector2(16, 12)
 scale = Vector2(0.1, 0.1)
 sprite_frames = SubResource("SpriteFrames_pedtu")
 animation = &"side"
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("13_c7p2n")

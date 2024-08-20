@@ -1,15 +1,19 @@
 extends Node2D
 
 const LEVEL = preload("res://mapGen/level.tscn")
-
 var levelPointer : Level = null
+var debug = true
 
 func _ready():
 	var level = LEVEL.instantiate()
 	level.tilemapAtlasId = 2
 	get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
 	print(level.spawnPoint)
-	$PackOfRats.position = level.spawnPoint
+	
+	if debug:
+		$PackOfRats.position = Vector2(400,400)
+	else:
+		$PackOfRats.position = level.spawnPoint
 	music()
 
 
