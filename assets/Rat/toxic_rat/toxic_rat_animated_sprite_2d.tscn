@@ -97,7 +97,6 @@ bullet_speed = 650.0
 [node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_tb586")]
 visible = false
 position = Vector2(-1620, 30)
-bullet_speed = 650.0
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
 wait_time = 0.5
@@ -105,7 +104,6 @@ wait_time = 0.5
 [node name="BulletDestination3" parent="RatAbilityController" instance=ExtResource("16_tb586")]
 visible = false
 position = Vector2(1590, -20.0001)
-bullet_speed = 650.0
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination3"]
 wait_time = 0.5

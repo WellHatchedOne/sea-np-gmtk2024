@@ -89,19 +89,13 @@ animation = &"sitting"
 texture = ExtResource("13_c7p2n")
 
 [node name="RatAbilityController" parent="." instance=ExtResource("15_1gpjg")]
-bullet_speed = 720.0
-
-[node name="BulletOrigin" parent="RatAbilityController" index="0"]
-visible = true
 
 [node name="BulletDestination" parent="RatAbilityController" index="1"]
-visible = true
 position = Vector2(680, -330)
-bullet_speed = 650.0
 
 [node name="BulletDestination2" parent="RatAbilityController" instance=ExtResource("16_xpigi")]
+visible = false
 position = Vector2(370, -1480)
-bullet_speed = 650.0
 
 [node name="Timer" type="Timer" parent="RatAbilityController/BulletDestination2"]
 wait_time = 0.5
