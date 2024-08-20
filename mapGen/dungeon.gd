@@ -17,6 +17,7 @@ func music():
 	music.stream = default_music
 	music.play()
 
+
 func _input(event):
 	if event.is_action_pressed("Load Level 1"):
 		load_new_level(0)
