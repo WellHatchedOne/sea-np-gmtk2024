@@ -106,6 +106,7 @@ radius = 37.0
 height = 102.0
 
 [node name="CheetoGerm" type="CharacterBody2D"]
+collision_layer = 128
 collision_mask = 5
 script = ExtResource("1_5q1hl")
 
@@ -116,13 +117,18 @@ sprite_frames = SubResource("SpriteFrames_qqhpn")
 animation = &"attack"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
 shape = SubResource("CapsuleShape2D_kf1lu")
 
 [node name="HealthComponent" parent="." instance=ExtResource("19_mtjs7")]
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("22_qipkq")]
+visible = false
 enemy_radius = 200.0
 
 [node name="ShootAtTargetComponent" parent="." instance=ExtResource("22_6usbw")]
+visible = false
+bullet_speed = 10.0
 
 [node name="KillRatOnContactComponent" parent="." instance=ExtResource("23_0yvuk")]
+visible = false
