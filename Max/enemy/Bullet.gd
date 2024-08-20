@@ -10,6 +10,9 @@ var start_traveling = false
 @onready var sprite_2d = $Sprite2D
 @onready var timer = $Timer
 
+var myGlobalPosition := Vector2.ZERO
+var isUsingGlobalPosition = false
+
 var isEnemyBullet = true
 
 func _ready():
@@ -45,6 +48,11 @@ func update_sprite(new_texture: Texture):
 func start(pos: Vector2):
 	self.position = pos
 
+func startGlobal(globalPos: Vector2):
+	myGlobalPosition = globalPos
+	self.global_position = globalPos
+	isUsingGlobalPosition = true
+
 func face_travel_directions():
 	self.rotation = direction.angle()
 
@@ -57,7 +65,11 @@ func launch(speed, direction, should_start):
 
 func _physics_process(delta):
 	if start_traveling:
-		position += (direction*speed)
+		if isUsingGlobalPosition:
+			myGlobalPosition += direction * speed
+			global_position = myGlobalPosition
+		else:
+			position += direction * speed
 		
 func _on_body_entered(body):
 	#print(body)
