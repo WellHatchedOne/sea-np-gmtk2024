@@ -5,11 +5,7 @@ const LEVEL = preload("res://mapGen/level.tscn")
 var levelPointer : Level = null
 
 func _ready():
-	var level = LEVEL.instantiate()
-	level.tilemapAtlasId = 2
-	get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
-	print(level.spawnPoint)
-	$PackOfRats.position = level.spawnPoint
+	load_new_level(0)
 	music()
 
 
@@ -40,10 +36,8 @@ func load_new_level(levelNum : int):
 	var level = LEVEL.instantiate()
 	print("level:" + level.name)
 	level.tilemapAtlasId = levelNum
-	##get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
+	get_child(0).add_sibling(level) # add_child and move_child to 0, but without adding to end first
 	levelPointer = level
-	add_child(level)
-	move_child(level, 0)
 	print(level.spawnPoint)
 	
 	$PackOfRats.position = level.spawnPoint

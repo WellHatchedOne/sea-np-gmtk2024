@@ -57,7 +57,7 @@ func setAtlasIdAndVectors(id : int):
 		tileMapFloorVectorTubeSW = Vector2i(3, 5)
 
 		tileMapWallVector = Vector2i(0, 0)
-		tileMapCornerVector = Vector2i(0, 0)
+		tileMapCornerVector = Vector2i(5, 0)
 
 		tileMapTopAlt = 0
 		tileMapBottomAlt = 1
@@ -65,9 +65,9 @@ func setAtlasIdAndVectors(id : int):
 		tileMapRightAlt = 3
 
 		tileMapTRAlt = 0
-		tileMapTLAlt = 0 #5
-		tileMapBLAlt = 0 #6
-		tileMapBRAlt = 0 #7
+		tileMapTLAlt = 5
+		tileMapBLAlt = 6
+		tileMapBRAlt = 7
 
 	#farm
 	if id == 1:
