@@ -5,6 +5,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_da7h1"]
 
 [node name="BulletHitboxComponent" type="Area2D"]
+disable_mode = 2
 collision_layer = 64
 collision_mask = 64
 script = ExtResource("1_c5r1b")

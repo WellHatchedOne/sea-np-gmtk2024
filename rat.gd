@@ -182,7 +182,7 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 			last_state = "up"
 			animated_sprite_2d.rotation = (deg_to_rad(0))
 			self.rotation = (deg_to_rad(0))
-	
+
 
 func execute_move():
 	pass

@@ -1,7 +1,8 @@
 extends Area2D
 class_name Bullet
 
-@export var speed = 15
+@export var speed: float = 15
+@export var damage: float = 25
 var direction = Vector2(0,0)
 var start_traveling = false
 
@@ -9,7 +10,13 @@ var start_traveling = false
 @onready var sprite_2d = $Sprite2D
 @onready var timer = $Timer
 
+var isEnemyBullet = true
+
 func _ready():
+	
+	if get_parent().get_parent() is Rat:
+		isEnemyBullet = false
+	
 	timer.timeout.connect(_end_bullet_after_timer)
 	set_lifetime(20)
 	
@@ -53,6 +60,16 @@ func _physics_process(delta):
 		position += direction*speed
 		
 func _on_body_entered(body):
-	print(body)
 	if body is TileMap:
 		self.queue_free()
+	
+	if body is Rat && isEnemyBullet:
+		body._on_hit_by_bullet()
+		return
+	
+	if body is HealthComponent && not isEnemyBullet:
+		body.take_damage(self.damage)
+
+# Since new bullet hitbox is a child of the bullet
+func _on_area_2d_body_entered(body):
+	self._on_body_entered(body)
