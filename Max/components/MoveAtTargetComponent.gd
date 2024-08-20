@@ -24,7 +24,6 @@ func _ready():
 func _process(delta):
 	if inbody == true:
 		direction = true_parent.position.direction_to(target.position)
-		print(direction)
 		
 func _on_body_entered(body):
 	if !(body is PackOfRats):

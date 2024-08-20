@@ -65,10 +65,12 @@ func _on_body_entered(body):
 	
 	if body is Rat && isEnemyBullet:
 		body._on_hit_by_bullet()
+		self.queue_free()
 		return
 	
 	if body is HealthComponent && not isEnemyBullet:
 		body.take_damage(self.damage)
+		self.queue_free()
 
 # Since new bullet hitbox is a child of the bullet
 func _on_area_2d_body_entered(body):

@@ -9,7 +9,7 @@
 [ext_resource type="Texture2D" uid="uid://dm3036k26jagv" path="res://assets/Rat/electric_rat/Electric_Side-3.png" id="7_qgv6l"]
 [ext_resource type="Texture2D" uid="uid://bgwsbss7anql8" path="res://assets/Rat/electric_rat/Electric_Side-4.png" id="8_xlt24"]
 [ext_resource type="Texture2D" uid="uid://cddaejkdgiwa4" path="res://assets/Rat/electric_rat/Electrical_Up-1.png" id="9_dv8ur"]
-[ext_resource type="Texture2D" uid="uid://d27gd388jl3hi" path="res://assets/Rat/electric_rat/Electric_Rat_Sitting.png" id="9_mnb3c"]
+[ext_resource type="Texture2D" uid="uid://0p2bc02pra8w" path="res://assets/Rat/electric_rat/Electric_Rat_Sitting.png" id="9_mnb3c"]
 [ext_resource type="Texture2D" uid="uid://cy4t50x6bswak" path="res://assets/Rat/electric_rat/Electrical_Up-2.png" id="10_popjd"]
 [ext_resource type="Texture2D" uid="uid://dtqot3tmq06xs" path="res://assets/Rat/electric_rat/Electrical_Up-3.png" id="11_v6vdj"]
 [ext_resource type="Texture2D" uid="uid://c2qw7rbfcpug1" path="res://assets/Rat/electric_rat/Electrical_Up-4.png" id="12_7loor"]
