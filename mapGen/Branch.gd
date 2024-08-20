@@ -52,6 +52,12 @@ func split(remaining: int, paths: Array):
 func isNotFloorTile(x: int, y: int, padding: Vector4i):
 	return x <= padding.x or y <= padding.y or x >= size.x - padding.z or y >= size.y - padding.w
 
+func isFloorTile(x: int, y: int, padding: Vector4i):
+	return !isNotFloorTile(x, y, padding)
+
+func hasNoCardinalAdjacentFloorTile(x: int, y: int, padding: Vector4i):
+	return isNotFloorTile(x-1, y, padding) && isNotFloorTile(x+1, y, padding) && isNotFloorTile(x, y-1, padding) && isNotFloorTile(x, y+1, padding)
+
 func get_center() -> Vector2i:
 	return Vector2i(position.x + size.x / 2, position.y + size.y / 2)
 

@@ -2,6 +2,7 @@ extends CharacterBody2D
 class_name Pico
 @onready var animated_sprite_2d = $AnimatedSprite2D
 @onready var move_at_target_component = $MoveAtTargetComponent
+@onready var bosscutscenetrigger = $Bosscutscenetrigger
 
 @export var should_move: bool = true
 @export var vel: float = 100
@@ -9,6 +10,7 @@ class_name Pico
 var dir = Vector2(1,1)
 
 func _ready():
+
 	animated_sprite_2d.animation = "idle"
 	animated_sprite_2d.play()
 	for child in get_children():

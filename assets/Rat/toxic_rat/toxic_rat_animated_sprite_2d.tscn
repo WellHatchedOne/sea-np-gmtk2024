@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://rvo1b8focvg5" path="res://assets/Rat/toxic_rat/Toxic_Side-2.png" id="6_u3qw7"]
 [ext_resource type="Texture2D" uid="uid://c0edohp4o1tim" path="res://assets/Rat/toxic_rat/Toxic_Side-3.png" id="7_480ho"]
 [ext_resource type="Texture2D" uid="uid://bso1bn1kxwmpy" path="res://assets/Rat/toxic_rat/Toxic_Side-4.png" id="8_ft6r1"]
-[ext_resource type="Texture2D" uid="uid://8qcxtcnsmirm" path="res://assets/Rat/toxic_rat/Toxic_rat_sitting.png" id="9_2pfx1"]
+[ext_resource type="Texture2D" uid="uid://ciyquufjjgfbb" path="res://assets/Rat/toxic_rat/Toxic_rat_sitting.png" id="9_2pfx1"]
 [ext_resource type="Texture2D" uid="uid://cgxdc457bbkf3" path="res://assets/Rat/toxic_rat/Toxic_Up-1.png" id="9_hsymn"]
 [ext_resource type="Texture2D" uid="uid://ceq0lc44yndtv" path="res://assets/Rat/toxic_rat/Toxic_Up-2.png" id="10_qf1f5"]
 [ext_resource type="Texture2D" uid="uid://co7d0crm0a6dx" path="res://assets/Rat/toxic_rat/Toxic_Up-3.png" id="11_7b8uq"]
