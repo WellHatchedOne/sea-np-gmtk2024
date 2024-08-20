@@ -173,7 +173,7 @@ func killRat(rat: Rat):
 	all_rats.remove_at(index)
 	rat.queue_free()
 
-	if (all_rats.size() == 0):
+	if (all_rats.size() <= 0):
 		showEndGameScreen()
 		return
 
