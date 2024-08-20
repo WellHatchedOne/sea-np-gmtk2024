@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://tcfwnvil5de1"]
+[gd_scene load_steps=24 format=3 uid="uid://tcfwnvil5de1"]
 
 [ext_resource type="Script" path="res://Entities/Enemies/Pico/Pico.gd" id="1_4t8sv"]
 [ext_resource type="Texture2D" uid="uid://b674xqnf6ei5y" path="res://assets/enemies/pico/AOE/Cat_Boss_AOE_attack-2.png" id="2_oxb5y"]
@@ -21,7 +21,6 @@
 [ext_resource type="Texture2D" uid="uid://dxhxqyfr7vpip" path="res://assets/enemies/pico/Cat_Boss_Damage-3.png" id="19_tf6wr"]
 [ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="20_bybmv"]
 [ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="21_3a5bf"]
-[ext_resource type="PackedScene" uid="uid://enorpf3d250c" path="res://Daniel/bosscutscenetrigger.tscn" id="22_3tp73"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
 animations = [{
@@ -132,18 +131,17 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_kf1lu"]
-radius = 9.0
-height = 26.0
+radius = 123.0
+height = 416.0
 
 [node name="Pico" type="CharacterBody2D"]
 script = ExtResource("1_4t8sv")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-position = Vector2(-1.42109e-14, -1.42109e-14)
-scale = Vector2(0.0254384, 0.0254384)
+position = Vector2(6, -1)
+scale = Vector2(0.313012, 0.313012)
 sprite_frames = SubResource("SpriteFrames_qqhpn")
-animation = &"death"
-frame_progress = 0.367458
+animation = &"AOE"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-1, 0)
@@ -153,6 +151,5 @@ shape = SubResource("CapsuleShape2D_kf1lu")
 initial_health = 1000.0
 
 [node name="MoveAtTargetComponent" parent="." instance=ExtResource("21_3a5bf")]
-enemy_radius = 100.0
-
-[node name="Bosscutscenetrigger" parent="." instance=ExtResource("22_3tp73")]
+position = Vector2(-2, 0)
+enemy_radius = 300.0
