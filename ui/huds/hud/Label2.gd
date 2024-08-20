@@ -18,7 +18,7 @@ func _process(delta):
 	score = owner.Player.ratnumber
 	#print(score)
 	
-	if score > getPlayerTarget():
+	if score >= getPlayerTarget():
 		_activate()
 	else:
 		_deactivate()
