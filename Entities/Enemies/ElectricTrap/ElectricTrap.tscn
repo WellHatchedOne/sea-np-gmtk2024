@@ -1,0 +1,88 @@
+[gd_scene load_steps=9 format=3 uid="uid://kbcydv2chqvf"]
+
+[ext_resource type="Script" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.gd" id="1_gsevw"]
+[ext_resource type="Texture2D" uid="uid://bq5sbg6sxakdr" path="res://assets/enemies/electricTrap/Electric_trap_idle1.png" id="2_7cjwg"]
+[ext_resource type="Texture2D" uid="uid://bupnsten4gfi" path="res://assets/enemies/electricTrap/Electric_trap_idle2.png" id="3_coke8"]
+[ext_resource type="Texture2D" uid="uid://bkyf52ld21n65" path="res://assets/enemies/electricTrap/Electric_trap_idle3.png" id="4_dgqxi"]
+[ext_resource type="PackedScene" uid="uid://cewt0yy31u2jw" path="res://Max/components/Health/HealthComponent.tscn" id="5_lw4v2"]
+[ext_resource type="PackedScene" uid="uid://dos8owemd38x" path="res://Max/components/MoveAtTargetComponent.tscn" id="6_5rweh"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qqhpn"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7cjwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_coke8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dgqxi")
+}],
+"loop": false,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7cjwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_coke8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dgqxi")
+}],
+"loop": true,
+"name": &"death",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7cjwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_coke8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dgqxi")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_7cjwg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_coke8")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dgqxi")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kat81"]
+size = Vector2(16, 14)
+
+[node name="ElectricTrap" type="CharacterBody2D"]
+script = ExtResource("1_gsevw")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2.38419e-07, -2.38419e-07)
+scale = Vector2(0.0254384, 0.0254384)
+sprite_frames = SubResource("SpriteFrames_qqhpn")
+animation = &"attack"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_kat81")
+
+[node name="HealthComponent" parent="." instance=ExtResource("5_lw4v2")]
+
+[node name="MoveAtTargetComponent" parent="." instance=ExtResource("6_5rweh")]
+enemy_radius = 100.0
