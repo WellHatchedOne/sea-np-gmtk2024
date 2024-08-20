@@ -103,7 +103,6 @@ func animateRat(swarmVelocity:Vector2, shouldAnimateTurn:bool):
 	if globalRatVelocity.x != 0:
 		animated_sprite_2d.animation = "side"
 		animated_sprite_2d.offset = sideRatOffset
-		print("settinge siderat offset = " + str(sideRatOffset))
 		animated_sprite_2d.flip_v = false
 		animated_sprite_2d.flip_h = globalRatVelocity.x < 0
 		if globalRatVelocity.x < 0:
