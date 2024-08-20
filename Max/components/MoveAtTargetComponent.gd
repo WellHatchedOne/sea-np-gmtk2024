@@ -8,41 +8,33 @@ const Enemy = preload("res://Max/enemy/test_enemy.tscn")
 
 var direction = Vector2(0,0)
 var inbody = false
+var true_parent
 
-
-@onready var vision_circle_shape = $VisionCircleShape
+@onready var vision_circle_shape = $VisionCircleShape1
 
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	if (true):
-		target = owner.find_child("PackOfRats")
-		
+	
+	true_parent = get_parent()
+	target = true_parent.get_parent().find_child("PackOfRats")
 	vision_circle_shape.shape.radius = enemy_radius
 
 
 func _process(delta):
-	
 	if inbody == true:
-		direction = get_parent().position.direction_to(target.position)
-	
+		direction = true_parent.position.direction_to(target.position)
+		print(direction)
 		
-	
-
-
 func _on_body_entered(body):
-	
-	
 	if !(body is PackOfRats):
 		return
-		
 	target = body
 	inbody = true
+
 func _on_body_exited(body):
-	
 	if !(body is PackOfRats):
 		return
-		
 	inbody = false
 	direction = Vector2(0,0)
 
