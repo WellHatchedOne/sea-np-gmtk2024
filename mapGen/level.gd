@@ -202,11 +202,11 @@ func handleRandomEnemySpawning(tile_index: Vector2i):
 		var RandEnemy = rng.randf_range(0, 10)
 		if tilemapAtlasId == 0:
 			if RandEnemy < 4:
-				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.01)
+				try_to_spawn_entity(CHEETO, tile_index, level_position, 0.02)
 			if RandEnemy > 4 and RandEnemy < 7:
-				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.01)
+				try_to_spawn_entity(PINKGERM, tile_index, level_position, 0.02)
 			if RandEnemy > 4 and RandEnemy < 7:
-				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.01)
+				try_to_spawn_entity(ELECTRICTRAP, tile_index, level_position, 0.02)
 		if tilemapAtlasId == 1:
 			if RandEnemy < 3:
 				try_to_spawn_entity(FLOWER, tile_index, level_position, 0.05)
@@ -235,11 +235,11 @@ func handleRandomPickupsSpawning(tile_index: Vector2i):
 		return
 
 	if try_to_spawn_entity(FOOD, tile_index, level_position, 0.1): return
-	if try_to_spawn_entity(FIRE_PICKUP, tile_index, level_position, .001): return
-	if try_to_spawn_entity(ELECTRIC_PICKUP, tile_index, level_position, .001): return
-	if try_to_spawn_entity(TOXIC_PICKUP, tile_index, level_position, .001): return
-	if try_to_spawn_entity(WATER_PICKUP, tile_index, level_position, .001): return
-	if try_to_spawn_entity(WIZARD_PICKUP, tile_index, level_position, .001): return
+	if try_to_spawn_entity(FIRE_PICKUP, tile_index, level_position, .002): return
+	if try_to_spawn_entity(ELECTRIC_PICKUP, tile_index, level_position, .002): return
+	if try_to_spawn_entity(TOXIC_PICKUP, tile_index, level_position, .002): return
+	if try_to_spawn_entity(WATER_PICKUP, tile_index, level_position, .002): return
+	if try_to_spawn_entity(WIZARD_PICKUP, tile_index, level_position, .002): return
 
 func renderFloor(leaf: Branch, padding: Vector4i):
 	for x in range(leaf.size.x):
