@@ -4,11 +4,11 @@
 [ext_resource type="PackedScene" uid="uid://b48ecluvmk63a" path="res://ui/huds/minimap/rat_mini_map.tscn" id="6_k1yuq"]
 [ext_resource type="PackedScene" uid="uid://uvgdynm14wdy" path="res://ui/huds/hud/hud.tscn" id="7_33jec"]
 [ext_resource type="PackedScene" uid="uid://bqxvbvhcodqdf" path="res://Daniel/MakeOpaqueComponent.tscn" id="7_bipso"]
-[ext_resource type="PackedScene" uid="uid://01htn758kxri" path="res://Max/enemy/test_enemy.tscn" id="8_cqtwo"]
 [ext_resource type="PackedScene" uid="uid://dknubmiky3ydk" path="res://Max/pack_of_rats/pack_of_rats.tscn" id="8_n4xp6"]
 [ext_resource type="PackedScene" uid="uid://bvquu71aydot" path="res://Max/components/RatUpgradeComponent.tscn" id="8_np63d"]
-[ext_resource type="PackedScene" uid="uid://cnxwyql0oqyt6" path="res://Max/components/ShootAtTargetComponent.tscn" id="9_aet51"]
 [ext_resource type="PackedScene" uid="uid://dg7n24ps1sdch" path="res://assets/Rat/electric_rat/electric_rat_animated_sprite_2d.tscn" id="9_mcncc"]
+[ext_resource type="PackedScene" uid="uid://bqo31kjnrxh0i" path="res://Entities/Enemies/cheetoGerm/cheetoGerm.tscn" id="10_mmiav"]
+[ext_resource type="PackedScene" uid="uid://cow1mqw4fgcej" path="res://Entities/Enemies/pinkGerm/pinkGerm.tscn" id="10_tm8em"]
 
 [node name="Dungeon" type="Node2D"]
 script = ExtResource("1_g1b25")
@@ -23,16 +23,15 @@ player = NodePath("../PackOfRats")
 
 [node name="MakeOpaqueComponent" parent="PackOfRats" instance=ExtResource("7_bipso")]
 
-[node name="TestEnemy" parent="." instance=ExtResource("8_cqtwo")]
-position = Vector2(-162, -134)
-
-[node name="ShootAtTargetComponent" parent="TestEnemy" instance=ExtResource("9_aet51")]
-fire_rate = 0.7
-fire_rate_variance = 0.7
-
 [node name="RatUpgradeComponent" parent="." instance=ExtResource("8_np63d")]
 position = Vector2(500, 437)
 
 [node name="RatUpgradeComponent2" parent="." instance=ExtResource("8_np63d")]
 position = Vector2(566, 350)
 new_sprite = ExtResource("9_mcncc")
+
+[node name="PinkGerm" parent="." instance=ExtResource("10_tm8em")]
+position = Vector2(328, 509)
+
+[node name="CheetoGerm" parent="." instance=ExtResource("10_mmiav")]
+position = Vector2(607, 489)
