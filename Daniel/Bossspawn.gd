@@ -6,7 +6,7 @@ var score = 50
 
 
 func _ready():
-	score = pack_of_rats.ratnumber
+	score = pack_of_rats.getRatPackCount()
 
 func _process(delta):
 	print(score)

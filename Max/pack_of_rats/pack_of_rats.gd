@@ -201,3 +201,11 @@ func getClosestRatToCenter():
 
 func getRatsDistanceFromCenter(rat:Rat) -> float:
 	return rat.getStartingPosition().length()
+
+# Gets the number of rats in the pack. This does not include sitting rats
+func getRatPackCount() -> int:
+	var size:int = 0
+	for rat in all_rats:
+		if rat.getRatState() != Rat.RatState.SITTING:
+			size += 1
+	return size
