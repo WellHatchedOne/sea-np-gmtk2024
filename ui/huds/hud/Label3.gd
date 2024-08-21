@@ -10,13 +10,13 @@ var firstplay = true
 func _ready():
 	#$pack_of_rats.connect("ratsignal",self, "on_ratsignal")
 	#print(owner.Player.ratnumber)
-	score = owner.Player.ratnumber
+	score = owner.Player.getRatPackCount()
 	text =""
 	#levelnum = get_tree().root.get_child(0).get_node("Level").level.tilemapAtlasId
 	#print(get_tree().root.get_child(0).get_children())
 	
 func _process(delta):
-	score = owner.Player.ratnumber
+	score = owner.Player.getRatPackCount()
 	#print(score)
 	
 	if getPlayerLevel() >= 4 and firstplay == true:

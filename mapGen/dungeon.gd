@@ -32,6 +32,8 @@ func _input(event):
 
 func load_next_level():
 	load_new_level(currentLevel + 1)
+	var packOfRats:PackOfRats = get_node("PackOfRats")
+	packOfRats.killSittingRats()
 
 func load_new_level(levelNum : int):
 	currentLevel = levelNum

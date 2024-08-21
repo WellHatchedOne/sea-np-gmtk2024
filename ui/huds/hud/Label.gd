@@ -7,14 +7,14 @@ var green
 func _ready():
 	#$pack_of_rats.connect("ratsignal",self, "on_ratsignal")
 	#print(owner.Player.ratnumber)
-	score = owner.Player.ratnumber
+	score = owner.Player.getRatPackCount()
 	text = str(score)
 	
 	
 	
 	
 func _process(delta):
-	score = owner.Player.ratnumber
+	score = owner.Player.getRatPackCount()
 	text = str(score) + "/" + str(getPlayerTarget()) + " RATS"
 	if score < 5 :
 		red = Color(1.0,0.0,0.0,1.0)
