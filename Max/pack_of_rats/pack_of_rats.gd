@@ -88,6 +88,11 @@ func killARandomRat():
 		var ratToKill:Rat = all_rats.pick_random()
 		ratToKill._on_hit_by_bullet()
 
+func killSittingRats():
+	for rat:Rat in all_rats:
+		if rat.getRatState() == Rat.RatState.SITTING:
+			rat._on_hit_by_bullet()
+
 func _ready():
 	spawn_spiral_rat(false)
 
